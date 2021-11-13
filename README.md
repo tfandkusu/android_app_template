@@ -8,4 +8,10 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 
 ## Coverage
 
-[Jacoco](https://www.eclemma.org/jacoco/)
+- [Jacoco](https://www.eclemma.org/jacoco/)
+- [Codecov](https://about.codecov.io/)
+
+### CI/CD
+
+- [GitHub Actions](https://github.co.jp/features/actions)
+- [Spotless plugin for Gradle](https://github.com/diffplug/spotless/tree/main/plugin-gradle)
