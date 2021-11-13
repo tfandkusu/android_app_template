@@ -1,9 +1,16 @@
 package com.tfandkusu.template.data.remote
 
+import com.tfandkusu.template.api.TemplateApiService
 import com.tfandkusu.template.api.TemplateApiServiceBuilder
+import com.tfandkusu.template.error.NetworkErrorException
 import io.kotlintest.matchers.numerics.shouldBeGreaterThan
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldNotBe
+import io.kotlintest.shouldThrow
+import io.mockk.MockKAnnotations
+import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
@@ -13,15 +20,17 @@ import org.junit.Test
 
 class GithubRemoteDataStoreTest {
 
-    private lateinit var remoteDataStore: GithubRemoteDataStore
+    @MockK(relaxed = true)
+    private lateinit var service: TemplateApiService
 
     @Before
     fun setUp() {
-        remoteDataStore = GithubRemoteDataStoreImpl(TemplateApiServiceBuilder.build())
+        MockKAnnotations.init(this)
     }
 
     @Test
-    fun listRepositories() = runBlocking {
+    fun listRepositoriesSuccess() = runBlocking {
+        val remoteDataStore = GithubRemoteDataStoreImpl(TemplateApiServiceBuilder.build())
         val list = remoteDataStore.listRepositories()
         val target = list.firstOrNull { it.name == "groupie_sticky_header_sample" }
         target shouldNotBe null
@@ -34,6 +43,18 @@ class GithubRemoteDataStoreTest {
             it.language shouldBe "Java"
             it.htmlUrl shouldBe "https://github.com/tfandkusu/groupie_sticky_header_sample"
             it.forked shouldBe false
+        }
+        Unit
+    }
+
+    @Test
+    fun listRepositoriesNetworkError() = runBlocking {
+        coEvery {
+            service.listRepositories()
+        } throws IOException()
+        val remoteDataStore = GithubRemoteDataStoreImpl(service)
+        shouldThrow<NetworkErrorException> {
+            remoteDataStore.listRepositories()
         }
         Unit
     }

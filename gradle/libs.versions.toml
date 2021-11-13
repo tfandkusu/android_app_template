@@ -16,4 +16,5 @@ retrofit-retrofit = { module = 'com.squareup.retrofit2:retrofit', version.ref = 
 retrofit-moshi =  { module = 'com.squareup.retrofit2:converter-moshi', version.ref = 'retrofit' }
 moshi-adapter = 'com.squareup.moshi:moshi-adapters:1.8.0'
 junit = 'junit:junit:4.13.2'
+mockk = 'io.mockk:mockk:1.12.0'
 kotest = 'io.kotlintest:kotlintest-runner-junit5:3.4.2'

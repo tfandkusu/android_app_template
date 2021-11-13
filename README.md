@@ -14,6 +14,7 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 
 ## Unit test
 
+- [MockK](https://github.com/mockk/mockk)
 - [Kotest](https://github.com/kotest/kotest)
 
 ## Coverage
