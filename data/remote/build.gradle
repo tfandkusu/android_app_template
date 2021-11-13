@@ -3,4 +3,7 @@ apply from: rootProject.file("gradle/common.gradle")
 
 dependencies {
     implementation project(':model')
+    implementation libs.retrofit.retrofit
+    implementation libs.retrofit.moshi
+    implementation libs.moshi.adapter
 }
