@@ -1,15 +1,9 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.application'
+apply from: rootProject.file("gradle/common.gradle")
 
 android {
-    compileSdk 31
-
     defaultConfig {
         applicationId "com.tfandkusu.template"
-        minSdk 23
-        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -19,12 +13,6 @@ android {
         }
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -48,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation project(':model')
     implementation libs.core
     implementation libs.appcompat
     implementation libs.material
@@ -55,6 +44,5 @@ dependencies {
     implementation libs.compose.material
     implementation libs.compose.ui.preview
     implementation libs.activity.compose
-    testImplementation libs.junit
     debugImplementation libs.compose.ui.tooling
 }

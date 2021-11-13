@@ -8,6 +8,15 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 
 **Ref:** [The version catalog TOML file format](https://docs.gradle.org/7.0.2/userguide/platforms.html#sub::toml-dependencies-format)
 
+## Data layer
+
+- [Retrofit](https://github.com/square/retrofit)
+
+## Unit test
+
+- [MockK](https://github.com/mockk/mockk)
+- [Kotest](https://github.com/kotest/kotest)
+
 ## Coverage
 
 - [Jacoco](https://www.eclemma.org/jacoco/)
