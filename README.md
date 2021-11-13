@@ -13,7 +13,7 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 - [Jacoco](https://www.eclemma.org/jacoco/)
 - [Codecov](https://about.codecov.io/)
 
-### CI/CD
+## CI/CD
 
 - [GitHub Actions](https://github.co.jp/features/actions)
 - [Spotless plugin for Gradle](https://github.com/diffplug/spotless/tree/main/plugin-gradle)
