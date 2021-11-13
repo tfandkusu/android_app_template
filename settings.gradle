@@ -9,3 +9,4 @@ rootProject.name = "App Template"
 enableFeaturePreview("VERSION_CATALOGS")
 include ':app'
 include ':model'
+include ':data:remote'
