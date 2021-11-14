@@ -2,7 +2,7 @@ package com.tfandkusu.template.model
 
 import java.util.Date
 
-data class GithubRepository(
+data class GithubRepo(
     val id: Long,
     val name: String,
     val description: String,

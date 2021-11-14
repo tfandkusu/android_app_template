@@ -3,7 +3,7 @@ package com.tfandkusu.template.api.response
 import com.squareup.moshi.Json
 import java.util.Date
 
-data class GithubRepositoryListResponseItem(
+data class GithubRepoListResponseItem(
     val id: Long,
     val name: String,
     val description: String?,

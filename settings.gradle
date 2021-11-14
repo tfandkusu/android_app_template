@@ -8,5 +8,6 @@ dependencyResolutionManagement {
 rootProject.name = "App Template"
 enableFeaturePreview("VERSION_CATALOGS")
 include ':app'
-include ':model'
+include ':common'
 include ':data:remote'
+include ':data:local'
