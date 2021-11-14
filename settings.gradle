@@ -10,3 +10,4 @@ enableFeaturePreview("VERSION_CATALOGS")
 include ':app'
 include ':model'
 include ':data:remote'
+include ':data:local'
