@@ -70,7 +70,9 @@ class GithubRepoLocalDataStoreImpl(
     }
 
     override suspend fun clear() {
-        githubRepoDao.clear()
-        createdDao.delete(LocalCreated.KIND_GITHUB_REPO)
+        db.withTransaction {
+            githubRepoDao.clear()
+            createdDao.delete(LocalCreated.KIND_GITHUB_REPO)
+        }
     }
 }
