@@ -1,4 +1,5 @@
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdk 31
@@ -21,4 +22,5 @@ dependencies {
     testImplementation libs.junit
     testImplementation libs.mockk
     testImplementation libs.kotest
+    testImplementation libs.test.core
 }

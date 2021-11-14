@@ -14,6 +14,8 @@ interface GithubRepoLocalDataStore {
     suspend fun save(githubRepos: List<GithubRepo>)
 
     fun listAsFlow(): Flow<List<GithubRepo>>
+
+    suspend fun clear()
 }
 
 class GithubRepoLocalDataStoreImpl(
@@ -45,7 +47,7 @@ class GithubRepoLocalDataStoreImpl(
             }
             createdDao.insert(
                 LocalCreated(
-                    0L,
+                    createdDao.get(LocalCreated.KIND_GITHUB_REPO)?.id ?: 0L,
                     LocalCreated.KIND_GITHUB_REPO,
                     currentTimeGetter.get()
                 )
@@ -65,5 +67,10 @@ class GithubRepoLocalDataStoreImpl(
                 it.forked
             )
         }
+    }
+
+    override suspend fun clear() {
+        githubRepoDao.clear()
+        createdDao.delete(LocalCreated.KIND_GITHUB_REPO)
     }
 }

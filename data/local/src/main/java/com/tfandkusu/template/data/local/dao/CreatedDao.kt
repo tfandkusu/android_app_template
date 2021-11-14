@@ -10,4 +10,7 @@ interface CreatedDao {
 
     @Query("SELECT * FROM created WHERE kind=:kind LIMIT 1")
     suspend fun get(kind: String): LocalCreated?
+
+    @Query("DELETE FROM created WHERE kind=:kind")
+    suspend fun delete(kind: String)
 }
