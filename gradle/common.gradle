@@ -17,6 +17,7 @@ android {
 }
 
 dependencies {
+    implementation libs.kotlin.coroutines.android
     testImplementation libs.junit
     testImplementation libs.mockk
     testImplementation libs.kotest

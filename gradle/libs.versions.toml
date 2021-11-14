@@ -3,8 +3,11 @@ kotlin = '1.5.21'
 compose = '1.0.1'
 retrofit = '2.9.0'
 room = '2.3.0'
+coroutines = "1.5.2"
 
 [libraries]
+kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 core = 'androidx.core:core-ktx:1.7.0'
 appcompat = 'androidx.appcompat:appcompat:1.3.1'
 material = 'com.google.android.material:material:1.4.0'
@@ -17,6 +20,7 @@ retrofit-retrofit = { module = 'com.squareup.retrofit2:retrofit', version.ref = 
 retrofit-moshi =  { module = 'com.squareup.retrofit2:converter-moshi', version.ref = 'retrofit' }
 moshi-adapter = 'com.squareup.moshi:moshi-adapters:1.8.0'
 room-runtime = { module = 'androidx.room:room-runtime', version.ref='room' }
+room-ktx = { module = 'androidx.room:room-ktx', version.ref='room' }
 room-compiler = { module = 'androidx.room:room-compiler', version.ref='room' }
 junit = 'junit:junit:4.13.2'
 mockk = 'io.mockk:mockk:1.12.0'
