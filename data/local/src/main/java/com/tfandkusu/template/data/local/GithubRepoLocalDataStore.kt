@@ -5,6 +5,7 @@ import com.tfandkusu.template.data.local.db.AppDatabase
 import com.tfandkusu.template.data.local.entity.LocalCreated
 import com.tfandkusu.template.data.local.entity.LocalGithubRepo
 import com.tfandkusu.template.model.GithubRepo
+import com.tfandkusu.template.util.CurrentTimeGetter
 import java.util.Date
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -15,7 +16,10 @@ interface GithubRepoLocalDataStore {
     fun listAsFlow(): Flow<List<GithubRepo>>
 }
 
-class GithubRepoLocalDataStoreImpl(private val db: AppDatabase) :
+class GithubRepoLocalDataStoreImpl(
+    private val db: AppDatabase,
+    private val currentTimeGetter: CurrentTimeGetter
+) :
     GithubRepoLocalDataStore {
 
     private val githubRepoDao = db.githubRepoDao()
@@ -39,7 +43,13 @@ class GithubRepoLocalDataStoreImpl(private val db: AppDatabase) :
             }.map {
                 githubRepoDao.insert(it)
             }
-            createdDao.insert(LocalCreated(0L, LocalCreated.KIND_GITHUB_REPO, 0L))
+            createdDao.insert(
+                LocalCreated(
+                    0L,
+                    LocalCreated.KIND_GITHUB_REPO,
+                    currentTimeGetter.get()
+                )
+            )
         }
     }
 
