@@ -2,20 +2,20 @@ package com.tfandkusu.template.data.remote
 
 import com.tfandkusu.template.api.TemplateApiService
 import com.tfandkusu.template.error.mapApiError
-import com.tfandkusu.template.model.GithubRepository
+import com.tfandkusu.template.model.GithubRepo
 
 interface GithubRemoteDataStore {
-    suspend fun listRepositories(): List<GithubRepository>
+    suspend fun listRepositories(): List<GithubRepo>
 }
 
 class GithubRemoteDataStoreImpl(
     private val service: TemplateApiService
 ) : GithubRemoteDataStore {
-    override suspend fun listRepositories(): List<GithubRepository> {
+    override suspend fun listRepositories(): List<GithubRepo> {
         try {
-            val response = service.listRepositories()
+            val response = service.listRepos()
             return response.map {
-                GithubRepository(
+                GithubRepo(
                     it.id,
                     it.name,
                     it.description ?: "",

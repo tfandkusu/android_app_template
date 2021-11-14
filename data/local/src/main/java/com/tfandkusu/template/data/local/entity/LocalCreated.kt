@@ -11,6 +11,6 @@ data class LocalCreated(
     val createdAt: Long
 ) {
     companion object {
-        const val KIND_GITHUB_REPOSITORY = "githubRepository"
+        const val KIND_GITHUB_REPO = "githubRepo"
     }
 }

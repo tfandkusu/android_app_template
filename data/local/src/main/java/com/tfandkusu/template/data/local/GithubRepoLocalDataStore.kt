@@ -3,30 +3,30 @@ package com.tfandkusu.template.data.local
 import androidx.room.withTransaction
 import com.tfandkusu.template.data.local.db.AppDatabase
 import com.tfandkusu.template.data.local.entity.LocalCreated
-import com.tfandkusu.template.data.local.entity.LocalGithubRepository
-import com.tfandkusu.template.model.GithubRepository
+import com.tfandkusu.template.data.local.entity.LocalGithubRepo
+import com.tfandkusu.template.model.GithubRepo
 import java.util.Date
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-interface GithubRepositoryLocalDataStore {
-    suspend fun save(githubRepositories: List<GithubRepository>)
+interface GithubRepoLocalDataStore {
+    suspend fun save(githubRepos: List<GithubRepo>)
 
-    fun listAsFlow(): Flow<List<GithubRepository>>
+    fun listAsFlow(): Flow<List<GithubRepo>>
 }
 
-class GithubRepositoryLocalDataStoreImpl(private val db: AppDatabase) :
-    GithubRepositoryLocalDataStore {
+class GithubRepoLocalDataStoreImpl(private val db: AppDatabase) :
+    GithubRepoLocalDataStore {
 
-    private val githubRepositoryDao = db.githubRepositoryDao()
+    private val githubRepoDao = db.githubRepoDao()
 
     private val createdDao = db.createdDao()
 
-    override suspend fun save(githubRepositories: List<GithubRepository>) {
+    override suspend fun save(githubRepos: List<GithubRepo>) {
         db.withTransaction {
-            githubRepositoryDao.clear()
-            githubRepositories.map {
-                LocalGithubRepository(
+            githubRepoDao.clear()
+            githubRepos.map {
+                LocalGithubRepo(
                     0L,
                     it.id,
                     it.name,
@@ -37,15 +37,15 @@ class GithubRepositoryLocalDataStoreImpl(private val db: AppDatabase) :
                     it.forked
                 )
             }.map {
-                githubRepositoryDao.insert(it)
+                githubRepoDao.insert(it)
             }
-            createdDao.insert(LocalCreated(0L, LocalCreated.KIND_GITHUB_REPOSITORY, 0L))
+            createdDao.insert(LocalCreated(0L, LocalCreated.KIND_GITHUB_REPO, 0L))
         }
     }
 
-    override fun listAsFlow() = githubRepositoryDao.listAsFlow().map { list ->
+    override fun listAsFlow() = githubRepoDao.listAsFlow().map { list ->
         list.map {
-            GithubRepository(
+            GithubRepo(
                 it.serverId,
                 it.name,
                 it.description,

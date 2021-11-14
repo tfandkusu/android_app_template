@@ -50,7 +50,7 @@ class GithubRemoteDataStoreTest {
     @Test
     fun listRepositoriesNetworkError() = runBlocking {
         coEvery {
-            service.listRepositories()
+            service.listRepos()
         } throws IOException()
         val remoteDataStore = GithubRemoteDataStoreImpl(service)
         shouldThrow<NetworkErrorException> {
