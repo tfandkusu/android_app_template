@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply from: rootProject.file("gradle/common.gradle")
 
 dependencies {
-    implementation project(':model')
+    implementation project(':common')
     implementation libs.room.runtime
     implementation libs.room.ktx
     annotationProcessor libs.room.compiler
