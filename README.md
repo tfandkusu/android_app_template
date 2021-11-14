@@ -11,11 +11,13 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 ## Data layer
 
 - [Retrofit](https://github.com/square/retrofit)
+- [Room](https://developer.android.com/jetpack/androidx/releases/room)
 
 ## Unit test
 
 - [MockK](https://github.com/mockk/mockk)
 - [Kotest](https://github.com/kotest/kotest)
+- [Robolectric](http://robolectric.org/)
 
 ## Coverage
 
