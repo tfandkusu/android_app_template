@@ -1,4 +1,4 @@
-package com.tfandkusu.template
+package com.tfandkusu.template.view.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
