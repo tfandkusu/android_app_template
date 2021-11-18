@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply from: rootProject.file("gradle/common.gradle")
+apply from: rootProject.file("gradle/view-common.gradle")
 
 android {
     defaultConfig {
@@ -21,13 +21,6 @@ android {
         jvmTarget = '1.8'
         useIR = true
     }
-    buildFeatures {
-        compose true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.compose.get()
-        kotlinCompilerVersion libs.versions.kotlin.get()
-    }
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
@@ -37,12 +30,6 @@ android {
 
 dependencies {
     implementation project(':common')
-    implementation libs.core
-    implementation libs.appcompat
-    implementation libs.material
-    implementation libs.compose.ui.ui
-    implementation libs.compose.material
-    implementation libs.compose.ui.preview
-    implementation libs.activity.compose
-    debugImplementation libs.compose.ui.tooling
+    implementation project(':feature:home')
+    implementation libs.navigation.compose
 }
