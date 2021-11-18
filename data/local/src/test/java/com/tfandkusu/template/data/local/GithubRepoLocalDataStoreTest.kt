@@ -44,10 +44,11 @@ class GithubRepoLocalDataStoreTest {
         createdLocalDataStore.get(LocalCreated.KIND_GITHUB_REPO) shouldBe 0L
         localDataStore.listAsFlow().first() shouldBe listOf()
         // Check save
-        val now = parseUTC("2021-11-15T01:12:45Z")
+        val firstTime = parseUTC("2021-11-15T01:12:45Z")
+        val secondTime = parseUTC("2021-11-15T03:00:00Z")
         every {
             currentTimeGetter.get()
-        } returns now.time
+        } returns firstTime.time andThen secondTime.time
         val repo1 = GithubRepo(
             229475311L,
             "observe_room",
@@ -80,7 +81,15 @@ class GithubRepoLocalDataStoreTest {
         )
         localDataStore.save(listOf(repo1, repo2, repo3))
         localDataStore.listAsFlow().first() shouldBe listOf(repo1, repo3, repo2)
-        createdLocalDataStore.get(LocalCreated.KIND_GITHUB_REPO) shouldBe now.time
+        createdLocalDataStore.get(LocalCreated.KIND_GITHUB_REPO) shouldBe firstTime.time
+        // Second save
+        localDataStore.save(listOf(repo1.copy(name = "Edited"), repo2, repo3))
+        localDataStore.listAsFlow().first() shouldBe listOf(
+            repo1.copy(name = "Edited"),
+            repo3,
+            repo2
+        )
+        createdLocalDataStore.get(LocalCreated.KIND_GITHUB_REPO) shouldBe secondTime.time
         // Check clear
         localDataStore.clear()
         createdLocalDataStore.get(LocalCreated.KIND_GITHUB_REPO) shouldBe 0
