@@ -44,5 +44,6 @@ dependencies {
     implementation libs.compose.material
     implementation libs.compose.ui.preview
     implementation libs.activity.compose
+    implementation libs.navigation.compose
     debugImplementation libs.compose.ui.tooling
 }
