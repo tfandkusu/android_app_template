@@ -5,10 +5,12 @@ import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.usecase.home.HomeLoadUseCase
 import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
 import com.tfandkusu.template.util.parseUTC
-import io.kotlintest.shouldBe
+import com.tfandkusu.template.viewmodel.mockStateObserver
 import io.mockk.MockKAnnotations
+import io.mockk.coVerifySequence
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
+import io.mockk.verifySequence
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
@@ -92,8 +94,21 @@ class HomeViewModelTest {
         } returns flow {
             emit(repos)
         }
-        viewModel.state.value shouldBe HomeState(progress = true, repos = listOf())
+        val mockStateObserver = viewModel.state.mockStateObserver()
         viewModel.event(HomeEvent.OnCreate)
-        viewModel.state.value shouldBe HomeState(progress = false, repos = repos)
+        verifySequence {
+            mockStateObserver.onChanged(HomeState())
+            onCreateUseCase.execute()
+            mockStateObserver.onChanged(HomeState(progress = false, repos = repos))
+        }
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun loadSuccess() = testDispatcher.runBlockingTest {
+        viewModel.event(HomeEvent.Load)
+        coVerifySequence {
+            loadUseCase.execute()
+        }
     }
 }

@@ -5,4 +5,5 @@ dependencies {
     implementation project(':common')
     implementation project(':viewCommon')
     implementation project(':data:repository')
+    testImplementation project(':testUtil')
 }

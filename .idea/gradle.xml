@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/data/repository" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/home" />
+            <option value="$PROJECT_DIR$/testUtil" />
             <option value="$PROJECT_DIR$/viewCommon" />
           </set>
         </option>
