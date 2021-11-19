@@ -19,4 +19,6 @@ dependencies {
     implementation libs.compose.ui.preview
     implementation libs.activity.compose
     debugImplementation libs.compose.ui.tooling
+    testImplementation libs.arch.core.testing
+    testImplementation libs.kotlin.coroutines.test
 }
