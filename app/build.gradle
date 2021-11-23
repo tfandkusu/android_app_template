@@ -1,6 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
 apply from: rootProject.file("gradle/view-common.gradle")
 
 android {
@@ -34,6 +32,4 @@ dependencies {
     implementation project(':common')
     implementation project(':feature:home')
     implementation libs.navigation.compose
-    implementation libs.hilt.android
-    kapt libs.hilt.compiler
 }
