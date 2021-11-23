@@ -1,6 +1,16 @@
 apply plugin: 'com.android.library'
 apply from: rootProject.file("gradle/common.gradle")
 
+android {
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+}
+
 dependencies {
     implementation project(':common')
     implementation libs.room.runtime
