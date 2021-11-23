@@ -7,6 +7,7 @@ import com.tfandkusu.template.data.local.entity.LocalGithubRepo
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.util.CurrentTimeGetter
 import java.util.Date
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -18,7 +19,7 @@ interface GithubRepoLocalDataStore {
     suspend fun clear()
 }
 
-class GithubRepoLocalDataStoreImpl(
+class GithubRepoLocalDataStoreImpl @Inject constructor(
     private val db: AppDatabase,
     private val currentTimeGetter: CurrentTimeGetter
 ) :
