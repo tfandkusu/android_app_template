@@ -11,6 +11,12 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 ## View layer
 
 - [Jetpack Compose](https://developer.android.com/jetpack/compose)
+- [Navigation Compose](https://developer.android.com/jetpack/compose/navigation)
+
+## DI
+
+- [Dagger Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+- [Hilt Navigation Compose](https://developer.android.com/jetpack/compose/libraries#hilt-navigation)
 
 ## Data layer
 
