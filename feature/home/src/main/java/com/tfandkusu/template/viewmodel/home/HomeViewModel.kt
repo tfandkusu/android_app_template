@@ -9,6 +9,8 @@ import com.tfandkusu.template.usecase.home.HomeLoadUseCase
 import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
 import com.tfandkusu.template.viewmodel.UnidirectionalViewModel
 import com.tfandkusu.template.viewmodel.update
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -30,7 +32,8 @@ data class HomeState(
 
 interface HomeViewModel : UnidirectionalViewModel<HomeEvent, HomeEffect, HomeState>
 
-class HomeViewModelImpl(
+@HiltViewModel
+class HomeViewModelImpl @Inject constructor(
     private val loadUseCase: HomeLoadUseCase,
     private val onCreateUseCase: HomeOnCreateUseCase
 ) : HomeViewModel, ViewModel() {

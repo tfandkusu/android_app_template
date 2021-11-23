@@ -6,6 +6,7 @@ import com.tfandkusu.template.data.local.entity.LocalCreated
 import com.tfandkusu.template.data.remote.GithubRemoteDataStore
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.util.CurrentTimeGetter
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 
 interface GithubRepoRepository {
@@ -17,7 +18,7 @@ interface GithubRepoRepository {
     fun listAsFlow(): Flow<List<GithubRepo>>
 }
 
-class GithubRepoRepositoryImpl(
+class GithubRepoRepositoryImpl @Inject constructor(
     private val remoteDataStore: GithubRemoteDataStore,
     private val localDataStore: GithubRepoLocalDataStore,
     private val createdLocalDataStore: CreatedLocalDataStore,
