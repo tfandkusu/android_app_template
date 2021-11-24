@@ -8,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -27,6 +28,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
         viewModel.event(HomeEvent.OnCreate)
         viewModel.event(HomeEvent.Load)
     }
+    val state = viewModel.state.observeAsState(HomeState())
     Scaffold(
         topBar = {
             TopAppBar(title = {
@@ -38,7 +40,9 @@ fun HomeScreen(viewModel: HomeViewModel) {
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            CircularProgressIndicator()
+            if (state.value.progress) {
+                CircularProgressIndicator()
+            }
         }
     }
 }
