@@ -46,8 +46,8 @@ fun HomeScreen(viewModel: HomeViewModel) {
             }
         } else {
             LazyColumn {
-                item {
-                    state.repos.map {
+                state.repos.map {
+                    item(key = it.id) {
                         GitHubRepoListItem(it)
                     }
                 }
