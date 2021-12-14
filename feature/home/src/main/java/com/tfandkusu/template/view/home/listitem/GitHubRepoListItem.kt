@@ -1,37 +1,110 @@
 package com.tfandkusu.template.view.home.listitem
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tfandkusu.template.home.R
 import com.tfandkusu.template.model.GithubRepo
 import java.util.Date
 
 @Composable
 fun GitHubRepoListItem(repo: GithubRepo) {
-    Column(Modifier.padding(16.dp)) {
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = repo.name,
-            style = TextStyle(color = Color(0xff222222), fontSize = 16.sp),
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
-        Text(
+    Column {
+        Spacer(modifier = Modifier.height(16.dp))
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .padding(top = 8.dp)
-                .fillMaxWidth(),
-            text = repo.description,
-            style = TextStyle(color = Color(0xff666666), fontSize = 14.sp),
-        )
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+        ) {
+            Text(
+                text = repo.name,
+                modifier = Modifier.weight(1f, false),
+                style = TextStyle(
+                    color = colorResource(R.color.text),
+                    fontSize = 16.sp
+                ),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+            Spacer(modifier = Modifier.width(16.dp))
+            if (repo.forked) {
+                Box(
+                    modifier = Modifier
+                        .background(
+                            color = colorResource(R.color.textGray),
+                            shape = RoundedCornerShape(4.dp, 4.dp, 4.dp, 4.dp)
+                        )
+                        .padding(horizontal = 8.dp, vertical = 2.dp)
+                        .height(18.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = stringResource(R.string.fork),
+                        style = TextStyle(
+                            color = colorResource(R.color.white),
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    )
+                }
+            }
+        }
+        if (repo.description.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                text = repo.description,
+                style = TextStyle(color = colorResource(R.color.textGray), fontSize = 14.sp),
+            )
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Box(modifier = Modifier.padding(horizontal = 16.dp)) {
+            Box(
+                modifier = Modifier
+                    .background(
+                        color = Color(0xffff9800),
+                        shape = RoundedCornerShape(14.dp, 14.dp, 14.dp, 14.dp)
+                    )
+                    .padding(horizontal = 16.dp)
+                    .height(28.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = repo.language,
+                    style = TextStyle(
+                        color = colorResource(R.color.white),
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+            }
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        Divider()
     }
 }
 
@@ -49,7 +122,7 @@ fun GitHubRepoListItemPreviewNormal() {
             Date(),
             "Kotlin",
             "",
-            false
+            true
         )
     )
 }
@@ -70,7 +143,23 @@ fun GitHubRepoListItemPreviewLong() {
             Date(),
             "Kotlin",
             "",
-            false
+            true
+        )
+    )
+}
+
+@Composable
+@Preview
+fun GitHubRepoListItemNoDescription() {
+    GitHubRepoListItem(
+        GithubRepo(
+            1L,
+            "no_description",
+            "",
+            Date(),
+            "Kotlin",
+            "",
+            true
         )
     )
 }
