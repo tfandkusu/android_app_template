@@ -49,7 +49,7 @@ fun GitHubRepoListItem(repo: GithubRepo) {
                 overflow = TextOverflow.Ellipsis,
             )
             Spacer(modifier = Modifier.width(16.dp))
-            if (repo.forked) {
+            if (repo.fork) {
                 Box(
                     modifier = Modifier
                         .background(

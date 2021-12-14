@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "257c9167b941e7bfd22e11e18079817c",
+    "identityHash": "aa270f92677f5dfe372caff77916c014",
     "entities": [
       {
         "tableName": "githubRepo",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `serverId` INTEGER NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `updatedAt` INTEGER NOT NULL, `language` TEXT NOT NULL, `htmlUrl` TEXT NOT NULL, `forked` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `serverId` INTEGER NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `updatedAt` INTEGER NOT NULL, `language` TEXT NOT NULL, `htmlUrl` TEXT NOT NULL, `fork` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -51,8 +51,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "forked",
-            "columnName": "forked",
+            "fieldPath": "fork",
+            "columnName": "fork",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -120,7 +120,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '257c9167b941e7bfd22e11e18079817c')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'aa270f92677f5dfe372caff77916c014')"
     ]
   }
 }

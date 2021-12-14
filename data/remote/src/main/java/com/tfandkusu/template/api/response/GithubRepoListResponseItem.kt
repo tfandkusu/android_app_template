@@ -12,5 +12,5 @@ data class GithubRepoListResponseItem(
     val language: String?,
     @field:Json(name = "html_url")
     val htmlUrl: String,
-    val forked: Boolean
+    val fork: Boolean
 )
