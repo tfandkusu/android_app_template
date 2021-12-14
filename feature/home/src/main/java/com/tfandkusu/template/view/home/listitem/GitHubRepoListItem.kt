@@ -81,26 +81,28 @@ fun GitHubRepoListItem(repo: GithubRepo) {
                 style = TextStyle(color = colorResource(R.color.textGray), fontSize = 14.sp),
             )
         }
-        Spacer(modifier = Modifier.height(8.dp))
-        Box(modifier = Modifier.padding(horizontal = 16.dp)) {
-            Box(
-                modifier = Modifier
-                    .background(
-                        color = Color(0xffff9800),
-                        shape = RoundedCornerShape(14.dp, 14.dp, 14.dp, 14.dp)
+        if (repo.language.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(8.dp))
+            Box(modifier = Modifier.padding(horizontal = 16.dp)) {
+                Box(
+                    modifier = Modifier
+                        .background(
+                            color = Color(0xffff9800),
+                            shape = RoundedCornerShape(14.dp, 14.dp, 14.dp, 14.dp)
+                        )
+                        .padding(horizontal = 16.dp)
+                        .height(28.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = repo.language,
+                        style = TextStyle(
+                            color = colorResource(R.color.white),
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.Bold
+                        )
                     )
-                    .padding(horizontal = 16.dp)
-                    .height(28.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = repo.language,
-                    style = TextStyle(
-                        color = colorResource(R.color.white),
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                )
+                }
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
