@@ -13,15 +13,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.tfandkusu.template.home.R
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.util.parseUTC
 import com.tfandkusu.template.view.home.listitem.GitHubRepoListItem
+import com.tfandkusu.template.viewmodel.home.HomeEffect
 import com.tfandkusu.template.viewmodel.home.HomeEvent
 import com.tfandkusu.template.viewmodel.home.HomeState
 import com.tfandkusu.template.viewmodel.home.HomeViewModel
-import com.tfandkusu.template.viewmodel.home.HomeViewModelPreview
 import com.tfandkusu.template.viewmodel.useState
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 @Composable
 fun HomeScreen(viewModel: HomeViewModel) {
@@ -53,6 +57,19 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 }
             }
         }
+    }
+}
+
+class HomeViewModelPreview(private val previewState: HomeState) : HomeViewModel {
+    override fun createDefaultState() = previewState
+
+    override val state: LiveData<HomeState>
+        get() = MutableLiveData(createDefaultState())
+
+    override val effect: Flow<HomeEffect>
+        get() = flow {}
+
+    override fun event(event: HomeEvent) {
     }
 }
 

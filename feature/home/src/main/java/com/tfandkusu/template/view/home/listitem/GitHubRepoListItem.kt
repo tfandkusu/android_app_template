@@ -153,7 +153,6 @@ fun LanguageLabel(language: String) {
     }
 }
 
-
 @Composable
 @Preview
 fun GitHubRepoListItemPreviewNormal() {

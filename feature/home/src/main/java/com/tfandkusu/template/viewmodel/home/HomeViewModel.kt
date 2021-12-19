@@ -13,7 +13,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
@@ -62,18 +61,5 @@ class HomeViewModelImpl @Inject constructor(
                 // TODO error handing
             }
         }
-    }
-}
-
-class HomeViewModelPreview(private val previewState: HomeState) : HomeViewModel {
-    override fun createDefaultState() = previewState
-
-    override val state: LiveData<HomeState>
-        get() = MutableLiveData(createDefaultState())
-
-    override val effect: Flow<HomeEffect>
-        get() = flow {}
-
-    override fun event(event: HomeEvent) {
     }
 }
