@@ -2,6 +2,7 @@ package com.tfandkusu.template.view.home.listitem
 
 import android.content.Intent
 import android.net.Uri
+import android.text.format.DateFormat
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -26,6 +27,7 @@ import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -94,9 +96,25 @@ fun GitHubRepoListItem(repo: GithubRepo) {
                 style = TextStyle(color = colorResource(R.color.textGray), fontSize = 14.sp),
             )
         }
-        if (repo.language.isNotEmpty()) {
-            Spacer(modifier = Modifier.height(8.dp))
-            LanguageLabel(repo.language)
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            if (repo.language.isNotEmpty()) {
+                LanguageLabel(repo.language)
+            }
+            val format = DateFormat.getDateFormat(context)
+            val dateString = format.format(repo.updatedAt)
+            Text(
+                dateString,
+                modifier = Modifier.weight(1f).padding(horizontal = 16.dp),
+                style = TextStyle(
+                    fontSize = 12.sp,
+                    color = colorResource(R.color.textGray),
+                    textAlign = TextAlign.End
+                )
+            )
         }
         Spacer(modifier = Modifier.height(16.dp))
         Divider()
