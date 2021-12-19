@@ -41,4 +41,4 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 
 # References
 
-- [DroidKaigi/conference-app-2021](https://github.com/DroidKaigi/conference-app-2021)
+- [UnidirectionalViewModel](https://github.com/DroidKaigi/conference-app-2021/blob/main/uicomponent-compose/core/src/main/java/io/github/droidkaigi/feeder/core/UnidirectionalViewModel.kt) from [DroidKaigi/conference-app-2021](https://github.com/DroidKaigi/conference-app-2021)

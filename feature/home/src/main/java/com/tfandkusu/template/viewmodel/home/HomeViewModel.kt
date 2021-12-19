@@ -38,7 +38,9 @@ class HomeViewModelImpl @Inject constructor(
     private val onCreateUseCase: HomeOnCreateUseCase
 ) : HomeViewModel, ViewModel() {
 
-    private val _state = MutableLiveData(HomeState())
+    override fun createDefaultState() = HomeState()
+
+    private val _state = MutableLiveData(createDefaultState())
 
     override val state: LiveData<HomeState> = _state
 

@@ -23,7 +23,7 @@ class GithubRemoteDataStoreImpl @Inject constructor(
                     it.updatedAt,
                     it.language ?: "",
                     it.htmlUrl,
-                    it.forked
+                    it.fork
                 )
             }
         } catch (e: Throwable) {

@@ -14,5 +14,5 @@ data class LocalGithubRepo(
     val updatedAt: Long,
     val language: String,
     val htmlUrl: String,
-    val forked: Boolean
+    val fork: Boolean
 )

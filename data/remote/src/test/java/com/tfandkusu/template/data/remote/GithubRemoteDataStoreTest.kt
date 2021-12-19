@@ -42,7 +42,7 @@ class GithubRemoteDataStoreTest {
             (it.updatedAt > sdf.parse("2021/01/20 04:00:00")) shouldBe true
             it.language shouldBe "Java"
             it.htmlUrl shouldBe "https://github.com/tfandkusu/groupie_sticky_header_sample"
-            it.forked shouldBe false
+            it.fork shouldBe false
         }
         Unit
     }

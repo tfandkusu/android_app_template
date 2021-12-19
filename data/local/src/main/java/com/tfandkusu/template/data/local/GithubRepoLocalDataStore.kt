@@ -41,7 +41,7 @@ class GithubRepoLocalDataStoreImpl @Inject constructor(
                     it.updatedAt.time,
                     it.language,
                     it.htmlUrl,
-                    it.forked
+                    it.fork
                 )
             }.map {
                 githubRepoDao.insert(it)
@@ -65,7 +65,7 @@ class GithubRepoLocalDataStoreImpl @Inject constructor(
                 Date(it.updatedAt),
                 it.language,
                 it.htmlUrl,
-                it.forked
+                it.fork
             )
         }
     }
