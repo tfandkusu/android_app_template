@@ -2,6 +2,16 @@
 
 # 【WIP】Android app template
 
+
+# Functionality
+
+This repository is a template for Android app.
+So it does not have any practical features.
+
+It displays a list of [tfandkusu](https://github.com/tfandkusu)'s public GitHub repositories.
+
+<img src="https://user-images.githubusercontent.com/16898831/146685977-85ab807c-bb04-4378-b005-71c7ecb9566c.png" width="200">
+
 # Technology used
 
 All libraries used are defined in [lib.versions.toml](https://github.com/tfandkusu/android_app_template/blob/main/gradle/libs.versions.toml)
