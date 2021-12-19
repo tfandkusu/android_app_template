@@ -17,6 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.integerArrayResource
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -83,32 +85,45 @@ fun GitHubRepoListItem(repo: GithubRepo) {
         }
         if (repo.language.isNotEmpty()) {
             Spacer(modifier = Modifier.height(8.dp))
-            Box(modifier = Modifier.padding(horizontal = 16.dp)) {
-                Box(
-                    modifier = Modifier
-                        .background(
-                            color = Color(0xffff9800),
-                            shape = RoundedCornerShape(14.dp, 14.dp, 14.dp, 14.dp)
-                        )
-                        .padding(horizontal = 16.dp)
-                        .height(28.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = repo.language,
-                        style = TextStyle(
-                            color = colorResource(R.color.white),
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    )
-                }
-            }
+            LanguageLabel(repo.language)
         }
         Spacer(modifier = Modifier.height(16.dp))
         Divider()
     }
 }
+
+@Composable
+fun LanguageLabel(language: String) {
+    val languages = stringArrayResource(R.array.programing_languages)
+    val colorCodes = integerArrayResource(R.array.programing_language_colors)
+    var color = colorResource(R.color.other)
+    val languageIndex = languages.indexOf(language)
+    if (languageIndex >= 0) {
+        color = Color(colorCodes[languageIndex])
+    }
+    Box(modifier = Modifier.padding(horizontal = 16.dp)) {
+        Box(
+            modifier = Modifier
+                .background(
+                    color = color,
+                    shape = RoundedCornerShape(14.dp, 14.dp, 14.dp, 14.dp)
+                )
+                .padding(horizontal = 16.dp)
+                .height(28.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = language,
+                style = TextStyle(
+                    color = colorResource(R.color.white),
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            )
+        }
+    }
+}
+
 
 @Composable
 @Preview
