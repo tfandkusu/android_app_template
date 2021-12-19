@@ -32,6 +32,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.home.R
 import com.tfandkusu.template.model.GithubRepo
 import java.util.Date
@@ -157,18 +158,7 @@ fun LanguageLabel(language: String) {
 @Preview
 fun GitHubRepoListItemPreviewNormal() {
     GitHubRepoListItem(
-        GithubRepo(
-            1L,
-            "observe_room",
-            listOf(
-                "Check how to use Room to observe SQLite database",
-                " and reflect the changes in the RecyclerView."
-            ).joinToString(separator = ""),
-            Date(),
-            "Kotlin",
-            "",
-            true
-        )
+        GitHubRepoCatalog.getList().first()
     )
 }
 
