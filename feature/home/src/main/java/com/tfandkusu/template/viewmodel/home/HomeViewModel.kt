@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.usecase.home.HomeLoadUseCase
 import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
+import com.tfandkusu.template.viewmodel.ApiErrorViewModelHelper
 import com.tfandkusu.template.viewmodel.UnidirectionalViewModel
 import com.tfandkusu.template.viewmodel.update
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,13 +31,20 @@ data class HomeState(
     val repos: List<GithubRepo> = listOf()
 )
 
-interface HomeViewModel : UnidirectionalViewModel<HomeEvent, HomeEffect, HomeState>
+interface HomeViewModel : UnidirectionalViewModel<HomeEvent, HomeEffect, HomeState> {
+    val error: ApiErrorViewModelHelper
+}
 
 @HiltViewModel
 class HomeViewModelImpl @Inject constructor(
     private val loadUseCase: HomeLoadUseCase,
     private val onCreateUseCase: HomeOnCreateUseCase
 ) : HomeViewModel, ViewModel() {
+
+    private val _error = ApiErrorViewModelHelper()
+
+    override val error: ApiErrorViewModelHelper
+        get() = _error
 
     override fun createDefaultState() = HomeState()
 
@@ -57,8 +65,11 @@ class HomeViewModelImpl @Inject constructor(
                     }
                 }
             } else if (event is HomeEvent.Load) {
-                loadUseCase.execute()
-                // TODO error handing
+                try {
+                    loadUseCase.execute()
+                } catch (e: Throwable) {
+                    _error.catch(e)
+                }
             }
         }
     }

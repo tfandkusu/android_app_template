@@ -17,7 +17,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.home.R
+import com.tfandkusu.template.model.useErrorState
 import com.tfandkusu.template.view.home.listitem.GitHubRepoListItem
+import com.tfandkusu.template.viewmodel.ApiErrorViewModelHelper
 import com.tfandkusu.template.viewmodel.home.HomeEffect
 import com.tfandkusu.template.viewmodel.home.HomeEvent
 import com.tfandkusu.template.viewmodel.home.HomeState
@@ -33,6 +35,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
         viewModel.event(HomeEvent.Load)
     }
     val state = useState(viewModel)
+    val errorState = useErrorState(viewModel.error)
     Scaffold(
         topBar = {
             TopAppBar(title = {
@@ -40,26 +43,33 @@ fun HomeScreen(viewModel: HomeViewModel) {
             })
         }
     ) {
-        if (state.progress) {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator()
-            }
-        } else {
-            LazyColumn {
-                state.repos.map {
-                    item(key = it.id) {
-                        GitHubRepoListItem(it)
+        if (errorState.noError()) {
+            if (state.progress) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
+                }
+            } else {
+                LazyColumn {
+                    state.repos.map {
+                        item(key = it.id) {
+                            GitHubRepoListItem(it)
+                        }
                     }
                 }
             }
+        } else {
+            Text("Error")
         }
     }
 }
 
 class HomeViewModelPreview(private val previewState: HomeState) : HomeViewModel {
+    override val error: ApiErrorViewModelHelper
+        get() = ApiErrorViewModelHelper()
+
     override fun createDefaultState() = previewState
 
     override val state: LiveData<HomeState>
