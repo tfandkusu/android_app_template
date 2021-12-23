@@ -27,5 +27,5 @@ interface UnidirectionalViewModel<EVENT, EFFECT, STATE> {
 inline fun <reified STATE, EFFECT, EVENT> useState(
     viewModel: UnidirectionalViewModel<EVENT, EFFECT, STATE>
 ): STATE {
-    return viewModel.state.observeAsState().value ?: viewModel.createDefaultState()
+    return viewModel.state.observeAsState(viewModel.createDefaultState()).value
 }
