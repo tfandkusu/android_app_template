@@ -1,7 +1,5 @@
 package com.tfandkusu.template.viewmodel.error
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tfandkusu.template.error.NetworkErrorException
@@ -21,11 +19,6 @@ data class ApiErrorState(
     fun noError(): Boolean {
         return !network && server == null && !unknown
     }
-}
-
-@Composable
-fun useErrorState(apiErrorViewModelHelper: ApiErrorViewModelHelper): ApiErrorState {
-    return apiErrorViewModelHelper.state.observeAsState(ApiErrorState()).value
 }
 
 class ApiErrorViewModelHelper {
