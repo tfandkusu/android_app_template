@@ -2,10 +2,13 @@ package com.tfandkusu.template.viewmodel.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
+import com.tfandkusu.template.error.NetworkErrorException
 import com.tfandkusu.template.usecase.home.HomeLoadUseCase
 import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
+import com.tfandkusu.template.viewmodel.error.ApiErrorState
 import com.tfandkusu.template.viewmodel.mockStateObserver
 import io.mockk.MockKAnnotations
+import io.mockk.coEvery
 import io.mockk.coVerifySequence
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -75,9 +78,28 @@ class HomeViewModelTest {
     @ExperimentalCoroutinesApi
     @Test
     fun loadSuccess() = testDispatcher.runBlockingTest {
+        val errorMockStateObserver = viewModel.error.state.mockStateObserver()
         viewModel.event(HomeEvent.Load)
         coVerifySequence {
+            errorMockStateObserver.onChanged(ApiErrorState())
+            errorMockStateObserver.onChanged(ApiErrorState())
             loadUseCase.execute()
+        }
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun loadError() = testDispatcher.runBlockingTest {
+        coEvery {
+            loadUseCase.execute()
+        } throws NetworkErrorException()
+        val errorMockStateObserver = viewModel.error.state.mockStateObserver()
+        viewModel.event(HomeEvent.Load)
+        coVerifySequence {
+            errorMockStateObserver.onChanged(ApiErrorState())
+            errorMockStateObserver.onChanged(ApiErrorState())
+            loadUseCase.execute()
+            errorMockStateObserver.onChanged(ApiErrorState(network = true))
         }
     }
 }

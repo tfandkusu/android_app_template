@@ -65,6 +65,7 @@ class HomeViewModelImpl @Inject constructor(
                     }
                 }
             } else if (event is HomeEvent.Load) {
+                error.release()
                 try {
                     loadUseCase.execute()
                 } catch (e: Throwable) {

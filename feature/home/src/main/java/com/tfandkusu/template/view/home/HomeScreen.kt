@@ -17,6 +17,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.home.R
+import com.tfandkusu.template.view.error.ApiError
 import com.tfandkusu.template.view.home.listitem.GitHubRepoListItem
 import com.tfandkusu.template.viewmodel.error.ApiErrorViewModelHelper
 import com.tfandkusu.template.viewmodel.error.useErrorState
@@ -61,7 +62,9 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 }
             }
         } else {
-            Text("Error")
+            ApiError(errorState) {
+                viewModel.event(HomeEvent.Load)
+            }
         }
     }
 }
