@@ -15,4 +15,9 @@ class ApiErrorStateTest {
         ).noError() shouldBe false
         ApiErrorState(unknown = true).noError() shouldBe false
     }
+
+    @Test
+    fun noErrorSuccess() {
+        ApiErrorState().noError() shouldBe true
+    }
 }
