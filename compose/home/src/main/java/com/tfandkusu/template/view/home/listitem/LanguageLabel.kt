@@ -33,7 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
-import com.tfandkusu.template.home.R
+import com.tfandkusu.template.compose.home.R
 import com.tfandkusu.template.model.GithubRepo
 import java.util.Date
 
@@ -94,7 +94,10 @@ fun GitHubRepoListItem(repo: GithubRepo) {
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
                 text = repo.description,
-                style = TextStyle(color = colorResource(R.color.textGray), fontSize = 14.sp),
+                style = TextStyle(
+                    color = colorResource(R.color.textGray),
+                    fontSize = 14.sp
+                ),
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -125,7 +128,8 @@ fun GitHubRepoListItem(repo: GithubRepo) {
 @Composable
 fun LanguageLabel(language: String) {
     val languages = stringArrayResource(R.array.programing_languages)
-    val colorCodes = integerArrayResource(R.array.programing_language_colors)
+    val colorCodes =
+        integerArrayResource(R.array.programing_language_colors)
     var color = colorResource(R.color.other)
     val languageIndex = languages.indexOf(language)
     if (languageIndex >= 0) {

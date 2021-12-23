@@ -32,6 +32,7 @@ dependencies {
     implementation project(':common')
     implementation project(':viewCommon')
     implementation project(':feature:home')
+    implementation project(':compose:home')
     implementation libs.navigation.compose
     implementation libs.hilt.navigation.compose
 }
