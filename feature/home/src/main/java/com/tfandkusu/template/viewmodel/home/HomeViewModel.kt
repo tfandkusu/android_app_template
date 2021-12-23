@@ -8,6 +8,7 @@ import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.usecase.home.HomeLoadUseCase
 import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
 import com.tfandkusu.template.viewmodel.UnidirectionalViewModel
+import com.tfandkusu.template.viewmodel.error.ApiErrorViewModelHelper
 import com.tfandkusu.template.viewmodel.update
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -30,13 +31,20 @@ data class HomeState(
     val repos: List<GithubRepo> = listOf()
 )
 
-interface HomeViewModel : UnidirectionalViewModel<HomeEvent, HomeEffect, HomeState>
+interface HomeViewModel : UnidirectionalViewModel<HomeEvent, HomeEffect, HomeState> {
+    val error: ApiErrorViewModelHelper
+}
 
 @HiltViewModel
 class HomeViewModelImpl @Inject constructor(
     private val loadUseCase: HomeLoadUseCase,
     private val onCreateUseCase: HomeOnCreateUseCase
 ) : HomeViewModel, ViewModel() {
+
+    private val _error = ApiErrorViewModelHelper()
+
+    override val error: ApiErrorViewModelHelper
+        get() = _error
 
     override fun createDefaultState() = HomeState()
 
@@ -53,12 +61,23 @@ class HomeViewModelImpl @Inject constructor(
             if (event is HomeEvent.OnCreate) {
                 onCreateUseCase.execute().collect { repos ->
                     _state.update {
-                        copy(progress = false, repos = repos)
+                        copy(repos = repos)
                     }
                 }
             } else if (event is HomeEvent.Load) {
-                loadUseCase.execute()
-                // TODO error handing
+                error.release()
+                _state.update {
+                    copy(progress = true)
+                }
+                try {
+                    loadUseCase.execute()
+                } catch (e: Throwable) {
+                    _error.catch(e)
+                } finally {
+                    _state.update {
+                        copy(progress = false)
+                    }
+                }
             }
         }
     }

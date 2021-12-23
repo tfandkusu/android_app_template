@@ -3,7 +3,7 @@ package com.tfandkusu.template.error
 import java.io.IOException
 import retrofit2.HttpException
 
-fun mapApiError(e: Throwable): Exception {
+fun mapApiError(e: Throwable): Throwable {
     return when (e) {
         is IOException -> {
             NetworkErrorException()
