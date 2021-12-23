@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.usecase.home.HomeLoadUseCase
 import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
-import com.tfandkusu.template.viewmodel.ApiErrorViewModelHelper
 import com.tfandkusu.template.viewmodel.UnidirectionalViewModel
+import com.tfandkusu.template.viewmodel.error.ApiErrorViewModelHelper
 import com.tfandkusu.template.viewmodel.update
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
