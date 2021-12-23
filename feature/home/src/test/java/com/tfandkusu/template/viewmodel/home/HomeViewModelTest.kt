@@ -71,19 +71,23 @@ class HomeViewModelTest {
         verifySequence {
             mockStateObserver.onChanged(HomeState())
             onCreateUseCase.execute()
-            mockStateObserver.onChanged(HomeState(progress = false, repos = repos))
+            mockStateObserver.onChanged(HomeState(repos = repos))
         }
     }
 
     @ExperimentalCoroutinesApi
     @Test
     fun loadSuccess() = testDispatcher.runBlockingTest {
-        val errorMockStateObserver = viewModel.error.state.mockStateObserver()
+        val stateMockObserver = viewModel.state.mockStateObserver()
+        val errorStateMockObserver = viewModel.error.state.mockStateObserver()
         viewModel.event(HomeEvent.Load)
         coVerifySequence {
-            errorMockStateObserver.onChanged(ApiErrorState())
-            errorMockStateObserver.onChanged(ApiErrorState())
+            stateMockObserver.onChanged(HomeState())
+            errorStateMockObserver.onChanged(ApiErrorState())
+            errorStateMockObserver.onChanged(ApiErrorState())
+            stateMockObserver.onChanged(HomeState(progress = true))
             loadUseCase.execute()
+            stateMockObserver.onChanged(HomeState(progress = false))
         }
     }
 
@@ -93,13 +97,17 @@ class HomeViewModelTest {
         coEvery {
             loadUseCase.execute()
         } throws NetworkErrorException()
+        val stateMockObserver = viewModel.state.mockStateObserver()
         val errorMockStateObserver = viewModel.error.state.mockStateObserver()
         viewModel.event(HomeEvent.Load)
         coVerifySequence {
+            stateMockObserver.onChanged(HomeState())
             errorMockStateObserver.onChanged(ApiErrorState())
             errorMockStateObserver.onChanged(ApiErrorState())
+            stateMockObserver.onChanged(HomeState(progress = true))
             loadUseCase.execute()
             errorMockStateObserver.onChanged(ApiErrorState(network = true))
+            stateMockObserver.onChanged(HomeState(progress = false))
         }
     }
 }

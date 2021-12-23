@@ -61,15 +61,22 @@ class HomeViewModelImpl @Inject constructor(
             if (event is HomeEvent.OnCreate) {
                 onCreateUseCase.execute().collect { repos ->
                     _state.update {
-                        copy(progress = false, repos = repos)
+                        copy(repos = repos)
                     }
                 }
             } else if (event is HomeEvent.Load) {
                 error.release()
+                _state.update {
+                    copy(progress = true)
+                }
                 try {
                     loadUseCase.execute()
                 } catch (e: Throwable) {
                     _error.catch(e)
+                } finally {
+                    _state.update {
+                        copy(progress = false)
+                    }
                 }
             }
         }
