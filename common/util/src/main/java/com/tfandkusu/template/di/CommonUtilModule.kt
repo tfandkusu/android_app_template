@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class CommonModule {
+abstract class CommonUtilModule {
     @Binds
     @Singleton
     abstract fun bindCurrentTimeGetter(currentTimeGetter: CurrentTimeGetterImpl): CurrentTimeGetter
