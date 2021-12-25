@@ -31,7 +31,8 @@ android {
 dependencies {
     implementation project(':common')
     implementation project(':viewCommon')
-    implementation project(':feature:home')
+    implementation project(':feature:home:compose')
+    implementation project(':feature:home:presentation')
     implementation libs.navigation.compose
     implementation libs.hilt.navigation.compose
 }
