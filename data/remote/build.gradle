@@ -3,7 +3,8 @@ apply from: rootProject.file("gradle/common.gradle")
 apply from: rootProject.file("gradle/hilt.gradle")
 
 dependencies {
-    implementation project(':common')
+    implementation project(':common:model')
+    implementation project(':common:util')
     implementation libs.retrofit.retrofit
     implementation libs.retrofit.moshi
     implementation libs.moshi.adapter

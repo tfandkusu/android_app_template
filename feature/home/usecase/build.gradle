@@ -3,7 +3,7 @@ apply from: rootProject.file("gradle/common.gradle")
 apply from: rootProject.file("gradle/hilt.gradle")
 
 dependencies {
-    implementation project(':common')
-    implementation project(':commonUtil')
+    implementation project(':common:model')
+    implementation project(':common:util')
     implementation project(':data:repository')
 }
