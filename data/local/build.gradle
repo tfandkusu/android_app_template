@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply from: rootProject.file("gradle/common.gradle")
+apply from: rootProject.file("gradle/hilt.gradle")
 
 android {
     defaultConfig {
@@ -13,6 +14,7 @@ android {
 
 dependencies {
     implementation project(':common')
+    implementation project(':commonUtil')
     implementation libs.room.runtime
     implementation libs.room.ktx
     kapt libs.room.compiler

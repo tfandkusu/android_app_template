@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply from: rootProject.file("gradle/common.gradle")
+apply from: rootProject.file("gradle/hilt.gradle")
 
 dependencies {
     implementation project(':common')
