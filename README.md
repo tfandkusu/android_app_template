@@ -40,6 +40,11 @@ It has minimum dependency to speed up compose preview.
 
 - ViewModel implementation for production
 
+## viewCommon
+
+- Common API error handling
+- Utility for ViewModel and LiveData
+
 # Technology used
 
 All libraries used are defined in [lib.versions.toml](https://github.com/tfandkusu/android_app_template/blob/main/gradle/libs.versions.toml)
