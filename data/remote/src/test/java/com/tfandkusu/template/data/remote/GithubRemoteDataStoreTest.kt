@@ -53,7 +53,7 @@ class GithubRemoteDataStoreTest {
             service.listRepos()
         } throws IOException()
         val remoteDataStore = GithubRemoteDataStoreImpl(service)
-        shouldThrow<com.tfandkusu.template.error.NetworkErrorException> {
+        shouldThrow<NetworkErrorException> {
             remoteDataStore.listRepositories()
         }
         Unit
