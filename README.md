@@ -2,7 +2,6 @@
 
 # 【WIP】Android app template
 
-
 # Functionality
 
 This repository is a template for Android app.
@@ -11,6 +10,35 @@ So it does not have any practical features.
 It displays a list of [tfandkusu](https://github.com/tfandkusu)'s public GitHub repositories.
 
 <img src="https://user-images.githubusercontent.com/16898831/146685977-85ab807c-bb04-4378-b005-71c7ecb9566c.png" width="200">
+
+# Architecture
+
+- **MVVM** of [Android recommended app architecture](https://developer.android.com/jetpack/guide#recommended-app-arch) 
+- **Use Case** for resolving fat ViewModel problem
+
+# Module structure
+
+<img src="https://user-images.githubusercontent.com/16898831/147387105-669464f2-9e86-405a-b13e-7fd4213920bc.png" width="720">
+
+Multiple `compose`, `presentation`, and  `usecase`  modules will be created for each feature.
+
+## app
+
+- Activity
+- Compose navigation host
+
+## compose
+
+It has minimum dependency to speed up compose preview.
+
+- Compose
+- Compose preview
+- ViewModel interface
+- ViewModel implementation for compose preview
+
+## presentation
+
+- ViewModel implementation for production
 
 # Technology used
 
@@ -22,6 +50,10 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 
 - [Jetpack Compose](https://developer.android.com/jetpack/compose)
 - [Navigation Compose](https://developer.android.com/jetpack/compose/navigation)
+
+## Presentation layer
+
+- [androidx.compose.runtime:runtime-livedata](https://developer.android.com/jetpack/compose/libraries#streams)
 
 ## Data layer
 
