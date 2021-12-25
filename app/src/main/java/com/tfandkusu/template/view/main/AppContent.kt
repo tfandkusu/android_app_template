@@ -5,7 +5,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.tfandkusu.template.view.home.HomeScreen
+import com.tfandkusu.template.compose.home.HomeScreen
 import com.tfandkusu.template.viewmodel.home.HomeViewModelImpl
 
 private const val HOME_PATH = "home"

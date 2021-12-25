@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply from: rootProject.file("gradle/view-common.gradle")
+apply from: rootProject.file("gradle/hilt.gradle")
 
 android {
     defaultConfig {
@@ -29,9 +30,10 @@ android {
 }
 
 dependencies {
-    implementation project(':common')
+    implementation project(':common:model')
     implementation project(':viewCommon')
-    implementation project(':feature:home')
+    implementation project(':feature:home:compose')
+    implementation project(':feature:home:presentation')
     implementation libs.navigation.compose
     implementation libs.hilt.navigation.compose
 }
