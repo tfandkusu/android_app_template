@@ -1,5 +1,9 @@
 package com.tfandkusu.template.di
 
+import com.tfandkusu.template.usecase.home.HomeLoadUseCase
+import com.tfandkusu.template.usecase.home.HomeLoadUseCaseImpl
+import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
+import com.tfandkusu.template.usecase.home.HomeOnCreateUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,12 +16,12 @@ abstract class HomeModule {
     @Binds
     @Singleton
     abstract fun bindHomeLoadUseCase(
-        useCase: com.tfandkusu.template.usecase.home.HomeLoadUseCaseImpl
-    ): com.tfandkusu.template.usecase.home.HomeLoadUseCase
+        useCase: HomeLoadUseCaseImpl
+    ): HomeLoadUseCase
 
     @Binds
     @Singleton
     abstract fun bindOnCreateUseCase(
-        useCase: com.tfandkusu.template.usecase.home.HomeOnCreateUseCaseImpl
-    ): com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
+        useCase: HomeOnCreateUseCaseImpl
+    ): HomeOnCreateUseCase
 }
