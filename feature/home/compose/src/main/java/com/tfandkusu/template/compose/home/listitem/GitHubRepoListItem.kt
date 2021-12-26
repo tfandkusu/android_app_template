@@ -1,6 +1,7 @@
 package com.tfandkusu.template.compose.home.listitem
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.text.format.DateFormat
 import androidx.compose.foundation.background
@@ -35,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.home.compose.R
 import com.tfandkusu.template.model.GithubRepo
+import com.tfandkusu.template.ui.theme.AppTemplateTheme
 import java.util.Date
 
 @Composable
@@ -54,22 +56,24 @@ fun GitHubRepoListItem(repo: GithubRepo) {
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
         ) {
+            // Name
             Text(
                 text = repo.name,
                 modifier = Modifier.weight(1f, false),
                 style = TextStyle(
-                    color = colorResource(R.color.text),
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    color = colorResource(R.color.textHE)
                 ),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
             Spacer(modifier = Modifier.width(12.dp))
+            // Fork label
             if (repo.fork) {
                 Box(
                     modifier = Modifier
                         .background(
-                            color = colorResource(R.color.textGray),
+                            color = colorResource(R.color.forkBackground),
                             shape = RoundedCornerShape(4.dp, 4.dp, 4.dp, 4.dp)
                         )
                         .padding(horizontal = 8.dp, vertical = 2.dp)
@@ -87,6 +91,7 @@ fun GitHubRepoListItem(repo: GithubRepo) {
                 }
             }
         }
+        // Description
         if (repo.description.isNotEmpty()) {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -94,7 +99,10 @@ fun GitHubRepoListItem(repo: GithubRepo) {
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
                 text = repo.description,
-                style = TextStyle(color = colorResource(R.color.textGray), fontSize = 14.sp),
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    color = colorResource(R.color.textME)
+                ),
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -102,9 +110,11 @@ fun GitHubRepoListItem(repo: GithubRepo) {
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            // Language label
             if (repo.language.isNotEmpty()) {
                 LanguageLabel(repo.language)
             }
+            // Update time
             val format = DateFormat.getDateFormat(context)
             val dateString = format.format(repo.updatedAt)
             Text(
@@ -112,7 +122,7 @@ fun GitHubRepoListItem(repo: GithubRepo) {
                 modifier = Modifier.weight(1f).padding(horizontal = 16.dp),
                 style = TextStyle(
                     fontSize = 12.sp,
-                    color = colorResource(R.color.textGray),
+                    color = colorResource(R.color.textME),
                     textAlign = TextAlign.End
                 )
             )
@@ -155,46 +165,62 @@ fun LanguageLabel(language: String) {
 }
 
 @Composable
-@Preview
+@Preview(showBackground = true)
 fun GitHubRepoListItemPreviewNormal() {
-    GitHubRepoListItem(
-        GitHubRepoCatalog.getList().first()
-    )
+    AppTemplateTheme {
+        GitHubRepoListItem(
+            GitHubRepoCatalog.getList().first()
+        )
+    }
 }
 
 @Composable
-@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+fun GitHubRepoListItemPreviewDark() {
+    AppTemplateTheme {
+        GitHubRepoListItem(
+            GitHubRepoCatalog.getList().first()
+        )
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
 fun GitHubRepoListItemPreviewLong() {
-    GitHubRepoListItem(
-        GithubRepo(
-            1L,
-            "long_repository_" + (0 until 10).joinToString(separator = "_") {
-                "long"
-            },
-            listOf(
-                "Check how to use Room to observe SQLite database",
-                " and reflect the changes in the RecyclerView."
-            ).joinToString(separator = ""),
-            Date(),
-            "Kotlin",
-            "",
-            true
+    AppTemplateTheme {
+        GitHubRepoListItem(
+            GithubRepo(
+                1L,
+                "long_repository_" + (0 until 10).joinToString(separator = "_") {
+                    "long"
+                },
+                listOf(
+                    "Check how to use Room to observe SQLite database",
+                    " and reflect the changes in the RecyclerView."
+                ).joinToString(separator = ""),
+                Date(),
+                "Kotlin",
+                "",
+                true
+            )
         )
-    )
+    }
 }
 
 @Composable
-@Preview
+@Preview(showBackground = true)
 fun GitHubRepoListItemNoDescription() {
-    GitHubRepoListItem(
-        GithubRepo(
-            1L,
-            "no_description",
-            "",
-            Date(),
-            "Kotlin",
-            "",
-            true
+    AppTemplateTheme {
+        GitHubRepoListItem(
+            GithubRepo(
+                1L,
+                "no_description",
+                "",
+                Date(),
+                "Kotlin",
+                "",
+                true
+            )
         )
-    )
+    }
 }

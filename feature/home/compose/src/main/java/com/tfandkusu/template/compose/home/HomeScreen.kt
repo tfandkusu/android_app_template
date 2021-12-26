@@ -1,5 +1,6 @@
 package com.tfandkusu.template.compose.home
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,6 +19,7 @@ import androidx.lifecycle.MutableLiveData
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.compose.home.listitem.GitHubRepoListItem
 import com.tfandkusu.template.home.compose.R
+import com.tfandkusu.template.ui.theme.AppTemplateTheme
 import com.tfandkusu.template.view.error.ApiError
 import com.tfandkusu.template.viewmodel.error.ApiErrorViewModelHelper
 import com.tfandkusu.template.viewmodel.error.useErrorState
@@ -88,7 +90,9 @@ class HomeViewModelPreview(private val previewState: HomeState) : HomeViewModel 
 @Composable
 @Preview
 fun HomeScreenPreviewProgress() {
-    HomeScreen(HomeViewModelPreview(HomeState()))
+    AppTemplateTheme {
+        HomeScreen(HomeViewModelPreview(HomeState()))
+    }
 }
 
 @Composable
@@ -99,5 +103,28 @@ fun HomeScreenPreviewList() {
         progress = false,
         repos = repos
     )
-    HomeScreen(HomeViewModelPreview(state))
+    AppTemplateTheme {
+        HomeScreen(HomeViewModelPreview(state))
+    }
+}
+
+@Composable
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+fun HomeScreenPreviewDarkProgress() {
+    AppTemplateTheme {
+        HomeScreen(HomeViewModelPreview(HomeState()))
+    }
+}
+
+@Composable
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+fun HomeScreenPreviewDarkList() {
+    val repos = GitHubRepoCatalog.getList()
+    val state = HomeState(
+        progress = false,
+        repos = repos
+    )
+    AppTemplateTheme {
+        HomeScreen(HomeViewModelPreview(state))
+    }
 }

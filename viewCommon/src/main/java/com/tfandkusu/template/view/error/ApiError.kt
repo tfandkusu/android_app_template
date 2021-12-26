@@ -18,6 +18,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tfandkusu.template.ui.theme.AppTemplateTheme
 import com.tfandkusu.template.viewcommon.R
 import com.tfandkusu.template.viewmodel.error.ApiErrorState
 import com.tfandkusu.template.viewmodel.error.ApiServerError
@@ -43,7 +44,7 @@ fun ApiError(apiErrorState: ApiErrorState, reload: () -> Unit) {
         Text(
             errorMessage,
             style = TextStyle(
-                color = colorResource(R.color.textGray),
+                color = colorResource(R.color.textME),
                 fontSize = 14.sp
             )
         )
@@ -57,21 +58,25 @@ fun ApiError(apiErrorState: ApiErrorState, reload: () -> Unit) {
 }
 
 @Composable
-@Preview
+@Preview(showBackground = true)
 fun ApiErrorPreviewNetwork() {
-    ApiError(ApiErrorState(network = true)) {
+    AppTemplateTheme {
+        ApiError(ApiErrorState(network = true)) {
+        }
     }
 }
 
 @Composable
-@Preview
+@Preview(showBackground = true)
 fun ApiErrorPreviewServerError() {
-    ApiError(
-        ApiErrorState(
-            server = ApiServerError(
-                503, "Service Unavailable"
+    AppTemplateTheme {
+        ApiError(
+            ApiErrorState(
+                server = ApiServerError(
+                    503, "Service Unavailable"
+                )
             )
-        )
-    ) {
+        ) {
+        }
     }
 }
