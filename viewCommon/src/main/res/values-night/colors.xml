@@ -4,4 +4,7 @@
     <color name="textHE">#ddffffff</color>
     <!-- Medium-emphasis text -->
     <color name="textME">#99ffffff</color>
+
+    <color name="top_app_bar">#12005e</color>
+    <color name="status_bar">#12005e</color>
 </resources>

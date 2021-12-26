@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -17,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
+import com.tfandkusu.template.compose.TemplateTopAppBar
 import com.tfandkusu.template.compose.home.listitem.GitHubRepoListItem
 import com.tfandkusu.template.home.compose.R
 import com.tfandkusu.template.ui.theme.AppTemplateTheme
@@ -41,7 +41,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
     val errorState = useErrorState(viewModel.error)
     Scaffold(
         topBar = {
-            TopAppBar(title = {
+            TemplateTopAppBar(title = {
                 Text(stringResource(R.string.app_name))
             })
         }

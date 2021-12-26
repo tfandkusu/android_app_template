@@ -13,4 +13,7 @@
     <color name="textHE">#dd000000</color>
     <!-- Medium-emphasis text -->
     <color name="textME">#99000000</color>
+
+    <color name="top_app_bar">@color/purple_500</color>
+    <color name="status_bar">@color/purple_700</color>
 </resources>
