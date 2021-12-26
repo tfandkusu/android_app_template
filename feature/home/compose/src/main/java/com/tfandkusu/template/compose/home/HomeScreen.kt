@@ -1,12 +1,12 @@
 package com.tfandkusu.template.compose.home
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -16,8 +16,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
+import com.tfandkusu.template.compose.TemplateTopAppBar
 import com.tfandkusu.template.compose.home.listitem.GitHubRepoListItem
 import com.tfandkusu.template.home.compose.R
+import com.tfandkusu.template.ui.theme.AppTemplateTheme
 import com.tfandkusu.template.view.error.ApiError
 import com.tfandkusu.template.viewmodel.error.ApiErrorViewModelHelper
 import com.tfandkusu.template.viewmodel.error.useErrorState
@@ -39,7 +41,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
     val errorState = useErrorState(viewModel.error)
     Scaffold(
         topBar = {
-            TopAppBar(title = {
+            TemplateTopAppBar(title = {
                 Text(stringResource(R.string.app_name))
             })
         }
@@ -88,7 +90,9 @@ class HomeViewModelPreview(private val previewState: HomeState) : HomeViewModel 
 @Composable
 @Preview
 fun HomeScreenPreviewProgress() {
-    HomeScreen(HomeViewModelPreview(HomeState()))
+    AppTemplateTheme {
+        HomeScreen(HomeViewModelPreview(HomeState()))
+    }
 }
 
 @Composable
@@ -99,5 +103,28 @@ fun HomeScreenPreviewList() {
         progress = false,
         repos = repos
     )
-    HomeScreen(HomeViewModelPreview(state))
+    AppTemplateTheme {
+        HomeScreen(HomeViewModelPreview(state))
+    }
+}
+
+@Composable
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+fun HomeScreenPreviewDarkProgress() {
+    AppTemplateTheme {
+        HomeScreen(HomeViewModelPreview(HomeState()))
+    }
+}
+
+@Composable
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+fun HomeScreenPreviewDarkList() {
+    val repos = GitHubRepoCatalog.getList()
+    val state = HomeState(
+        progress = false,
+        repos = repos
+    )
+    AppTemplateTheme {
+        HomeScreen(HomeViewModelPreview(state))
+    }
 }
