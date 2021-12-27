@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.tfandkusu.template"
         versionCode 1
-        versionName "1.0"
+        versionName "2021.12.01"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -25,6 +25,21 @@ android {
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file("${System.getenv('HOME')}/template.jks")
+            storePassword System.getenv("TENPLATE_STORE_PASSWORD")
+            keyAlias "app"
+            keyPassword System.getenv("TENPLATE_KEY_PASSWORD")
+        }
+    }
+    buildTypes {
+        release {
+            // shrinkResources true
+            // minifyEnabled true
+            signingConfig signingConfigs.release
         }
     }
 }
