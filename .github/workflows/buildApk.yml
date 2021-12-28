@@ -20,7 +20,7 @@ jobs:
         with:
           java-version: '11'
       # Save key store file.
-      - run: base64 -d ${{ secrets.TEMPLATE_KEY_STORE_FILE }} > ~/template.jks
+      - run: echo -n ${{ secrets.TEMPLATE_KEY_STORE_FILE }} | base64 -d > ~/template.jks
       # Make release build and upload to Firebase App Distribution
       - run: ./gradlew assembleRelease appDistributionUploadRelease
         env:
