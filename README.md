@@ -85,6 +85,7 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 
 - [GitHub Actions](https://github.co.jp/features/actions)
 - [Spotless plugin for Gradle](https://github.com/diffplug/spotless/tree/main/plugin-gradle)
+- [Firebase App Distribution](https://firebase.google.com/docs/app-distribution)
 
 # References
 
