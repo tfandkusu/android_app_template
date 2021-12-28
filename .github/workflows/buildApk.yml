@@ -26,5 +26,6 @@ jobs:
         env:
           TEMPLATE_STORE_PASSWORD: ${{ secrets.TEMPLATE_STORE_PASSWORD }}
           TEMPLATE_KEY_PASSWORD: ${{ secrets.TEMPLATE_KEY_PASSWORD }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
           RELEASE_NOTE: ${{ github.event.head_commit.message }}
