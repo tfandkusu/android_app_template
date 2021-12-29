@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.appdistribution'
+apply plugin: 'deploygate'
 apply from: rootProject.file("gradle/view-common.gradle")
 apply from: rootProject.file("gradle/hilt.gradle")
 
