@@ -43,7 +43,7 @@ lifecycle-livedata-ktx = { module = 'androidx.lifecycle:lifecycle-livedata-ktx',
 # Dagger Hilt
 hilt-android = { module = 'com.google.dagger:hilt-android', version.ref = 'hilt' }
 hilt-compiler = { module = 'com.google.dagger:hilt-compiler', version.ref = 'hilt' }
-hilt-navigation-compose = 'androidx.hilt:hilt-navigation-compose:1.0.0-alpha03'
+hilt-navigation-compose = 'androidx.hilt:hilt-navigation-compose:1.0.0-rc01'
 # Unit test
 junit = 'junit:junit:4.13.2'
 mockk = 'io.mockk:mockk:1.12.0'
