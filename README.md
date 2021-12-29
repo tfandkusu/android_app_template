@@ -11,6 +11,12 @@ It displays a list of [tfandkusu](https://github.com/tfandkusu)'s public GitHub 
 
 <img src="https://user-images.githubusercontent.com/16898831/146685977-85ab807c-bb04-4378-b005-71c7ecb9566c.png" width="200">
 
+# Install
+
+Current main branch.
+
+[<img src="https://dply.me/tfafbv/button/large" alt="Try it on your device via DeployGate">](https://dply.me/tfafbv#install)
+
 # Architecture
 
 - **MVVM** of [Android recommended app architecture](https://developer.android.com/jetpack/guide#recommended-app-arch) 
@@ -86,6 +92,7 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 - [GitHub Actions](https://github.co.jp/features/actions)
 - [Spotless plugin for Gradle](https://github.com/diffplug/spotless/tree/main/plugin-gradle)
 - [Firebase App Distribution](https://firebase.google.com/docs/app-distribution)
+- [DeployGate](https://deploygate.com/)
 
 # References
 

@@ -16,6 +16,7 @@ hilt-gradle-plugin = { module = 'com.google.dagger:hilt-android-gradle-plugin', 
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 firebase-appdistribution = 'com.google.firebase:firebase-appdistribution-gradle:2.2.0'
+deploygate = "com.deploygate:gradle:2.4.0"
 # UI
 core = 'androidx.core:core-ktx:1.7.0'
 appcompat = 'androidx.appcompat:appcompat:1.3.1'
