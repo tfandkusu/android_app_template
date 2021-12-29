@@ -91,6 +91,7 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 
 - [GitHub Actions](https://github.co.jp/features/actions)
 - [Spotless plugin for Gradle](https://github.com/diffplug/spotless/tree/main/plugin-gradle)
+- [Renovate](https://www.whitesourcesoftware.com/free-developer-tools/renovate/)
 - [Firebase App Distribution](https://firebase.google.com/docs/app-distribution)
 - [DeployGate](https://deploygate.com/)
 
