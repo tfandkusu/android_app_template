@@ -32,6 +32,7 @@ class GithubRemoteDataStoreTest {
     fun listRepositoriesSuccess() = runBlocking {
         val remoteDataStore = GithubRemoteDataStoreImpl(TemplateApiServiceBuilder.build())
         val list = remoteDataStore.listRepositories()
+        // Check page 1 exists
         val target = list.firstOrNull { it.name == "groupie_sticky_header_sample" }
         target shouldNotBe null
         target?.also {
@@ -44,13 +45,15 @@ class GithubRemoteDataStoreTest {
             it.htmlUrl shouldBe "https://github.com/tfandkusu/groupie_sticky_header_sample"
             it.fork shouldBe false
         }
-        Unit
+        // Check page 2 exists
+        val target2 = list.firstOrNull { it.name == "watch_movie_dir_gif" }
+        target2 shouldNotBe null
     }
 
     @Test
     fun listRepositoriesNetworkError() = runBlocking {
         coEvery {
-            service.listRepos()
+            service.listRepos(1)
         } throws IOException()
         val remoteDataStore = GithubRemoteDataStoreImpl(service)
         shouldThrow<NetworkErrorException> {
