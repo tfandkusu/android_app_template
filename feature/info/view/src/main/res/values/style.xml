@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="InfoToolbarStyle" parent="@style/Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/top_app_bar</item>
+        <item name="titleTextColor">@color/white</item>
+    </style>
+
+    <style name="InfoToolbarTheme" parent="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+</resources>
