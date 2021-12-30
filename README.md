@@ -1,6 +1,6 @@
 [![codecov](https://codecov.io/gh/tfandkusu/android_app_template/branch/main/graph/badge.svg?token=DQI5AN5H0Q)](https://codecov.io/gh/tfandkusu/android_app_template)
 
-# 【WIP】Android app template
+# Android app template
 
 # Functionality
 
