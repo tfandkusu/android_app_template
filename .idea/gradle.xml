@@ -24,6 +24,8 @@
             <option value="$PROJECT_DIR$/feature/home/compose" />
             <option value="$PROJECT_DIR$/feature/home/presentation" />
             <option value="$PROJECT_DIR$/feature/home/usecase" />
+            <option value="$PROJECT_DIR$/feature/info" />
+            <option value="$PROJECT_DIR$/feature/info/view" />
             <option value="$PROJECT_DIR$/testUtil" />
             <option value="$PROJECT_DIR$/viewCommon" />
           </set>
