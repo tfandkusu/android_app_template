@@ -5,8 +5,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -41,9 +45,20 @@ fun HomeScreen(viewModel: HomeViewModel) {
     val errorState = useErrorState(viewModel.error)
     Scaffold(
         topBar = {
-            TemplateTopAppBar(title = {
-                Text(stringResource(R.string.app_name))
-            })
+            TemplateTopAppBar(
+                title = {
+                    Text(stringResource(R.string.app_name))
+                },
+                actions = {
+                    IconButton(onClick = {
+                    }) {
+                        Icon(
+                            Icons.Outlined.Info,
+                            contentDescription = stringResource(R.string.action_information)
+                        )
+                    }
+                }
+            )
         }
     ) {
         if (errorState.noError()) {
