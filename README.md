@@ -89,7 +89,7 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 
 ## CI/CD
 
-- [GitHub Actions](https://github.co.jp/features/actions)
+- [GitHub Actions](https://docs.github.com/actions)
 - [Spotless plugin for Gradle](https://github.com/diffplug/spotless/tree/main/plugin-gradle)
 - [Danger](https://danger.systems/ruby/)
 - [danger-android_lint](https://github.com/loadsmart/danger-android_lint)  
