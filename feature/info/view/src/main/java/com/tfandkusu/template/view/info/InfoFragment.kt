@@ -8,6 +8,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.tfandkusu.template.info.view.R
+import com.tfandkusu.template.model.AppInfo
 
 class InfoFragment : PreferenceFragmentCompat() {
     companion object {
@@ -40,6 +41,10 @@ class InfoFragment : PreferenceFragmentCompat() {
         val sb = StringBuilder()
         sb.append(getString(R.string.app_name))
         sb.append('\n')
+        sb.append(getString(R.string.version))
+        sb.append(' ')
+        sb.append(AppInfo.versionName)
+        sb.append("\n\n")
         sb.append(getString(R.string.copyright))
         sb.append(' ')
         sb.append(getString(R.string.author_name))
