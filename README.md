@@ -98,6 +98,10 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 - [Firebase App Distribution](https://firebase.google.com/docs/app-distribution)
 - [DeployGate](https://deploygate.com/)
 
+## Other
+
+- [OSS Licenses Gradle Plugin](https://github.com/google/play-services-plugins/tree/master/oss-licenses-plugin)
+
 # References
 
 - [UnidirectionalViewModel](https://github.com/DroidKaigi/conference-app-2021/blob/main/uicomponent-compose/core/src/main/java/io/github/droidkaigi/feeder/core/UnidirectionalViewModel.kt) from [DroidKaigi/conference-app-2021](https://github.com/DroidKaigi/conference-app-2021)
