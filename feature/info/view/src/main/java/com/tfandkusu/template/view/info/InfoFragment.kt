@@ -3,6 +3,7 @@ package com.tfandkusu.template.view.info
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
@@ -27,5 +28,24 @@ class InfoFragment : PreferenceFragmentCompat() {
             startActivity(intent)
             true
         }
+        findPreference<Preference>(KEY_ABOUT)?.setOnPreferenceClickListener {
+            showAboutDialog()
+            true
+        }
+    }
+
+    private fun showAboutDialog() {
+        val adb = AlertDialog.Builder(requireContext())
+        adb.setTitle(R.string.title_about)
+        val sb = StringBuilder()
+        sb.append(getString(R.string.app_name))
+        sb.append('\n')
+        sb.append(getString(R.string.copyright))
+        sb.append(' ')
+        sb.append(getString(R.string.author_name))
+        adb.setMessage(sb.toString())
+        adb.setPositiveButton(R.string.ok) { _, _ ->
+        }
+        adb.show()
     }
 }
