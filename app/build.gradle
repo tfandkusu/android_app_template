@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId "com.tfandkusu.template"
         versionCode 1
-        versionName "2021.12.02"
+        versionName "2022.01.01"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
