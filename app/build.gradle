@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'deploygate'
+apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 apply from: rootProject.file("gradle/view-common.gradle")
 apply from: rootProject.file("gradle/hilt.gradle")
 

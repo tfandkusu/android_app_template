@@ -10,6 +10,12 @@
             android:name="com.tfandkusu.template.view.info.InfoActivity"
             android:exported="false"
             android:label="@string/title_info" />
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
+            android:theme="@style/OssTheme" />
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
+            android:theme="@style/OssTheme" />
     </application>
 
 </manifest>
