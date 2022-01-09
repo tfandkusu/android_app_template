@@ -1,3 +1,5 @@
 <resources>
     <string name="title_info">Information</string>
+    <string name="title_oss_license">OSS License</string>
+    <string name="title_about">About</string>
 </resources>

@@ -3,6 +3,7 @@ package com.tfandkusu.template.view.info
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.tfandkusu.template.info.view.R
 import com.tfandkusu.template.info.view.databinding.ActivityInfoBinding
 
 class InfoActivity : AppCompatActivity() {
@@ -13,6 +14,10 @@ class InfoActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainerView, InfoFragment())
+            .commit()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
