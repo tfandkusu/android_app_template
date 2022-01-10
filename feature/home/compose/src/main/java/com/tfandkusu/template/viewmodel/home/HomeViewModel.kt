@@ -12,6 +12,7 @@ sealed class HomeEvent {
 }
 
 sealed class HomeEffect
+
 data class HomeState(
     val progress: Boolean = true,
     val repos: List<GithubRepo> = listOf()
