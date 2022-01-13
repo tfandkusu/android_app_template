@@ -38,24 +38,27 @@ class HomeViewModelImpl @Inject constructor(
 
     override fun event(event: HomeEvent) {
         viewModelScope.launch {
-            if (event is HomeEvent.OnCreate) {
-                onCreateUseCase.execute().collect { repos ->
+            when (event) {
+                HomeEvent.Load -> {
+                    error.release()
                     _state.update {
-                        copy(repos = repos)
+                        copy(progress = true)
+                    }
+                    try {
+                        loadUseCase.execute()
+                    } catch (e: Throwable) {
+                        _error.catch(e)
+                    } finally {
+                        _state.update {
+                            copy(progress = false)
+                        }
                     }
                 }
-            } else if (event is HomeEvent.Load) {
-                error.release()
-                _state.update {
-                    copy(progress = true)
-                }
-                try {
-                    loadUseCase.execute()
-                } catch (e: Throwable) {
-                    _error.catch(e)
-                } finally {
-                    _state.update {
-                        copy(progress = false)
+                HomeEvent.OnCreate -> {
+                    onCreateUseCase.execute().collect { repos ->
+                        _state.update {
+                            copy(repos = repos)
+                        }
                     }
                 }
             }
