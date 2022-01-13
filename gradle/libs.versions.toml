@@ -2,7 +2,7 @@
 kotlin = '1.5.31'
 compose = '1.0.5'
 retrofit = '2.9.0'
-room = '2.4.0'
+room = '2.4.1'
 coroutines = '1.5.2'
 lifecycle = '2.4.0'
 hilt = '2.40.5'
