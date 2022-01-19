@@ -22,7 +22,7 @@ class GithubRemoteDataStoreImpl @Inject constructor(
                     GithubRepo(
                         it.id,
                         it.name,
-                        it.description ?: "",
+                            it.description ?: "",
                         it.updatedAt,
                         it.language ?: "",
                         it.htmlUrl,
