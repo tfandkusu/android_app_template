@@ -33,7 +33,7 @@ jobs:
       - run: curl -Os https://uploader.codecov.io/latest/linux/codecov
       - run: chmod +x codecov
       - run: ./codecov -t ${{ secrets.CODECOV_TOKEN }}
-      - uses: act10ns/slack@v1
+      - uses: tfandkusu/slack@v1
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
