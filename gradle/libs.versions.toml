@@ -9,7 +9,7 @@ hilt = '2.40.5'
 
 [libraries]
 # Gradle Plugin
-android-gradle-plugin = 'com.android.tools.build:gradle:7.0.4'
+android-gradle-plugin = 'com.android.tools.build:gradle:7.1.1'
 kotlin-gradle-plugin = { module = 'org.jetbrains.kotlin:kotlin-gradle-plugin', version.ref = 'kotlin' }
 spotless-gradle-plugin = 'com.diffplug.spotless:spotless-plugin-gradle:5.17.1'
 hilt-gradle-plugin = { module = 'com.google.dagger:hilt-android-gradle-plugin', version.ref = 'hilt' }
