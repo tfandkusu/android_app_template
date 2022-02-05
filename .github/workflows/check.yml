@@ -23,6 +23,7 @@ jobs:
           ruby-version: 3.1
           bundler-cache: true
       - uses: gradle/gradle-build-action@v2
+      - run: cp gradle.properties.ci gradle.properties
       - run: ./gradlew spotlessCheck
       - run: bundle exec danger
         env:
