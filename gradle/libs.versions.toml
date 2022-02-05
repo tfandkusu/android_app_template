@@ -9,15 +9,15 @@ hilt = '2.40.5'
 
 [libraries]
 # Gradle Plugin
-android-gradle-plugin = 'com.android.tools.build:gradle:7.0.4'
-kotlin-gradle-plugin = { module = 'org.jetbrains.kotlin:kotlin-gradle-plugin', version.ref = 'kotlin' }
-spotless-gradle-plugin = 'com.diffplug.spotless:spotless-plugin-gradle:5.17.1'
-hilt-gradle-plugin = { module = 'com.google.dagger:hilt-android-gradle-plugin', version.ref = 'hilt' }
+android-gradle = 'com.android.tools.build:gradle:7.1.1'
+kotlin-gradle = { module = 'org.jetbrains.kotlin:kotlin-gradle-plugin', version.ref = 'kotlin' }
+spotless-gradle = 'com.diffplug.spotless:spotless-plugin-gradle:5.17.1'
+hilt-gradle = { module = 'com.google.dagger:hilt-android-gradle-plugin', version.ref = 'hilt' }
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 firebase-appdistribution = 'com.google.firebase:firebase-appdistribution-gradle:2.2.0'
 deploygate = "com.deploygate:gradle:2.4.0"
-oss-licenses-plugin = 'com.google.android.gms:oss-licenses-plugin:0.10.4'
+oss-licenses = 'com.google.android.gms:oss-licenses-plugin:0.10.4'
 # UI
 core = 'androidx.core:core-ktx:1.7.0'
 appcompat = 'androidx.appcompat:appcompat:1.4.1'

@@ -5,13 +5,13 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath libs.android.gradle.plugin
-        classpath libs.kotlin.gradle.plugin
-        classpath libs.spotless.gradle.plugin
-        classpath libs.hilt.gradle.plugin
+        classpath libs.android.gradle
+        classpath libs.kotlin.gradle
+        classpath libs.spotless.gradle
+        classpath libs.hilt.gradle
         classpath libs.firebase.appdistribution
         classpath libs.deploygate
-        classpath libs.oss.licenses.plugin
+        classpath libs.oss.licenses
     }
 }
 
