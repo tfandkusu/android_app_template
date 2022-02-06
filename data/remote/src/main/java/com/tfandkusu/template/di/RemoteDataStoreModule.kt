@@ -14,6 +14,6 @@ abstract class RemoteDataStoreModule {
     @Binds
     @Singleton
     abstract fun provideGithubRemoteDataStore(
-        localDataStore: GithubRemoteDataStoreImpl
+        remoteDataStore: GithubRemoteDataStoreImpl
     ): GithubRemoteDataStore
 }
