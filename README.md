@@ -19,8 +19,19 @@ Current main branch.
 
 # Architecture
 
-- **MVVM** of [Android recommended app architecture](https://developer.android.com/jetpack/guide#recommended-app-arch) 
-- **Use Case** for resolving fat ViewModel problem
+The 3 layers described in [Android recommended app architecture](https://developer.android.com/jetpack/guide#recommended-app-arch)
+
+- UI Layer
+    - [Jetpack Compose](https://developer.android.com/jetpack/compose)
+    - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+- Domain Layer
+    - This layer prevents fat ViewModel problem.
+- Data Layer
+    - Repository
+    - DataStore
+        - [Retrofit](https://github.com/square/retrofit)
+        - [Room](https://developer.android.com/jetpack/androidx/releases/room)
+
 
 # Module structure
 
@@ -50,6 +61,24 @@ It has minimum dependency to speed up compose preview.
 
 - Common API error handling
 - Utility for ViewModel and LiveData
+
+## usecase
+
+- Domain layer
+
+## repository
+
+- Represents the data layer
+
+## localDataStore
+
+- Use room to save data locally.
+
+## remoteDataStore
+
+
+- Use Retrofit to access REST API.
+
 
 # Technology used
 
@@ -93,7 +122,7 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 - [gradle-build-action](https://github.com/gradle/gradle-build-action)
 - [Spotless plugin for Gradle](https://github.com/diffplug/spotless/tree/main/plugin-gradle)
 - [Danger](https://danger.systems/ruby/)
-- [danger-android_lint](https://github.com/loadsmart/danger-android_lint)  
+- [danger-android_lint](https://github.com/loadsmart/danger-android_lint)
 - [Renovate](https://www.whitesourcesoftware.com/free-developer-tools/renovate/)
 - [Firebase App Distribution](https://firebase.google.com/docs/app-distribution)
 - [DeployGate](https://deploygate.com/)
