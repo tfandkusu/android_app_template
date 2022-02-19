@@ -28,7 +28,7 @@ The 3 layers described in [Android recommended app architecture](https://develop
     - This layer prevents fat ViewModel problem.
 - Data Layer
     - Repository
-    - DataStore
+    - Data Sources
         - [Retrofit](https://github.com/square/retrofit)
         - [Room](https://developer.android.com/jetpack/androidx/releases/room)
 
