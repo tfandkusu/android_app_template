@@ -35,7 +35,7 @@ The 3 layers described in [Android recommended app architecture](https://develop
 
 # Module structure
 
-<img src="https://user-images.githubusercontent.com/16898831/147387105-669464f2-9e86-405a-b13e-7fd4213920bc.png" width="720">
+![image](https://user-images.githubusercontent.com/16898831/154816419-e711ffd2-41ea-45ac-bdde-49424be4f336.png)
 
 Multiple `compose`, `presentation`, and  `usecase`  modules will be created for each feature.
 
