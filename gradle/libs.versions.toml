@@ -34,7 +34,7 @@ play-services-oss-licenses = 'com.google.android.gms:play-services-oss-licenses:
 # Retrofit
 retrofit-retrofit = { module = 'com.squareup.retrofit2:retrofit', version.ref = 'retrofit' }
 retrofit-moshi = { module = 'com.squareup.retrofit2:converter-moshi', version.ref = 'retrofit' }
-moshi-adapter = 'com.squareup.moshi:moshi-adapters:1.8.0'
+moshi-adapter = 'com.squareup.moshi:moshi-adapters:1.13.0'
 # Room
 room-runtime = { module = 'androidx.room:room-runtime', version.ref = 'room' }
 room-ktx = { module = 'androidx.room:room-ktx', version.ref = 'room' }
