@@ -2,6 +2,8 @@ package com.tfandkusu.template.di
 
 import com.tfandkusu.template.data.repository.GithubRepoRepository
 import com.tfandkusu.template.data.repository.GithubRepoRepositoryImpl
+import com.tfandkusu.template.data.repository.StartupTimesRepository
+import com.tfandkusu.template.data.repository.StartupTimesRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -16,4 +18,10 @@ abstract class RepositoryModule {
     abstract fun bindGithubRepoRepository(
         repository: GithubRepoRepositoryImpl
     ): GithubRepoRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindStartupTimesRepository(
+        repository: StartupTimesRepositoryImpl
+    ): StartupTimesRepository
 }
