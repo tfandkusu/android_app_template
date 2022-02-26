@@ -4,6 +4,8 @@ import com.tfandkusu.template.data.local.CreatedLocalDataStore
 import com.tfandkusu.template.data.local.CreatedLocalDataStoreImpl
 import com.tfandkusu.template.data.local.GithubRepoLocalDataStore
 import com.tfandkusu.template.data.local.GithubRepoLocalDataStoreImpl
+import com.tfandkusu.template.data.local.pref.MyPreferenceManager
+import com.tfandkusu.template.data.local.pref.MyPreferenceManagerImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

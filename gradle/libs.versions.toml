@@ -39,6 +39,8 @@ moshi-adapter = 'com.squareup.moshi:moshi-adapters:1.8.0'
 room-runtime = { module = 'androidx.room:room-runtime', version.ref = 'room' }
 room-ktx = { module = 'androidx.room:room-ktx', version.ref = 'room' }
 room-compiler = { module = 'androidx.room:room-compiler', version.ref = 'room' }
+# Preferences
+preferences = 'androidx.preference:preference-ktx:1.2.0'
 # Lifecycle
 lifecycle-viewmodel-ktx = { module = 'androidx.lifecycle:lifecycle-viewmodel-ktx', version.ref = 'lifecycle' }
 lifecycle-viewmodel-compose = { module = 'androidx.lifecycle:lifecycle-viewmodel-compose', version.ref = 'lifecycle' }

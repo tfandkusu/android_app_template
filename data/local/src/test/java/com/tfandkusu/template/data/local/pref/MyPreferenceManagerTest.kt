@@ -1,0 +1,33 @@
+package com.tfandkusu.template.data.local.pref
+
+
+import android.content.Context
+import androidx.test.core.app.ApplicationProvider
+import io.kotlintest.shouldBe
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+
+@RunWith(RobolectricTestRunner::class)
+class MyPreferenceManagerTest {
+
+    private val context = ApplicationProvider.getApplicationContext<Context>()
+
+    private lateinit var pref: MyPreferenceManager
+
+    @Before
+    fun setUp() {
+        pref = MyPreferenceManagerImpl(MyPreferenceBuilder.build(context))
+        pref.clear()
+    }
+
+    @Test
+    fun startupTimes() {
+        pref.getStartupTimes() shouldBe 0
+        pref.countUpStartupTimes()
+        pref.getStartupTimes() shouldBe 1
+        pref.countUpStartupTimes()
+        pref.getStartupTimes() shouldBe 2
+    }
+}
