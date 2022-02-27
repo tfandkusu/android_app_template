@@ -2,5 +2,5 @@
 <full-backup-content>
     <include
         domain="sharedpref"
-        path="." />
+        path="pref.xml" />
 </full-backup-content>
