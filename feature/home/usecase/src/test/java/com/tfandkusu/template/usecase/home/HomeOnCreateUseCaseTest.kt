@@ -2,7 +2,7 @@ package com.tfandkusu.template.usecase.home
 
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.data.repository.GithubRepoRepository
-import com.tfandkusu.template.data.repository.StartupTimesRepository
+import com.tfandkusu.template.data.repository.NumberOfStartsRepository
 import io.kotlintest.shouldBe
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -17,7 +17,7 @@ import org.junit.Test
 class HomeOnCreateUseCaseTest {
 
     @MockK(relaxed = true)
-    private lateinit var startupTimesRepository: StartupTimesRepository
+    private lateinit var numberOfStartsRepository: NumberOfStartsRepository
 
     @MockK(relaxed = true)
     private lateinit var githubRepoRepository: GithubRepoRepository
@@ -27,7 +27,7 @@ class HomeOnCreateUseCaseTest {
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        useCase = HomeOnCreateUseCaseImpl(githubRepoRepository, startupTimesRepository)
+        useCase = HomeOnCreateUseCaseImpl(githubRepoRepository, numberOfStartsRepository)
     }
 
     @Test
@@ -40,7 +40,7 @@ class HomeOnCreateUseCaseTest {
         }
         useCase.execute().first() shouldBe repos
         verifySequence {
-            startupTimesRepository.countUp()
+            numberOfStartsRepository.countUp()
             githubRepoRepository.listAsFlow()
         }
     }

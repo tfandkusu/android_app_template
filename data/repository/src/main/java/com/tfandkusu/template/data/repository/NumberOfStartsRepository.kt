@@ -3,20 +3,20 @@ package com.tfandkusu.template.data.repository
 import com.tfandkusu.template.data.local.pref.MyPreferenceManager
 import javax.inject.Inject
 
-interface StartupTimesRepository {
+interface NumberOfStartsRepository {
     fun countUp()
 
     fun get(): Int
 }
 
-class StartupTimesRepositoryImpl @Inject constructor(
+class NumberOfStartsRepositoryImpl @Inject constructor(
     private val pref: MyPreferenceManager
-) : StartupTimesRepository {
+) : NumberOfStartsRepository {
     override fun countUp() {
-        pref.countUpStartupTimes()
+        pref.countUpNumberOfStarts()
     }
 
     override fun get(): Int {
-        return pref.getStartupTimes()
+        return pref.getNumberOfStarts()
     }
 }

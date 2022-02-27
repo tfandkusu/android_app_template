@@ -23,10 +23,10 @@ class MyPreferenceManagerTest {
 
     @Test
     fun startupTimes() {
-        pref.getStartupTimes() shouldBe 0
-        pref.countUpStartupTimes()
-        pref.getStartupTimes() shouldBe 1
-        pref.countUpStartupTimes()
-        pref.getStartupTimes() shouldBe 2
+        pref.getNumberOfStarts() shouldBe 0
+        pref.countUpNumberOfStarts()
+        pref.getNumberOfStarts() shouldBe 1
+        pref.countUpNumberOfStarts()
+        pref.getNumberOfStarts() shouldBe 2
     }
 }

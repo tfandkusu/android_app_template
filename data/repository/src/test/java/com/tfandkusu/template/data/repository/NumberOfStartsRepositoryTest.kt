@@ -9,35 +9,35 @@ import io.mockk.verifySequence
 import org.junit.Before
 import org.junit.Test
 
-class StartupTimesRepositoryTest {
+class NumberOfStartsRepositoryTest {
 
     @MockK(relaxed = true)
     private lateinit var pref: MyPreferenceManager
 
-    private lateinit var repository: StartupTimesRepository
+    private lateinit var repository: NumberOfStartsRepository
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        repository = StartupTimesRepositoryImpl(pref)
+        repository = NumberOfStartsRepositoryImpl(pref)
     }
 
     @Test
     fun countUp() {
         repository.countUp()
         verifySequence {
-            pref.countUpStartupTimes()
+            pref.countUpNumberOfStarts()
         }
     }
 
     @Test
     fun get() {
         every {
-            pref.getStartupTimes()
+            pref.getNumberOfStarts()
         } returns 3
         repository.get() shouldBe 3
         verifySequence {
-            pref.getStartupTimes()
+            pref.getNumberOfStarts()
         }
     }
 }

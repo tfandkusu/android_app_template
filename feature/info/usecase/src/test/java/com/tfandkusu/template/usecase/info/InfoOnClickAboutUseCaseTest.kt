@@ -1,6 +1,6 @@
 package com.tfandkusu.template.usecase.info
 
-import com.tfandkusu.template.data.repository.StartupTimesRepository
+import com.tfandkusu.template.data.repository.NumberOfStartsRepository
 import io.kotlintest.shouldBe
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -12,7 +12,7 @@ import org.junit.Test
 class InfoOnClickAboutUseCaseTest {
 
     @MockK(relaxed = true)
-    private lateinit var repository: StartupTimesRepository
+    private lateinit var repository: NumberOfStartsRepository
 
     private lateinit var useCase: InfoOnClickAboutUseCase
 
