@@ -5,7 +5,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.tfandkusu.template.info.view.R
 import com.tfandkusu.template.info.view.databinding.ActivityInfoBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class InfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

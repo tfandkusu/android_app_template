@@ -21,12 +21,11 @@ sealed class InfoEffect {
 
 object InfoState
 
-interface InfoViewModel : UnidirectionalViewModel<InfoEvent, InfoEffect, InfoState>
-
 @HiltViewModel
-class InfoViewModelImpl @Inject constructor(
+class InfoViewModel @Inject constructor(
     private val onClickAboutUseCase: InfoOnClickAboutUseCase
-) : InfoViewModel, ViewModel() {
+) : UnidirectionalViewModel<InfoEvent, InfoEffect, InfoState>,
+    ViewModel() {
 
     override fun createDefaultState() = InfoState
 

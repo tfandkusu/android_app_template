@@ -38,7 +38,7 @@ class InfoViewModelTest {
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         MockKAnnotations.init(this)
-        viewModel = InfoViewModelImpl(onClickAboutUseCase)
+        viewModel = InfoViewModel(onClickAboutUseCase)
     }
 
     @ExperimentalCoroutinesApi
