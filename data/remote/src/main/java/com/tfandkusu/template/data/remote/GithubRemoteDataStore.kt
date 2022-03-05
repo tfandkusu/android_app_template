@@ -1,6 +1,6 @@
 package com.tfandkusu.template.data.remote
 
-import com.tfandkusu.template.api.TemplateApiService
+import com.tfandkusu.template.api.GithubApiService
 import com.tfandkusu.template.error.mapApiError
 import com.tfandkusu.template.model.GithubRepo
 import javax.inject.Inject
@@ -10,7 +10,7 @@ interface GithubRemoteDataStore {
 }
 
 class GithubRemoteDataStoreImpl @Inject constructor(
-    private val service: TemplateApiService
+    private val service: GithubApiService
 ) : GithubRemoteDataStore {
     override suspend fun listRepositories(): List<GithubRepo> {
         val allRepos = mutableListOf<GithubRepo>()

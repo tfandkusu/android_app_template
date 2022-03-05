@@ -18,7 +18,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tfandkusu.template.ui.theme.AppTemplateTheme
+import com.tfandkusu.template.ui.theme.MyAppTheme
 import com.tfandkusu.template.viewcommon.R
 import com.tfandkusu.template.viewmodel.error.ApiErrorState
 import com.tfandkusu.template.viewmodel.error.ApiServerError
@@ -60,7 +60,7 @@ fun ApiError(apiErrorState: ApiErrorState, reload: () -> Unit) {
 @Composable
 @Preview(showBackground = true)
 fun ApiErrorPreviewNetwork() {
-    AppTemplateTheme {
+    MyAppTheme {
         ApiError(ApiErrorState(network = true)) {
         }
     }
@@ -69,7 +69,7 @@ fun ApiErrorPreviewNetwork() {
 @Composable
 @Preview(showBackground = true)
 fun ApiErrorPreviewServerError() {
-    AppTemplateTheme {
+    MyAppTheme {
         ApiError(
             ApiErrorState(
                 server = ApiServerError(

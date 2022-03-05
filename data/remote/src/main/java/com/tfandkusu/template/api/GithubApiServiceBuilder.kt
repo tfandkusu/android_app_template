@@ -6,8 +6,8 @@ import java.util.Date
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-object TemplateApiServiceBuilder {
-    fun build(): TemplateApiService {
+object GithubApiServiceBuilder {
+    fun build(): GithubApiService {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.github.com/")
             .addConverterFactory(
@@ -16,6 +16,6 @@ object TemplateApiServiceBuilder {
                 )
             )
             .build()
-        return retrofit.create(TemplateApiService::class.java)
+        return retrofit.create(GithubApiService::class.java)
     }
 }
