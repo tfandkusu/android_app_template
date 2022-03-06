@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.sp
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.home.compose.R
 import com.tfandkusu.template.model.GithubRepo
-import com.tfandkusu.template.ui.theme.AppTemplateTheme
+import com.tfandkusu.template.ui.theme.MyAppTheme
 import java.util.Date
 
 @Composable
@@ -167,7 +167,7 @@ fun LanguageLabel(language: String) {
 @Composable
 @Preview(showBackground = true)
 fun GitHubRepoListItemPreviewNormal() {
-    AppTemplateTheme {
+    MyAppTheme {
         GitHubRepoListItem(
             GitHubRepoCatalog.getList().first()
         )
@@ -177,7 +177,7 @@ fun GitHubRepoListItemPreviewNormal() {
 @Composable
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 fun GitHubRepoListItemPreviewDark() {
-    AppTemplateTheme {
+    MyAppTheme {
         GitHubRepoListItem(
             GitHubRepoCatalog.getList().first()
         )
@@ -187,7 +187,7 @@ fun GitHubRepoListItemPreviewDark() {
 @Composable
 @Preview(showBackground = true)
 fun GitHubRepoListItemPreviewLong() {
-    AppTemplateTheme {
+    MyAppTheme {
         GitHubRepoListItem(
             GithubRepo(
                 1L,
@@ -210,7 +210,7 @@ fun GitHubRepoListItemPreviewLong() {
 @Composable
 @Preview(showBackground = true)
 fun GitHubRepoListItemNoDescription() {
-    AppTemplateTheme {
+    MyAppTheme {
         GitHubRepoListItem(
             GithubRepo(
                 1L,

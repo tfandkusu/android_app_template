@@ -7,7 +7,7 @@ import androidx.compose.ui.res.colorResource
 import com.tfandkusu.template.viewcommon.R
 
 @Composable
-fun TemplateTopAppBar(
+fun MyTopAppBar(
     title: @Composable () -> Unit,
     actions: @Composable RowScope.() -> Unit = {}
 ) {
