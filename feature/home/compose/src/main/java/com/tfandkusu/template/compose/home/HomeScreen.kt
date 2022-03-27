@@ -2,23 +2,37 @@ package com.tfandkusu.template.compose.home
 
 import android.content.Intent
 import android.content.res.Configuration
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.ModalBottomSheetLayout
+import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
@@ -37,7 +51,9 @@ import com.tfandkusu.template.viewmodel.home.HomeViewModel
 import com.tfandkusu.template.viewmodel.useState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun HomeScreen(viewModel: HomeViewModel) {
     LaunchedEffect(Unit) {
@@ -47,46 +63,80 @@ fun HomeScreen(viewModel: HomeViewModel) {
     val context = LocalContext.current
     val state = useState(viewModel)
     val errorState = useErrorState(viewModel.error)
-    Scaffold(
-        topBar = {
-            MyTopAppBar(
-                title = {
-                    Text(stringResource(R.string.app_name))
-                },
-                actions = {
-                    IconButton(onClick = {
-                        val intent = Intent(context, InfoActivityAlias::class.java)
-                        context.startActivity(intent)
-                    }) {
-                        Icon(
-                            Icons.Outlined.Info,
-                            contentDescription = stringResource(R.string.action_information)
-                        )
-                    }
-                }
-            )
+    val coroutineScope = rememberCoroutineScope()
+    val sheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
+    BackHandler(enabled = sheetState.isVisible) {
+        coroutineScope.launch {
+            sheetState.hide()
+        }
+    }
+    ModalBottomSheetLayout(
+        sheetState = sheetState,
+        sheetContent = {
+            Box(
+                Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = state.selectedRepo?.name ?: "",
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        color = colorResource(R.color.textHE)
+                    ),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
         }
     ) {
-        if (errorState.noError()) {
-            if (state.progress) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator()
-                }
-            } else {
-                LazyColumn {
-                    state.repos.map {
-                        item(key = it.id) {
-                            GitHubRepoListItem(it)
+        Scaffold(
+            topBar = {
+                MyTopAppBar(
+                    title = {
+                        Text(stringResource(R.string.app_name))
+                    },
+                    actions = {
+                        IconButton(onClick = {
+                            val intent = Intent(context, InfoActivityAlias::class.java)
+                            context.startActivity(intent)
+                        }) {
+                            Icon(
+                                Icons.Outlined.Info,
+                                contentDescription = stringResource(R.string.action_information)
+                            )
+                        }
+                    }
+                )
+            }
+        ) {
+            if (errorState.noError()) {
+                if (state.progress) {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                } else {
+                    LazyColumn {
+                        state.repos.map {
+                            item(key = it.id) {
+                                GitHubRepoListItem(it) {
+                                    viewModel.event(HomeEvent.OpenRepo(it))
+                                    coroutineScope.launch {
+                                        sheetState.show()
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-            }
-        } else {
-            ApiError(errorState) {
-                viewModel.event(HomeEvent.Load)
+            } else {
+                ApiError(errorState) {
+                    viewModel.event(HomeEvent.Load)
+                }
             }
         }
     }

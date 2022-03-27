@@ -1,8 +1,6 @@
 package com.tfandkusu.template.compose.home.listitem
 
-import android.content.Intent
 import android.content.res.Configuration
-import android.net.Uri
 import android.text.format.DateFormat
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -40,13 +38,10 @@ import com.tfandkusu.template.ui.theme.MyAppTheme
 import java.util.Date
 
 @Composable
-fun GitHubRepoListItem(repo: GithubRepo) {
-    val context = LocalContext.current
+fun GitHubRepoListItem(repo: GithubRepo, onClick: () -> Unit = {}) {
     ClickableItem(
         onClick = {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(repo.htmlUrl)
-            context.startActivity(intent)
+            onClick()
         }
     ) {
         Row {
