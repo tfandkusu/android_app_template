@@ -120,11 +120,9 @@ class HomeViewModelTest {
         val stateMockObserver = viewModel.state.mockStateObserver()
         val repo = mockk<GithubRepo>()
         viewModel.event(HomeEvent.OpenRepo(repo))
-        viewModel.event(HomeEvent.CloseRepo)
         verifySequence {
             stateMockObserver.onChanged(HomeState())
             stateMockObserver.onChanged(HomeState(selectedRepo = repo))
-            stateMockObserver.onChanged(HomeState())
         }
     }
 }

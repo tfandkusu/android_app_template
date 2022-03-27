@@ -71,11 +71,6 @@ class HomeViewModelImpl @Inject constructor(
                         copy(selectedRepo = event.repo)
                     }
                 }
-                is HomeEvent.CloseRepo -> {
-                    _state.update {
-                        copy(selectedRepo = null)
-                    }
-                }
             }
         }
     }

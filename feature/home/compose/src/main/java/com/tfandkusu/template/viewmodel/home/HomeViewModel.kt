@@ -11,8 +11,6 @@ sealed class HomeEvent {
     object Load : HomeEvent()
 
     data class OpenRepo(val repo: GithubRepo) : HomeEvent()
-
-    object CloseRepo : HomeEvent()
 }
 
 sealed class HomeEffect
