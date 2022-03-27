@@ -9,13 +9,18 @@ sealed class HomeEvent {
     object OnCreate : HomeEvent()
 
     object Load : HomeEvent()
+
+    data class OpenRepo(val repo: GithubRepo) : HomeEvent()
+
+    object CloseRepo : HomeEvent()
 }
 
 sealed class HomeEffect
 
 data class HomeState(
     val progress: Boolean = true,
-    val repos: List<GithubRepo> = listOf()
+    val repos: List<GithubRepo> = listOf(),
+    val selectedRepo: GithubRepo? = null
 )
 
 interface HomeViewModel : UnidirectionalViewModel<HomeEvent, HomeEffect, HomeState> {

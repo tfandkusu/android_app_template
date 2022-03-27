@@ -3,6 +3,7 @@ package com.tfandkusu.template.viewmodel.home
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.error.NetworkErrorException
+import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.usecase.home.HomeLoadUseCase
 import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
 import com.tfandkusu.template.viewmodel.error.ApiErrorState
@@ -12,6 +13,7 @@ import io.mockk.coEvery
 import io.mockk.coVerifySequence
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
 import io.mockk.verifySequence
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -110,6 +112,19 @@ class HomeViewModelTest {
             loadUseCase.execute()
             errorMockStateObserver.onChanged(ApiErrorState(network = true))
             stateMockObserver.onChanged(HomeState(progress = false))
+        }
+    }
+
+    @Test
+    fun openRepo() {
+        val stateMockObserver = viewModel.state.mockStateObserver()
+        val repo = mockk<GithubRepo>()
+        viewModel.event(HomeEvent.OpenRepo(repo))
+        viewModel.event(HomeEvent.CloseRepo)
+        verifySequence {
+            stateMockObserver.onChanged(HomeState())
+            stateMockObserver.onChanged(HomeState(selectedRepo = repo))
+            stateMockObserver.onChanged(HomeState())
         }
     }
 }

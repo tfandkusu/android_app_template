@@ -66,6 +66,16 @@ class HomeViewModelImpl @Inject constructor(
                         }
                     }
                 }
+                is HomeEvent.OpenRepo -> {
+                    _state.update {
+                        copy(selectedRepo = event.repo)
+                    }
+                }
+                is HomeEvent.CloseRepo -> {
+                    _state.update {
+                        copy(selectedRepo = null)
+                    }
+                }
             }
         }
     }
