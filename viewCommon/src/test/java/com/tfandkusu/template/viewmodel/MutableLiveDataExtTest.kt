@@ -2,8 +2,8 @@ package com.tfandkusu.template.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import io.kotlintest.shouldBe
-import io.kotlintest.shouldThrow
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.runBlocking
 import org.junit.Rule
 import org.junit.Test
