@@ -3,7 +3,7 @@ package com.tfandkusu.template.usecase.home
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.data.repository.GithubRepoRepository
 import com.tfandkusu.template.data.repository.NumberOfStartsRepository
-import io.kotlintest.shouldBe
+import io.kotest.matchers.shouldBe
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK

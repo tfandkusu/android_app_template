@@ -3,7 +3,7 @@ package com.tfandkusu.template.viewmodel.info
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.tfandkusu.template.usecase.info.InfoOnClickAboutUseCase
 import com.tfandkusu.template.usecase.info.InfoOnClickAboutUseCaseResult
-import io.kotlintest.shouldBe
+import io.kotest.matchers.shouldBe
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK

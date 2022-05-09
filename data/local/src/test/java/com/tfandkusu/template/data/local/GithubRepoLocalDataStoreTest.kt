@@ -7,7 +7,7 @@ import com.tfandkusu.template.data.local.db.AppDatabaseBuilder
 import com.tfandkusu.template.data.local.entity.LocalCreated
 import com.tfandkusu.template.util.CurrentTimeGetter
 import com.tfandkusu.template.util.parseUTC
-import io.kotlintest.shouldBe
+import io.kotest.matchers.shouldBe
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK

@@ -1,7 +1,7 @@
 package com.tfandkusu.template.data.repository
 
 import com.tfandkusu.template.data.local.pref.MyPreferenceManager
-import io.kotlintest.shouldBe
+import io.kotest.matchers.shouldBe
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK

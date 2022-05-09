@@ -2,7 +2,7 @@ package com.tfandkusu.template.data.local.pref
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
-import io.kotlintest.shouldBe
+import io.kotest.matchers.shouldBe
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

@@ -1,6 +1,6 @@
 package com.tfandkusu.template.viewmodel.error
 
-import io.kotlintest.shouldBe
+import io.kotest.matchers.shouldBe
 import org.junit.Test
 
 class ApiErrorStateTest {

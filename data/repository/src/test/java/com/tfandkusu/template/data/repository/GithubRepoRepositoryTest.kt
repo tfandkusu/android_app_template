@@ -7,7 +7,7 @@ import com.tfandkusu.template.data.local.entity.LocalCreated
 import com.tfandkusu.template.data.remote.GithubRemoteDataStore
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.util.CurrentTimeGetter
-import io.kotlintest.shouldBe
+import io.kotest.matchers.shouldBe
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerifySequence

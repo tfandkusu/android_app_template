@@ -1,7 +1,7 @@
 package com.tfandkusu.template.usecase.info
 
 import com.tfandkusu.template.data.repository.NumberOfStartsRepository
-import io.kotlintest.shouldBe
+import io.kotest.matchers.shouldBe
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK

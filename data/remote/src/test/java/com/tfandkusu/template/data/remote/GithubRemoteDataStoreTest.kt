@@ -3,10 +3,10 @@ package com.tfandkusu.template.data.remote
 import com.tfandkusu.template.api.GithubApiService
 import com.tfandkusu.template.api.GithubApiServiceBuilder
 import com.tfandkusu.template.error.NetworkErrorException
-import io.kotlintest.matchers.numerics.shouldBeGreaterThan
-import io.kotlintest.shouldBe
-import io.kotlintest.shouldNotBe
-import io.kotlintest.shouldThrow
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.comparables.shouldBeGreaterThan
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
