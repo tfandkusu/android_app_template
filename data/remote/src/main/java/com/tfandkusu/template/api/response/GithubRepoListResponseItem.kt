@@ -1,8 +1,10 @@
 package com.tfandkusu.template.api.response
 
+import androidx.annotation.Keep
 import com.squareup.moshi.Json
 import java.util.Date
 
+@Keep
 data class GithubRepoListResponseItem(
     val id: Long,
     val name: String,
