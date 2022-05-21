@@ -10,9 +10,9 @@ import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
@@ -26,7 +26,7 @@ class InfoViewModelTest {
     val rule: TestRule = InstantTaskExecutorRule()
 
     @ExperimentalCoroutinesApi
-    private val testDispatcher = TestCoroutineDispatcher()
+    private val testDispatcher = UnconfinedTestDispatcher()
 
     @MockK(relaxed = true)
     private lateinit var onClickAboutUseCase: InfoOnClickAboutUseCase
@@ -45,12 +45,11 @@ class InfoViewModelTest {
     @After
     fun tearDown() {
         Dispatchers.resetMain()
-        testDispatcher.cleanupTestCoroutines()
     }
 
     @Test
     @ExperimentalCoroutinesApi
-    fun onClickAbout() = testDispatcher.runBlockingTest {
+    fun onClickAbout() = runTest {
         every {
             onClickAboutUseCase.execute()
         } returns InfoOnClickAboutUseCaseResult(3)
