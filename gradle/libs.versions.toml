@@ -5,7 +5,7 @@ retrofit = '2.9.0'
 room = '2.4.2'
 coroutines = '1.6.1'
 lifecycle = '2.4.1'
-hilt = '2.41'
+hilt = '2.42'
 
 [libraries]
 # Gradle Plugin
