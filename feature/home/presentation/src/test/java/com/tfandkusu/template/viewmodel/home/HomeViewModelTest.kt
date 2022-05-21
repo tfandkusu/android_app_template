@@ -16,9 +16,9 @@ import io.mockk.verifySequence
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
@@ -32,7 +32,7 @@ class HomeViewModelTest {
     val rule: TestRule = InstantTaskExecutorRule()
 
     @ExperimentalCoroutinesApi
-    private val testDispatcher = TestCoroutineDispatcher()
+    private val testDispatcher = UnconfinedTestDispatcher()
 
     @MockK(relaxed = true)
     private lateinit var loadUseCase: HomeLoadUseCase
@@ -54,12 +54,11 @@ class HomeViewModelTest {
     @After
     fun tearDown() {
         Dispatchers.resetMain()
-        testDispatcher.cleanupTestCoroutines()
     }
 
     @ExperimentalCoroutinesApi
     @Test
-    fun onCreate() = testDispatcher.runBlockingTest {
+    fun onCreate() = runTest {
         val repos = GitHubRepoCatalog.getList()
         every {
             onCreateUseCase.execute()
@@ -67,6 +66,8 @@ class HomeViewModelTest {
             emit(repos)
         }
         val mockStateObserver = viewModel.state.mockStateObserver()
+        viewModel.event(HomeEvent.OnCreate)
+        // Use usecase only once.
         viewModel.event(HomeEvent.OnCreate)
         verifySequence {
             mockStateObserver.onChanged(HomeState())
@@ -77,7 +78,7 @@ class HomeViewModelTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun loadSuccess() = testDispatcher.runBlockingTest {
+    fun loadSuccess() = runTest {
         val stateMockObserver = viewModel.state.mockStateObserver()
         val errorStateMockObserver = viewModel.error.state.mockStateObserver()
         viewModel.event(HomeEvent.Load)
@@ -93,7 +94,7 @@ class HomeViewModelTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun loadError() = testDispatcher.runBlockingTest {
+    fun loadError() = runTest {
         coEvery {
             loadUseCase.execute()
         } throws NetworkErrorException()

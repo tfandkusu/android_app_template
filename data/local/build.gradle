@@ -22,6 +22,7 @@ dependencies {
     implementation project(':common:util')
     implementation libs.room.runtime
     implementation libs.room.ktx
+    implementation libs.preferences
     kapt libs.room.compiler
     // For robolectric to test SQLite
     implementation libs.lifecycle.livedata.ktx

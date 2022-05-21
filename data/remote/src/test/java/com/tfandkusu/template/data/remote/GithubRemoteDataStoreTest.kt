@@ -1,12 +1,12 @@
 package com.tfandkusu.template.data.remote
 
-import com.tfandkusu.template.api.TemplateApiService
-import com.tfandkusu.template.api.TemplateApiServiceBuilder
+import com.tfandkusu.template.api.GithubApiService
+import com.tfandkusu.template.api.GithubApiServiceBuilder
 import com.tfandkusu.template.error.NetworkErrorException
-import io.kotlintest.matchers.numerics.shouldBeGreaterThan
-import io.kotlintest.shouldBe
-import io.kotlintest.shouldNotBe
-import io.kotlintest.shouldThrow
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.comparables.shouldBeGreaterThan
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -21,7 +21,7 @@ import org.junit.Test
 class GithubRemoteDataStoreTest {
 
     @MockK(relaxed = true)
-    private lateinit var service: TemplateApiService
+    private lateinit var service: GithubApiService
 
     @Before
     fun setUp() {
@@ -30,7 +30,7 @@ class GithubRemoteDataStoreTest {
 
     @Test
     fun listRepositoriesSuccess() = runBlocking {
-        val remoteDataStore = GithubRemoteDataStoreImpl(TemplateApiServiceBuilder.build())
+        val remoteDataStore = GithubRemoteDataStoreImpl(GithubApiServiceBuilder.build())
         val list = remoteDataStore.listRepositories()
         // Check page 1 exists
         val target = list.firstOrNull { it.name == "groupie_sticky_header_sample" }

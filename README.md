@@ -19,12 +19,22 @@ Current main branch.
 
 # Architecture
 
-- **MVVM** of [Android recommended app architecture](https://developer.android.com/jetpack/guide#recommended-app-arch) 
-- **Use Case** for resolving fat ViewModel problem
+The 3 layers described in [Android recommended app architecture](https://developer.android.com/jetpack/guide#recommended-app-arch)
+
+- UI Layer
+    - [Jetpack Compose](https://developer.android.com/jetpack/compose)
+    - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+- Domain Layer
+- Data Layer
+    - Repository
+    - Data Sources
+        - [Retrofit](https://github.com/square/retrofit)
+        - [Room](https://developer.android.com/jetpack/androidx/releases/room)
+
 
 # Module structure
 
-<img src="https://user-images.githubusercontent.com/16898831/147387105-669464f2-9e86-405a-b13e-7fd4213920bc.png" width="720">
+![image](https://user-images.githubusercontent.com/16898831/154816419-e711ffd2-41ea-45ac-bdde-49424be4f336.png)
 
 Multiple `compose`, `presentation`, and  `usecase`  modules will be created for each feature.
 
@@ -50,6 +60,24 @@ It has minimum dependency to speed up compose preview.
 
 - Common API error handling
 - Utility for ViewModel and LiveData
+
+## usecase
+
+- Domain layer
+
+## repository
+
+- Represents the data layer
+
+## localDataStore
+
+- Use room to save data locally.
+
+## remoteDataStore
+
+
+- Use Retrofit to access REST API.
+
 
 # Technology used
 
@@ -93,7 +121,7 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 - [gradle-build-action](https://github.com/gradle/gradle-build-action)
 - [Spotless plugin for Gradle](https://github.com/diffplug/spotless/tree/main/plugin-gradle)
 - [Danger](https://danger.systems/ruby/)
-- [danger-android_lint](https://github.com/loadsmart/danger-android_lint)  
+- [danger-android_lint](https://github.com/loadsmart/danger-android_lint)
 - [Renovate](https://www.whitesourcesoftware.com/free-developer-tools/renovate/)
 - [Firebase App Distribution](https://firebase.google.com/docs/app-distribution)
 - [DeployGate](https://deploygate.com/)
@@ -101,6 +129,7 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 ## Other
 
 - [OSS Licenses Gradle Plugin](https://github.com/google/play-services-plugins/tree/master/oss-licenses-plugin)
+- [Timber](https://github.com/JakeWharton/timber)
 
 # References
 

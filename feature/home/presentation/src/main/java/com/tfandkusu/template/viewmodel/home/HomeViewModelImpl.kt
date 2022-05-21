@@ -36,6 +36,8 @@ class HomeViewModelImpl @Inject constructor(
 
     override val effect: Flow<HomeEffect> = effectChannel.receiveAsFlow()
 
+    private var loaded = false
+
     override fun event(event: HomeEvent) {
         viewModelScope.launch {
             when (event) {
@@ -55,9 +57,12 @@ class HomeViewModelImpl @Inject constructor(
                     }
                 }
                 HomeEvent.OnCreate -> {
-                    onCreateUseCase.execute().collect { repos ->
-                        _state.update {
-                            copy(repos = repos)
+                    if (!loaded) {
+                        loaded = true
+                        onCreateUseCase.execute().collect { repos ->
+                            _state.update {
+                                copy(repos = repos)
+                            }
                         }
                     }
                 }

@@ -1,7 +1,7 @@
 package com.tfandkusu.template.error
 
-import io.kotlintest.matchers.types.shouldBeTypeOf
-import io.kotlintest.shouldBe
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.shouldBeTypeOf
 import io.mockk.every
 import io.mockk.mockk
 import java.io.IOException

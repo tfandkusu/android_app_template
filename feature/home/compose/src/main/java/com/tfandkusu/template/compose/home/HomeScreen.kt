@@ -22,10 +22,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
-import com.tfandkusu.template.compose.TemplateTopAppBar
+import com.tfandkusu.template.compose.MyTopAppBar
 import com.tfandkusu.template.compose.home.listitem.GitHubRepoListItem
 import com.tfandkusu.template.home.compose.R
-import com.tfandkusu.template.ui.theme.AppTemplateTheme
+import com.tfandkusu.template.ui.theme.MyAppTheme
 import com.tfandkusu.template.view.error.ApiError
 import com.tfandkusu.template.view.info.InfoActivityAlias
 import com.tfandkusu.template.viewmodel.error.ApiErrorViewModelHelper
@@ -49,7 +49,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
     val errorState = useErrorState(viewModel.error)
     Scaffold(
         topBar = {
-            TemplateTopAppBar(
+            MyTopAppBar(
                 title = {
                     Text(stringResource(R.string.app_name))
                 },
@@ -111,7 +111,7 @@ class HomeViewModelPreview(private val previewState: HomeState) : HomeViewModel 
 @Composable
 @Preview
 fun HomeScreenPreviewProgress() {
-    AppTemplateTheme {
+    MyAppTheme {
         HomeScreen(HomeViewModelPreview(HomeState()))
     }
 }
@@ -124,7 +124,7 @@ fun HomeScreenPreviewList() {
         progress = false,
         repos = repos
     )
-    AppTemplateTheme {
+    MyAppTheme {
         HomeScreen(HomeViewModelPreview(state))
     }
 }
@@ -132,7 +132,7 @@ fun HomeScreenPreviewList() {
 @Composable
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 fun HomeScreenPreviewDarkProgress() {
-    AppTemplateTheme {
+    MyAppTheme {
         HomeScreen(HomeViewModelPreview(HomeState()))
     }
 }
@@ -145,7 +145,7 @@ fun HomeScreenPreviewDarkList() {
         progress = false,
         repos = repos
     )
-    AppTemplateTheme {
+    MyAppTheme {
         HomeScreen(HomeViewModelPreview(state))
     }
 }

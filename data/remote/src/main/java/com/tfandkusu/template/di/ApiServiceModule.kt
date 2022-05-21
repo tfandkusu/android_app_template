@@ -1,6 +1,6 @@
 package com.tfandkusu.template.di
 
-import com.tfandkusu.template.api.TemplateApiServiceBuilder
+import com.tfandkusu.template.api.GithubApiServiceBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,5 +12,5 @@ import javax.inject.Singleton
 object ApiServiceModule {
     @Provides
     @Singleton
-    fun providesTemplateApiService() = TemplateApiServiceBuilder.build()
+    fun providesGithubApiService() = GithubApiServiceBuilder.build()
 }
