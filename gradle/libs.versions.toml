@@ -6,6 +6,7 @@ room = '2.4.2'
 coroutines = '1.6.1'
 lifecycle = '2.4.1'
 hilt = '2.42'
+moshi = '1.13.0'
 
 [libraries]
 # Gradle Plugin
@@ -34,7 +35,9 @@ play-services-oss-licenses = 'com.google.android.gms:play-services-oss-licenses:
 # Retrofit
 retrofit-retrofit = { module = 'com.squareup.retrofit2:retrofit', version.ref = 'retrofit' }
 retrofit-moshi = { module = 'com.squareup.retrofit2:converter-moshi', version.ref = 'retrofit' }
-moshi-adapter = 'com.squareup.moshi:moshi-adapters:1.8.0'
+moshi = { module = 'com.squareup.moshi:moshi', version.ref = 'moshi' }
+moshi-adapter = { module = 'com.squareup.moshi:moshi-adapters', version.ref = 'moshi' }
+moshi-kotlin-codegen = { module = 'com.squareup.moshi:moshi-kotlin-codegen', version.ref = 'moshi' }
 # Room
 room-runtime = { module = 'androidx.room:room-runtime', version.ref = 'room' }
 room-ktx = { module = 'androidx.room:room-ktx', version.ref = 'room' }
