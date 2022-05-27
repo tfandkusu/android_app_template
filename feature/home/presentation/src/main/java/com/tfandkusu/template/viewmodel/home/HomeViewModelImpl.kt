@@ -66,6 +66,9 @@ class HomeViewModelImpl @Inject constructor(
                         }
                     }
                 }
+                HomeEvent.Crash -> {
+                    throw RuntimeException("Test Crash")
+                }
             }
         }
     }

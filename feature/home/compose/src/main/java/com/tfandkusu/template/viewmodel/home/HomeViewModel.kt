@@ -9,6 +9,8 @@ sealed class HomeEvent {
     object OnCreate : HomeEvent()
 
     object Load : HomeEvent()
+
+    object Crash : HomeEvent()
 }
 
 sealed class HomeEffect
