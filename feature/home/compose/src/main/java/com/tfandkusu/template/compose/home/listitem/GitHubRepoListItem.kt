@@ -40,12 +40,15 @@ import com.tfandkusu.template.viewmodel.home.HomeStateItem
 import java.util.Date
 
 @Composable
-fun GitHubRepoListItem(item: HomeStateItem, onClick: () -> Unit = {}) {
+fun GitHubRepoListItem(
+    item: HomeStateItem,
+    onClick: (id: Long) -> Unit = {}
+) {
     val context = LocalContext.current
     Column(
         modifier = Modifier
             .clickable {
-                onClick()
+                onClick(item.repo.id)
             }
             .background(
                 color = if (item.selected) {

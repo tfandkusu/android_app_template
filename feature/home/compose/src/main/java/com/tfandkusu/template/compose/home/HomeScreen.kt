@@ -36,18 +36,18 @@ import com.tfandkusu.template.viewmodel.home.HomeEvent
 import com.tfandkusu.template.viewmodel.home.HomeState
 import com.tfandkusu.template.viewmodel.home.HomeStateItem
 import com.tfandkusu.template.viewmodel.home.HomeViewModel
-import com.tfandkusu.template.viewmodel.useState
+import com.tfandkusu.template.viewmodel.use
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 @Composable
 fun HomeScreen(viewModel: HomeViewModel) {
-    LaunchedEffect(Unit) {
-        viewModel.event(HomeEvent.OnCreate)
-        viewModel.event(HomeEvent.Load)
-    }
     val context = LocalContext.current
-    val state = useState(viewModel)
+    val (state, _, dispatch) = use(viewModel)
+    LaunchedEffect(Unit) {
+        dispatch(HomeEvent.OnCreate)
+        dispatch(HomeEvent.Load)
+    }
     val errorState = useErrorState(viewModel.error)
     Scaffold(
         topBar = {
@@ -80,8 +80,8 @@ fun HomeScreen(viewModel: HomeViewModel) {
             } else {
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(state.items, key = { item -> item.repo.id }) {
-                        GitHubRepoListItem(it) {
-                            viewModel.event(HomeEvent.ItemClick(it.repo.id))
+                        GitHubRepoListItem(it) { id ->
+                            dispatch(HomeEvent.ItemClick(id))
                         }
                     }
                 }

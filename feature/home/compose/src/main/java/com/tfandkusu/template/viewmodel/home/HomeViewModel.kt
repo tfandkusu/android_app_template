@@ -1,5 +1,6 @@
 package com.tfandkusu.template.viewmodel.home
 
+import androidx.compose.runtime.Stable
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.viewmodel.UnidirectionalViewModel
 import com.tfandkusu.template.viewmodel.error.ApiErrorViewModelHelper
@@ -15,6 +16,7 @@ sealed class HomeEvent {
 
 sealed class HomeEffect
 
+@Stable
 data class HomeStateItem(
     val repo: GithubRepo,
     val selected: Boolean
