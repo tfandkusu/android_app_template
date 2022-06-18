@@ -16,7 +16,6 @@ inline fun <reified STATE, EFFECT, EVENT> use(
     viewModel: UnidirectionalViewModel<EVENT, EFFECT, STATE>,
 ): StateEffectDispatch<STATE, EFFECT, EVENT> {
     val state = viewModel.state.observeAsState(viewModel.createDefaultState()).value
-
     val dispatch = remember(viewModel) {
         { event: EVENT ->
             viewModel.event(event)
