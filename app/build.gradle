@@ -24,12 +24,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
         useIR = true
-        kotlinOptions {
-            freeCompilerArgs += [
-                    "-P",
-                    "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=${rootProject.file(".").absolutePath}/compose-report"
-            ]
-        }
     }
     packagingOptions {
         resources {
