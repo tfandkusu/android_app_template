@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
+import com.tfandkusu.template.compose.recomposeHighlighter
 import com.tfandkusu.template.home.compose.R
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.ui.theme.MyAppTheme
@@ -53,6 +54,7 @@ fun GitHubRepoListItem(item: HomeStateItem, onClick: () -> Unit = {}) {
                     Color.Transparent
                 }
             )
+            .recomposeHighlighter()
     ) {
         Spacer(modifier = Modifier.height(16.dp))
         Row(
