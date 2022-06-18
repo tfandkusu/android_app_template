@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -77,12 +78,10 @@ fun HomeScreen(viewModel: HomeViewModel) {
                     CircularProgressIndicator()
                 }
             } else {
-                LazyColumn {
-                    state.items.map {
-                        item(key = it.repo.id) {
-                            GitHubRepoListItem(it) {
-                                viewModel.event(HomeEvent.ItemClick(it.repo.id))
-                            }
+                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                    items(state.items, key = { item -> item.repo.id }) {
+                        GitHubRepoListItem(it) {
+                            viewModel.event(HomeEvent.ItemClick(it.repo.id))
                         }
                     }
                 }
