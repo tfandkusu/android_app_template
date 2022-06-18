@@ -121,7 +121,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun itemClick() {
+    fun clickFavorite() {
         val repo1 = mockk<GithubRepo> {
             every { id } returns 1L
         }
@@ -149,8 +149,8 @@ class HomeViewModelTest {
         )
         val mockStateObserver = viewModel.state.mockStateObserver()
         viewModel.event(HomeEvent.OnCreate)
-        viewModel.event(HomeEvent.ItemClick(2L))
-        viewModel.event(HomeEvent.ItemClick(2L))
+        viewModel.event(HomeEvent.ClickFavorite(2L))
+        viewModel.event(HomeEvent.ClickFavorite(2L))
         verifySequence {
             mockStateObserver.onChanged(HomeState())
             onCreateUseCase.execute()

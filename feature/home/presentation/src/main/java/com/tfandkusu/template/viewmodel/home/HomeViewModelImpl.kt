@@ -12,7 +12,6 @@ import com.tfandkusu.template.viewmodel.update
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
@@ -74,12 +73,12 @@ class HomeViewModelImpl @Inject constructor(
                         }
                     }
                 }
-                is HomeEvent.ItemClick -> {
+                is HomeEvent.ClickFavorite -> {
                     _state.update {
                         copy(
                             items = state.requireValue().items.map {
                                 if (it.repo.id == event.id) {
-                                    it.copy(selected = !it.selected)
+                                    it.copy(favorite = !it.favorite)
                                 } else {
                                     it
                                 }

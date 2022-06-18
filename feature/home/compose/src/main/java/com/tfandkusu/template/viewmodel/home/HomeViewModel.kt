@@ -11,7 +11,7 @@ sealed class HomeEvent {
 
     object Load : HomeEvent()
 
-    data class ItemClick(val id: Long) : HomeEvent()
+    data class ClickFavorite(val id: Long) : HomeEvent()
 }
 
 sealed class HomeEffect
@@ -19,7 +19,7 @@ sealed class HomeEffect
 @Stable
 data class HomeStateItem(
     val repo: GithubRepo,
-    val selected: Boolean
+    val favorite: Boolean
 )
 
 data class HomeState(

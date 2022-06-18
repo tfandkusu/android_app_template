@@ -1,7 +1,10 @@
 package com.tfandkusu.template.compose.home.listitem
 
+import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import android.text.format.DateFormat
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -11,10 +14,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
+import androidx.compose.material.Icon
+import androidx.compose.material.IconToggleButton
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,7 +38,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
-import com.tfandkusu.template.compose.recomposeHighlighter
 import com.tfandkusu.template.home.compose.R
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.ui.theme.MyAppTheme
@@ -48,59 +53,78 @@ fun GitHubRepoListItem(
     Column(
         modifier = Modifier
             .clickable {
-                onClick(item.repo.id)
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(item.repo.htmlUrl))
+                context.startActivity(intent)
             }
-            .background(
-                color = if (item.selected) {
-                    colorResource(R.color.selected)
-                } else {
-                    Color.Transparent
-                }
-            )
-            .recomposeHighlighter()
     ) {
         Spacer(modifier = Modifier.height(16.dp))
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
         ) {
-            // Name
-            Text(
-                text = item.repo.name,
-                modifier = Modifier.weight(1f, false),
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    color = colorResource(R.color.textHE)
-                ),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-            Spacer(modifier = Modifier.width(12.dp))
-            // Fork label
-            if (item.repo.fork) {
-                Box(
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.weight(1f)
+            ) {
+                // Name
+                Text(
+                    text = item.repo.name,
                     modifier = Modifier
-                        .background(
-                            color = colorResource(R.color.forkBackground),
-                            shape = RoundedCornerShape(4.dp, 4.dp, 4.dp, 4.dp)
+                        .weight(1f, false)
+                        .padding(start = 16.dp, end = 12.dp),
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        color = colorResource(R.color.textHE)
+                    ),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                // Fork label
+                if (item.repo.fork) {
+                    Box(
+                        modifier = Modifier
+                            .background(
+                                color = colorResource(R.color.forkBackground),
+                                shape = RoundedCornerShape(4.dp, 4.dp, 4.dp, 4.dp)
+                            )
+                            .padding(horizontal = 8.dp, vertical = 2.dp)
+                            .height(18.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = stringResource(R.string.fork),
+                            style = TextStyle(
+                                color = colorResource(R.color.white),
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Bold
+                            )
                         )
-                        .padding(horizontal = 8.dp, vertical = 2.dp)
-                        .height(18.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = stringResource(R.string.fork),
-                        style = TextStyle(
-                            color = colorResource(R.color.white),
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    )
+                    }
                 }
             }
+            IconToggleButton(
+                checked = item.favorite,
+                onCheckedChange = {
+                    onClick(item.repo.id)
+                }
+            ) {
+                val tint = animateColorAsState(
+                    if (item.favorite)
+                        colorResource(R.color.favorite_on)
+                    else
+                        colorResource(R.color.favorite_off)
+                )
+                Icon(
+                    Icons.Default.Favorite,
+                    contentDescription =
+                    if (item.favorite)
+                        stringResource(R.string.favorite_on)
+                    else
+                        stringResource(R.string.favorite_off),
+                    tint = tint.value
+                )
+            }
         }
+
         // Description
         if (item.repo.description.isNotEmpty()) {
             Spacer(modifier = Modifier.height(8.dp))

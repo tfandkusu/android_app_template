@@ -81,7 +81,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(state.items, key = { item -> item.repo.id }) {
                         GitHubRepoListItem(it) { id ->
-                            dispatch(HomeEvent.ItemClick(id))
+                            dispatch(HomeEvent.ClickFavorite(id))
                         }
                     }
                 }
