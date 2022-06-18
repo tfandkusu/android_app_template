@@ -33,6 +33,7 @@ import com.tfandkusu.template.viewmodel.error.useErrorState
 import com.tfandkusu.template.viewmodel.home.HomeEffect
 import com.tfandkusu.template.viewmodel.home.HomeEvent
 import com.tfandkusu.template.viewmodel.home.HomeState
+import com.tfandkusu.template.viewmodel.home.HomeStateItem
 import com.tfandkusu.template.viewmodel.home.HomeViewModel
 import com.tfandkusu.template.viewmodel.useState
 import kotlinx.coroutines.flow.Flow
@@ -77,9 +78,11 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 }
             } else {
                 LazyColumn {
-                    state.repos.map {
-                        item(key = it.id) {
-                            GitHubRepoListItem(it)
+                    state.items.map {
+                        item(key = it.repo.id) {
+                            GitHubRepoListItem(it) {
+                                viewModel.event(HomeEvent.ItemClick(it.repo.id))
+                            }
                         }
                     }
                 }
@@ -122,7 +125,9 @@ fun HomeScreenPreviewList() {
     val repos = GitHubRepoCatalog.getList()
     val state = HomeState(
         progress = false,
-        repos = repos
+        items = repos.map {
+            HomeStateItem(it, false)
+        }
     )
     MyAppTheme {
         HomeScreen(HomeViewModelPreview(state))
@@ -143,7 +148,9 @@ fun HomeScreenPreviewDarkList() {
     val repos = GitHubRepoCatalog.getList()
     val state = HomeState(
         progress = false,
-        repos = repos
+        items = repos.map {
+            HomeStateItem(it, false)
+        }
     )
     MyAppTheme {
         HomeScreen(HomeViewModelPreview(state))

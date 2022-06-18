@@ -10,4 +10,5 @@
     <color name="other">#607d8b</color>
     <!-- Fork label background -->
     <color name="forkBackground">#666</color>
+    <color name="selected">#ffcdd2</color>
 </resources>

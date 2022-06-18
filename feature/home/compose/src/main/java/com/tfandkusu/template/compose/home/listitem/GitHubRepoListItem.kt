@@ -1,8 +1,6 @@
 package com.tfandkusu.template.compose.home.listitem
 
-import android.content.Intent
 import android.content.res.Configuration
-import android.net.Uri
 import android.text.format.DateFormat
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -37,17 +35,24 @@ import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.home.compose.R
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.ui.theme.MyAppTheme
+import com.tfandkusu.template.viewmodel.home.HomeStateItem
 import java.util.Date
 
 @Composable
-fun GitHubRepoListItem(repo: GithubRepo) {
+fun GitHubRepoListItem(item: HomeStateItem, onClick: () -> Unit = {}) {
     val context = LocalContext.current
     Column(
-        modifier = Modifier.clickable {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(repo.htmlUrl)
-            context.startActivity(intent)
-        }
+        modifier = Modifier
+            .clickable {
+                onClick()
+            }
+            .background(
+                color = if (item.selected) {
+                    colorResource(R.color.selected)
+                } else {
+                    Color.Transparent
+                }
+            )
     ) {
         Spacer(modifier = Modifier.height(16.dp))
         Row(
@@ -58,7 +63,7 @@ fun GitHubRepoListItem(repo: GithubRepo) {
         ) {
             // Name
             Text(
-                text = repo.name,
+                text = item.repo.name,
                 modifier = Modifier.weight(1f, false),
                 style = TextStyle(
                     fontSize = 16.sp,
@@ -69,7 +74,7 @@ fun GitHubRepoListItem(repo: GithubRepo) {
             )
             Spacer(modifier = Modifier.width(12.dp))
             // Fork label
-            if (repo.fork) {
+            if (item.repo.fork) {
                 Box(
                     modifier = Modifier
                         .background(
@@ -92,13 +97,13 @@ fun GitHubRepoListItem(repo: GithubRepo) {
             }
         }
         // Description
-        if (repo.description.isNotEmpty()) {
+        if (item.repo.description.isNotEmpty()) {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
-                text = repo.description,
+                text = item.repo.description,
                 style = TextStyle(
                     fontSize = 14.sp,
                     color = colorResource(R.color.textME)
@@ -111,15 +116,17 @@ fun GitHubRepoListItem(repo: GithubRepo) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Language label
-            if (repo.language.isNotEmpty()) {
-                LanguageLabel(repo.language)
+            if (item.repo.language.isNotEmpty()) {
+                LanguageLabel(item.repo.language)
             }
             // Update time
             val format = DateFormat.getDateFormat(context)
-            val dateString = format.format(repo.updatedAt)
+            val dateString = format.format(item.repo.updatedAt)
             Text(
                 dateString,
-                modifier = Modifier.weight(1f).padding(horizontal = 16.dp),
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(horizontal = 16.dp),
                 style = TextStyle(
                     fontSize = 12.sp,
                     color = colorResource(R.color.textME),
@@ -169,7 +176,7 @@ fun LanguageLabel(language: String) {
 fun GitHubRepoListItemPreviewNormal() {
     MyAppTheme {
         GitHubRepoListItem(
-            GitHubRepoCatalog.getList().first()
+            HomeStateItem(GitHubRepoCatalog.getList().first(), false)
         )
     }
 }
@@ -179,7 +186,7 @@ fun GitHubRepoListItemPreviewNormal() {
 fun GitHubRepoListItemPreviewDark() {
     MyAppTheme {
         GitHubRepoListItem(
-            GitHubRepoCatalog.getList().first()
+            HomeStateItem(GitHubRepoCatalog.getList().first(), false)
         )
     }
 }
@@ -189,19 +196,22 @@ fun GitHubRepoListItemPreviewDark() {
 fun GitHubRepoListItemPreviewLong() {
     MyAppTheme {
         GitHubRepoListItem(
-            GithubRepo(
-                1L,
-                "long_repository_" + (0 until 10).joinToString(separator = "_") {
-                    "long"
-                },
-                listOf(
-                    "Check how to use Room to observe SQLite database",
-                    " and reflect the changes in the RecyclerView."
-                ).joinToString(separator = ""),
-                Date(),
-                "Kotlin",
-                "",
-                true
+            HomeStateItem(
+                GithubRepo(
+                    1L,
+                    "long_repository_" + (0 until 10).joinToString(separator = "_") {
+                        "long"
+                    },
+                    listOf(
+                        "Check how to use Room to observe SQLite database",
+                        " and reflect the changes in the RecyclerView."
+                    ).joinToString(separator = ""),
+                    Date(),
+                    "Kotlin",
+                    "",
+                    true
+                ),
+                false
             )
         )
     }
@@ -212,14 +222,17 @@ fun GitHubRepoListItemPreviewLong() {
 fun GitHubRepoListItemNoDescription() {
     MyAppTheme {
         GitHubRepoListItem(
-            GithubRepo(
-                1L,
-                "no_description",
-                "",
-                Date(),
-                "Kotlin",
-                "",
-                true
+            HomeStateItem(
+                GithubRepo(
+                    1L,
+                    "no_description",
+                    "",
+                    Date(),
+                    "Kotlin",
+                    "",
+                    true
+                ),
+                false
             )
         )
     }

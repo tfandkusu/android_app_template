@@ -9,13 +9,20 @@ sealed class HomeEvent {
     object OnCreate : HomeEvent()
 
     object Load : HomeEvent()
+
+    data class ItemClick(val id: Long) : HomeEvent()
 }
 
 sealed class HomeEffect
 
+data class HomeStateItem(
+    val repo: GithubRepo,
+    val selected: Boolean
+)
+
 data class HomeState(
     val progress: Boolean = true,
-    val repos: List<GithubRepo> = listOf()
+    val items: List<HomeStateItem> = listOf()
 )
 
 interface HomeViewModel : UnidirectionalViewModel<HomeEvent, HomeEffect, HomeState> {

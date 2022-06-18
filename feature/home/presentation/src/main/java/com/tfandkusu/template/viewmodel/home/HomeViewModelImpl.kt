@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.tfandkusu.template.usecase.home.HomeLoadUseCase
 import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
 import com.tfandkusu.template.viewmodel.error.ApiErrorViewModelHelper
+import com.tfandkusu.template.viewmodel.requireValue
 import com.tfandkusu.template.viewmodel.update
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -61,9 +62,29 @@ class HomeViewModelImpl @Inject constructor(
                         loaded = true
                         onCreateUseCase.execute().collect { repos ->
                             _state.update {
-                                copy(repos = repos)
+                                copy(
+                                    items = repos.map {
+                                        HomeStateItem(
+                                            it,
+                                            false
+                                        )
+                                    }
+                                )
                             }
                         }
+                    }
+                }
+                is HomeEvent.ItemClick -> {
+                    _state.update {
+                        copy(
+                            items = state.requireValue().items.map {
+                                if (it.repo.id == event.id) {
+                                    it.copy(selected = !it.selected)
+                                } else {
+                                    it
+                                }
+                            }
+                        )
                     }
                 }
             }
