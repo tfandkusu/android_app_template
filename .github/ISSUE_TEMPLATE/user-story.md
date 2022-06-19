@@ -15,7 +15,6 @@ assignees: ''
 
 Unused sections can be deleted.
 
-
 ## View
 
 - 
