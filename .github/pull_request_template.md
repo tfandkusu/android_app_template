@@ -1,15 +1,9 @@
 close issue_number
 
-# Changes
+# User story
 
 -
 
 # Screenshot
 
-| Before | After |
-| --- | --- |
-| <img src="" width="320" > | <img src="" width="320" > |
-
-# Note
-
-- 
+<img src="" width="320">
