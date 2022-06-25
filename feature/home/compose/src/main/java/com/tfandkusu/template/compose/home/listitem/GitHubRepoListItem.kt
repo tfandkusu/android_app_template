@@ -212,6 +212,16 @@ fun GitHubRepoListItemPreviewNormal() {
 }
 
 @Composable
+@Preview(showBackground = true)
+fun GitHubRepoListItemPreviewFavorite() {
+    MyAppTheme {
+        GitHubRepoListItem(
+            HomeStateItem(GitHubRepoCatalog.getList().first().copy(favorite = true))
+        )
+    }
+}
+
+@Composable
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 fun GitHubRepoListItemPreviewDark() {
     MyAppTheme {

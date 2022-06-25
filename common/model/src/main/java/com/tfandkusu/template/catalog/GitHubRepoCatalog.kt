@@ -36,7 +36,7 @@ object GitHubRepoCatalog {
             "Java",
             "https://github.com/tfandkusu/groupie_sticky_header_sample",
             false,
-            true
+            false
         )
         return listOf(repo1, repo2, repo3)
     }
