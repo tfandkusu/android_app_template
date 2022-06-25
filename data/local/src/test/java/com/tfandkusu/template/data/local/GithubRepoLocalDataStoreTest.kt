@@ -61,6 +61,25 @@ class GithubRepoLocalDataStoreTest {
             repo3
         )
         createdLocalDataStore.get(LocalCreated.KIND_GITHUB_REPO) shouldBe secondTime.time
+        // Favorite on
+        localDataStore.favorite(repo2.id, true)
+        localDataStore.listAsFlow().first() shouldBe listOf(
+            repo1.copy(name = "Edited"),
+            repo2.copy(favorite = true),
+            repo3
+        )
+        // Favorite off
+        localDataStore.favorite(repo2.id, false)
+        localDataStore.listAsFlow().first() shouldBe listOf(
+            repo1.copy(name = "Edited"),
+            repo2,
+            repo3
+        )
+        // Delete favorite
+        localDataStore.favorite(repo1.id, true)
+        localDataStore.favorite(repo3.id, true)
+        localDataStore.save(listOf(repo1, repo2))
+        localDataStore.listFavoriteGitHubRepoIds() shouldBe listOf(repo1.id)
         // Check clear
         localDataStore.clear()
         createdLocalDataStore.get(LocalCreated.KIND_GITHUB_REPO) shouldBe 0

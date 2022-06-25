@@ -26,7 +26,8 @@ class GithubRemoteDataStoreImpl @Inject constructor(
                         it.updatedAt,
                         it.language ?: "",
                         it.htmlUrl,
-                        it.fork
+                        it.fork,
+                        false
                     )
                 }
                 if (pageRepos.isEmpty()) {

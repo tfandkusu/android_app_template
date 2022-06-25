@@ -238,7 +238,8 @@ fun GitHubRepoListItemPreviewLong() {
                     Date(),
                     "Kotlin",
                     "",
-                    true
+                    true,
+                    false
                 ),
                 false
             )
@@ -259,7 +260,8 @@ fun GitHubRepoListItemNoDescription() {
                     Date(),
                     "Kotlin",
                     "",
-                    true
+                    true,
+                    false
                 ),
                 false
             )
