@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class InfoModule {
+abstract class InfoUseCaseModule {
     @Binds
     @Singleton
     abstract fun bindOnClickAboutUseCase(

@@ -15,6 +15,7 @@ object GitHubRepoCatalog {
             parseUTC("2021-10-29T00:15:46Z"),
             "Kotlin",
             "https://github.com/tfandkusu/observe_room",
+            false,
             false
         )
         val repo2 = GithubRepo(
@@ -24,7 +25,8 @@ object GitHubRepoCatalog {
             parseUTC("2021-09-21T16:56:04Z"),
             "Kotlin",
             "https://github.com/tfandkusu/conference-app-2021",
-            true
+            true,
+            false
         )
         val repo3 = GithubRepo(
             320900929L,
@@ -33,6 +35,7 @@ object GitHubRepoCatalog {
             parseUTC("2021-01-19T19:46:27Z"),
             "Java",
             "https://github.com/tfandkusu/groupie_sticky_header_sample",
+            false,
             false
         )
         return listOf(repo1, repo2, repo3)

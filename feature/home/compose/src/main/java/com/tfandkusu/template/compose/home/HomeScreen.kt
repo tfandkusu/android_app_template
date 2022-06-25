@@ -80,8 +80,8 @@ fun HomeScreen(viewModel: HomeViewModel) {
             } else {
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(state.items, key = { item -> item.repo.id }) {
-                        GitHubRepoListItem(it) { id ->
-                            dispatch(HomeEvent.ClickFavorite(id))
+                        GitHubRepoListItem(it) { id, on ->
+                            dispatch(HomeEvent.Favorite(id, on))
                         }
                     }
                 }
@@ -125,7 +125,7 @@ fun HomeScreenPreviewList() {
     val state = HomeState(
         progress = false,
         items = repos.map {
-            HomeStateItem(it, false)
+            HomeStateItem(it)
         }
     )
     MyAppTheme {
@@ -148,7 +148,7 @@ fun HomeScreenPreviewDarkList() {
     val state = HomeState(
         progress = false,
         items = repos.map {
-            HomeStateItem(it, false)
+            HomeStateItem(it)
         }
     )
     MyAppTheme {

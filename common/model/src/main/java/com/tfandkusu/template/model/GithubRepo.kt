@@ -9,5 +9,6 @@ data class GithubRepo(
     val updatedAt: Date,
     val language: String,
     val htmlUrl: String,
-    val fork: Boolean
+    val fork: Boolean,
+    val favorite: Boolean
 )
