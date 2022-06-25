@@ -1,5 +1,7 @@
 package com.tfandkusu.template.di
 
+import com.tfandkusu.template.usecase.home.HomeFavoriteUseCase
+import com.tfandkusu.template.usecase.home.HomeFavoriteUseCaseImpl
 import com.tfandkusu.template.usecase.home.HomeLoadUseCase
 import com.tfandkusu.template.usecase.home.HomeLoadUseCaseImpl
 import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
@@ -12,7 +14,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class HomeModule {
+abstract class HomeUseCaseModule {
     @Binds
     @Singleton
     abstract fun bindHomeLoadUseCase(
@@ -24,4 +26,10 @@ abstract class HomeModule {
     abstract fun bindOnCreateUseCase(
         useCase: HomeOnCreateUseCaseImpl
     ): HomeOnCreateUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindFavoriteUseCase(
+        useCase: HomeFavoriteUseCaseImpl
+    ): HomeFavoriteUseCase
 }

@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.error.NetworkErrorException
 import com.tfandkusu.template.model.GithubRepo
+import com.tfandkusu.template.usecase.home.HomeFavoriteUseCase
 import com.tfandkusu.template.usecase.home.HomeLoadUseCase
 import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
 import com.tfandkusu.template.viewmodel.error.ApiErrorState
@@ -42,6 +43,9 @@ class HomeViewModelTest {
     @MockK(relaxed = true)
     private lateinit var onCreateUseCase: HomeOnCreateUseCase
 
+    @MockK(relaxed = true)
+    private lateinit var favoriteUseCase: HomeFavoriteUseCase
+
     private lateinit var viewModel: HomeViewModel
 
     @ExperimentalCoroutinesApi
@@ -49,7 +53,7 @@ class HomeViewModelTest {
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         MockKAnnotations.init(this)
-        viewModel = HomeViewModelImpl(loadUseCase, onCreateUseCase)
+        viewModel = HomeViewModelImpl(loadUseCase, onCreateUseCase, favoriteUseCase)
     }
 
     @ExperimentalCoroutinesApi
@@ -77,7 +81,7 @@ class HomeViewModelTest {
             mockStateObserver.onChanged(
                 HomeState(
                     items = repos.map {
-                        HomeStateItem(it, false)
+                        HomeStateItem(it)
                     }
                 )
             )
@@ -121,7 +125,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun clickFavorite() {
+    fun favorite() {
         val repo1 = mockk<GithubRepo> {
             every { id } returns 1L
         }
@@ -137,26 +141,21 @@ class HomeViewModelTest {
         } returns flow {
             emit(repos)
         }
-        val items1 = listOf(
-            HomeStateItem(repo1, false),
-            HomeStateItem(repo2, false),
-            HomeStateItem(repo3, false),
-        )
-        val items2 = listOf(
-            HomeStateItem(repo1, false),
-            HomeStateItem(repo2, true),
-            HomeStateItem(repo3, false),
+        val items = listOf(
+            HomeStateItem(repo1),
+            HomeStateItem(repo2),
+            HomeStateItem(repo3),
         )
         val mockStateObserver = viewModel.state.mockStateObserver()
         viewModel.event(HomeEvent.OnCreate)
-        viewModel.event(HomeEvent.ClickFavorite(2L))
-        viewModel.event(HomeEvent.ClickFavorite(2L))
-        verifySequence {
+        viewModel.event(HomeEvent.Favorite(2L, true))
+        viewModel.event(HomeEvent.Favorite(2L, false))
+        coVerifySequence {
             mockStateObserver.onChanged(HomeState())
             onCreateUseCase.execute()
-            mockStateObserver.onChanged(HomeState(items = items1))
-            mockStateObserver.onChanged(HomeState(items = items2))
-            mockStateObserver.onChanged(HomeState(items = items1))
+            mockStateObserver.onChanged(HomeState(items = items))
+            favoriteUseCase.execute(2L, true)
+            favoriteUseCase.execute(2L, false)
         }
     }
 }

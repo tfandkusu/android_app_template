@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tfandkusu.template.usecase.home.HomeFavoriteUseCase
 import com.tfandkusu.template.usecase.home.HomeLoadUseCase
 import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
 import com.tfandkusu.template.viewmodel.error.ApiErrorViewModelHelper
-import com.tfandkusu.template.viewmodel.requireValue
 import com.tfandkusu.template.viewmodel.update
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -18,7 +18,8 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class HomeViewModelImpl @Inject constructor(
     private val loadUseCase: HomeLoadUseCase,
-    private val onCreateUseCase: HomeOnCreateUseCase
+    private val onCreateUseCase: HomeOnCreateUseCase,
+    private val favoriteUseCase: HomeFavoriteUseCase
 ) : HomeViewModel, ViewModel() {
 
     private val _error = ApiErrorViewModelHelper()
@@ -64,8 +65,7 @@ class HomeViewModelImpl @Inject constructor(
                                 copy(
                                     items = repos.map {
                                         HomeStateItem(
-                                            it,
-                                            false
+                                            it
                                         )
                                     }
                                 )
@@ -73,18 +73,8 @@ class HomeViewModelImpl @Inject constructor(
                         }
                     }
                 }
-                is HomeEvent.ClickFavorite -> {
-                    _state.update {
-                        copy(
-                            items = state.requireValue().items.map {
-                                if (it.repo.id == event.id) {
-                                    it.copy(favorite = !it.favorite)
-                                } else {
-                                    it
-                                }
-                            }
-                        )
-                    }
+                is HomeEvent.Favorite -> {
+                    favoriteUseCase.execute(event.id, event.on)
                 }
             }
         }

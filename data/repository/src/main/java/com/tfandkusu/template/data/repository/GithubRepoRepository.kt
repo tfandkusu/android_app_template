@@ -16,6 +16,8 @@ interface GithubRepoRepository {
     suspend fun fetch()
 
     fun listAsFlow(): Flow<List<GithubRepo>>
+
+    suspend fun favorite(id: Long, on: Boolean)
 }
 
 class GithubRepoRepositoryImpl @Inject constructor(
@@ -41,4 +43,8 @@ class GithubRepoRepositoryImpl @Inject constructor(
     }
 
     override fun listAsFlow() = localDataStore.listAsFlow()
+
+    override suspend fun favorite(id: Long, on: Boolean) {
+        localDataStore.favorite(id, on)
+    }
 }

@@ -106,4 +106,12 @@ class GithubRepoRepositoryTest {
             localDataStore.listAsFlow()
         }
     }
+
+    @Test
+    fun favorite() = runBlocking {
+        repository.favorite(1L, true)
+        coVerifySequence {
+            localDataStore.favorite(1L, true)
+        }
+    }
 }

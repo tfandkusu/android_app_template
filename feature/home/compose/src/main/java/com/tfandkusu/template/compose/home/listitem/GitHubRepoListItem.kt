@@ -47,13 +47,14 @@ import java.util.Date
 @Composable
 fun GitHubRepoListItem(
     item: HomeStateItem,
-    onClick: (id: Long) -> Unit = {}
+    onClick: (id: Long, on: Boolean) -> Unit = { _, _ -> }
 ) {
+    val repo = item.repo
     val context = LocalContext.current
     Column(
         modifier = Modifier
             .clickable {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(item.repo.htmlUrl))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(repo.htmlUrl))
                 context.startActivity(intent)
             }
     ) {
@@ -67,7 +68,7 @@ fun GitHubRepoListItem(
             ) {
                 // Name
                 Text(
-                    text = item.repo.name,
+                    text = repo.name,
                     modifier = Modifier
                         .weight(1f, false)
                         .padding(start = 16.dp, end = 12.dp),
@@ -79,7 +80,7 @@ fun GitHubRepoListItem(
                     overflow = TextOverflow.Ellipsis,
                 )
                 // Fork label
-                if (item.repo.fork) {
+                if (repo.fork) {
                     Box(
                         modifier = Modifier
                             .background(
@@ -102,13 +103,13 @@ fun GitHubRepoListItem(
                 }
             }
             IconToggleButton(
-                checked = item.favorite,
+                checked = repo.favorite,
                 onCheckedChange = {
-                    onClick(item.repo.id)
+                    onClick(repo.id, it)
                 }
             ) {
                 val tint = animateColorAsState(
-                    if (item.favorite)
+                    if (repo.favorite)
                         colorResource(R.color.favorite_on)
                     else
                         colorResource(R.color.favorite_off)
@@ -116,7 +117,7 @@ fun GitHubRepoListItem(
                 Icon(
                     Icons.Default.Favorite,
                     contentDescription =
-                    if (item.favorite)
+                    if (repo.favorite)
                         stringResource(R.string.favorite_on)
                     else
                         stringResource(R.string.favorite_off),
@@ -126,13 +127,13 @@ fun GitHubRepoListItem(
         }
 
         // Description
-        if (item.repo.description.isNotEmpty()) {
+        if (repo.description.isNotEmpty()) {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
-                text = item.repo.description,
+                text = repo.description,
                 style = TextStyle(
                     fontSize = 14.sp,
                     color = colorResource(R.color.textME)
@@ -145,12 +146,12 @@ fun GitHubRepoListItem(
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Language label
-            if (item.repo.language.isNotEmpty()) {
-                LanguageLabel(item.repo.language)
+            if (repo.language.isNotEmpty()) {
+                LanguageLabel(repo.language)
             }
             // Update time
             val format = DateFormat.getDateFormat(context)
-            val dateString = format.format(item.repo.updatedAt)
+            val dateString = format.format(repo.updatedAt)
             Text(
                 dateString,
                 modifier = Modifier
@@ -205,7 +206,7 @@ fun LanguageLabel(language: String) {
 fun GitHubRepoListItemPreviewNormal() {
     MyAppTheme {
         GitHubRepoListItem(
-            HomeStateItem(GitHubRepoCatalog.getList().first(), false)
+            HomeStateItem(GitHubRepoCatalog.getList().first())
         )
     }
 }
@@ -215,7 +216,7 @@ fun GitHubRepoListItemPreviewNormal() {
 fun GitHubRepoListItemPreviewDark() {
     MyAppTheme {
         GitHubRepoListItem(
-            HomeStateItem(GitHubRepoCatalog.getList().first(), false)
+            HomeStateItem(GitHubRepoCatalog.getList().first())
         )
     }
 }
@@ -240,8 +241,7 @@ fun GitHubRepoListItemPreviewLong() {
                     "",
                     true,
                     false
-                ),
-                false
+                )
             )
         )
     }
@@ -262,8 +262,7 @@ fun GitHubRepoListItemNoDescription() {
                     "",
                     true,
                     false
-                ),
-                false
+                )
             )
         )
     }
