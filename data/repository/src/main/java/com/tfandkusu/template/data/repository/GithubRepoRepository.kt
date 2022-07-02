@@ -6,8 +6,8 @@ import com.tfandkusu.template.data.local.entity.LocalCreated
 import com.tfandkusu.template.data.remote.GithubRemoteDataStore
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.util.CurrentTimeGetter
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 interface GithubRepoRepository {
 

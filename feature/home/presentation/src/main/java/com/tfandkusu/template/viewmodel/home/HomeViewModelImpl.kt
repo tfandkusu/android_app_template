@@ -10,10 +10,10 @@ import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
 import com.tfandkusu.template.viewmodel.error.ApiErrorViewModelHelper
 import com.tfandkusu.template.viewmodel.update
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModelImpl @Inject constructor(

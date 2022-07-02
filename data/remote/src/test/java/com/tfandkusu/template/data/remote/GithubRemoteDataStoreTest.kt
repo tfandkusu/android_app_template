@@ -10,13 +10,13 @@ import io.kotest.matchers.shouldNotBe
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.runBlocking
+import org.junit.Before
+import org.junit.Test
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
-import kotlinx.coroutines.runBlocking
-import org.junit.Before
-import org.junit.Test
 
 class GithubRemoteDataStoreTest {
 
