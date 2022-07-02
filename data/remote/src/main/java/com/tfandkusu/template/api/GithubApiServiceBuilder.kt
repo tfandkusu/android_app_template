@@ -2,9 +2,9 @@ package com.tfandkusu.template.api
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
-import java.util.Date
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.Date
 
 object GithubApiServiceBuilder {
     fun build(): GithubApiService {

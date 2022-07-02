@@ -144,7 +144,7 @@ class HomeViewModelTest {
         val items = listOf(
             HomeStateItem(repo1),
             HomeStateItem(repo2),
-            HomeStateItem(repo3),
+            HomeStateItem(repo3)
         )
         val mockStateObserver = viewModel.state.mockStateObserver()
         viewModel.event(HomeEvent.OnCreate)

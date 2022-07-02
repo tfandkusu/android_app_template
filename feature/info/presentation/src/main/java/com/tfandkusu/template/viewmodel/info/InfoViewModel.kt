@@ -7,9 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.tfandkusu.template.usecase.info.InfoOnClickAboutUseCase
 import com.tfandkusu.template.viewmodel.UnidirectionalViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 sealed class InfoEvent {
     object OnClickAbout : InfoEvent()

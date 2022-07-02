@@ -60,7 +60,7 @@ fun GitHubRepoListItem(
     ) {
         Spacer(modifier = Modifier.height(16.dp))
         Row(
-            verticalAlignment = Alignment.CenterVertically,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -77,7 +77,7 @@ fun GitHubRepoListItem(
                         color = colorResource(R.color.textHE)
                     ),
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
+                    overflow = TextOverflow.Ellipsis
                 )
                 // Fork label
                 if (repo.fork) {
@@ -109,18 +109,20 @@ fun GitHubRepoListItem(
                 }
             ) {
                 val tint = animateColorAsState(
-                    if (repo.favorite)
+                    if (repo.favorite) {
                         colorResource(R.color.favorite_on)
-                    else
+                    } else {
                         colorResource(R.color.favorite_off)
+                    }
                 )
                 Icon(
                     Icons.Default.Favorite,
                     contentDescription =
-                    if (repo.favorite)
+                    if (repo.favorite) {
                         stringResource(R.string.favorite_on)
-                    else
-                        stringResource(R.string.favorite_off),
+                    } else {
+                        stringResource(R.string.favorite_off)
+                    },
                     tint = tint.value
                 )
             }
@@ -137,7 +139,7 @@ fun GitHubRepoListItem(
                 style = TextStyle(
                     fontSize = 14.sp,
                     color = colorResource(R.color.textME)
-                ),
+                )
             )
         }
         Spacer(modifier = Modifier.height(8.dp))

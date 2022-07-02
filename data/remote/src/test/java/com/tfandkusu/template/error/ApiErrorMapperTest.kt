@@ -4,10 +4,10 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
 import io.mockk.every
 import io.mockk.mockk
-import java.io.IOException
-import java.lang.IllegalArgumentException
 import org.junit.Test
 import retrofit2.HttpException
+import java.io.IOException
+import java.lang.IllegalArgumentException
 
 class ApiErrorMapperTest {
 

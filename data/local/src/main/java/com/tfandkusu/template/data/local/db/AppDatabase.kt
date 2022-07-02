@@ -11,7 +11,8 @@ import com.tfandkusu.template.data.local.entity.LocalFavorite
 import com.tfandkusu.template.data.local.entity.LocalGithubRepo
 
 @Database(
-    entities = [LocalGithubRepo::class, LocalCreated::class, LocalFavorite::class], version = 2,
+    entities = [LocalGithubRepo::class, LocalCreated::class, LocalFavorite::class],
+    version = 2,
     autoMigrations = [
         AutoMigration(from = 1, to = 2)
     ]

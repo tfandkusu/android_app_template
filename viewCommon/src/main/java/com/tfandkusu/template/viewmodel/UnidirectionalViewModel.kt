@@ -27,12 +27,12 @@ interface UnidirectionalViewModel<EVENT, EFFECT, STATE> {
 data class StateEffectDispatch<STATE, EFFECT, EVENT>(
     val state: STATE,
     val effectFlow: Flow<EFFECT>,
-    val dispatch: (EVENT) -> Unit,
+    val dispatch: (EVENT) -> Unit
 )
 
 @Composable
 inline fun <reified STATE, EFFECT, EVENT> use(
-    viewModel: UnidirectionalViewModel<EVENT, EFFECT, STATE>,
+    viewModel: UnidirectionalViewModel<EVENT, EFFECT, STATE>
 ): StateEffectDispatch<STATE, EFFECT, EVENT> {
     val state = viewModel.state.observeAsState(viewModel.createDefaultState()).value
     val dispatch = remember(viewModel) {

@@ -73,7 +73,8 @@ fun ApiErrorPreviewServerError() {
         ApiError(
             ApiErrorState(
                 server = ApiServerError(
-                    503, "Service Unavailable"
+                    503,
+                    "Service Unavailable"
                 )
             )
         ) {
