@@ -10,7 +10,7 @@ So it does not have any practical features.
 It displays a list of [tfandkusu](https://github.com/tfandkusu)'s public GitHub repositories.
 And users can like the repository.
 
-<img src="https://user-images.githubusercontent.com/16898831/174483728-c03c3a08-5eb8-4f92-b53f-5611d9b2050d.png" width="320">
+<img src="https://user-images.githubusercontent.com/16898831/180608637-da53c0bd-8878-452c-84e6-032a06195b51.png" width="320">
 
 # Install
 
