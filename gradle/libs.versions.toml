@@ -1,6 +1,6 @@
 [versions]
 kotlin = '1.6.10'
-compose = '1.1.1'
+compose = '1.2.1'
 retrofit = '2.9.0'
 room = '2.4.2'
 coroutines = '1.6.4'
