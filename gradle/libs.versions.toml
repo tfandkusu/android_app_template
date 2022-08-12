@@ -5,7 +5,7 @@ retrofit = '2.9.0'
 room = '2.4.2'
 coroutines = '1.6.4'
 lifecycle = '2.5.0'
-hilt = '2.43'
+hilt = '2.43.2'
 moshi = '1.13.0'
 
 [libraries]
