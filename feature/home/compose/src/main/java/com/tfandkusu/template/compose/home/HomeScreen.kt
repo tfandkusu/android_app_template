@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
@@ -40,6 +41,8 @@ import com.tfandkusu.template.viewmodel.use
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
+private const val CONTENT_TYPE_REPO = 1
+
 @Composable
 fun HomeScreen(viewModel: HomeViewModel) {
     val context = LocalContext.current
@@ -68,18 +71,28 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 }
             )
         }
-    ) {
+    ) { padding ->
         if (errorState.noError()) {
             if (state.progress) {
                 Box(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding),
                     contentAlignment = Alignment.Center
                 ) {
                     CircularProgressIndicator()
                 }
             } else {
-                LazyColumn(modifier = Modifier.fillMaxSize()) {
-                    items(state.items, key = { item -> item.repo.id }) {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding)
+                ) {
+                    items(
+                        state.items,
+                        contentType = { CONTENT_TYPE_REPO },
+                        key = { item -> item.repo.id }
+                    ) {
                         GitHubRepoListItem(it) { id, on ->
                             dispatch(HomeEvent.Favorite(id, on))
                         }
@@ -87,7 +100,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 }
             }
         } else {
-            ApiError(errorState) {
+            ApiError(errorState, modifier = Modifier.padding(padding)) {
                 viewModel.event(HomeEvent.Load)
             }
         }
