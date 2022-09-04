@@ -24,7 +24,7 @@ import com.tfandkusu.template.viewmodel.error.ApiErrorState
 import com.tfandkusu.template.viewmodel.error.ApiServerError
 
 @Composable
-fun ApiError(apiErrorState: ApiErrorState, reload: () -> Unit) {
+fun ApiError(apiErrorState: ApiErrorState, modifier: Modifier = Modifier, reload: () -> Unit) {
     val errorMessage = if (apiErrorState.network) {
         stringResource(R.string.error_network)
     } else if (apiErrorState.server != null) {
@@ -39,7 +39,11 @@ fun ApiError(apiErrorState: ApiErrorState, reload: () -> Unit) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(16.dp).fillMaxWidth().fillMaxHeight()
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .then(modifier)
     ) {
         Text(
             errorMessage,
