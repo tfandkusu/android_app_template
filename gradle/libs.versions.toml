@@ -7,7 +7,7 @@ room = '2.4.3'
 coroutines = '1.6.4'
 lifecycle = '2.5.1'
 hilt = '2.43.2'
-moshi = '1.13.0'
+moshi = '1.14.0'
 
 [libraries]
 # Gradle Plugin
