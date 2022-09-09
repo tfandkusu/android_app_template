@@ -12,7 +12,6 @@ buildscript {
         classpath libs.firebase.appdistribution
         classpath libs.deploygate
         classpath libs.oss.licenses
-        classpath libs.kover
     }
 }
 
