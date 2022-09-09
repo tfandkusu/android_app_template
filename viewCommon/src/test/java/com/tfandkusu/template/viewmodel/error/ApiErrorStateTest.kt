@@ -10,7 +10,8 @@ class ApiErrorStateTest {
         ApiErrorState(network = true).noError() shouldBe false
         ApiErrorState(
             server = ApiServerError(
-                503, "Service Unavailable"
+                503,
+                "Service Unavailable"
             )
         ).noError() shouldBe false
         ApiErrorState(unknown = true).noError() shouldBe false

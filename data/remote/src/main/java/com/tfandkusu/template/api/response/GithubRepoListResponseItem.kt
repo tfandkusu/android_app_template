@@ -1,10 +1,10 @@
 package com.tfandkusu.template.api.response
 
-import androidx.annotation.Keep
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import java.util.Date
 
-@Keep
+@JsonClass(generateAdapter = true)
 data class GithubRepoListResponseItem(
     val id: Long,
     val name: String,

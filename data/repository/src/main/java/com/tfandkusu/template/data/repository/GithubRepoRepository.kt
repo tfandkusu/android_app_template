@@ -6,8 +6,8 @@ import com.tfandkusu.template.data.local.entity.LocalCreated
 import com.tfandkusu.template.data.remote.GithubRemoteDataStore
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.util.CurrentTimeGetter
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 interface GithubRepoRepository {
 
@@ -16,6 +16,8 @@ interface GithubRepoRepository {
     suspend fun fetch()
 
     fun listAsFlow(): Flow<List<GithubRepo>>
+
+    suspend fun favorite(id: Long, on: Boolean)
 }
 
 class GithubRepoRepositoryImpl @Inject constructor(
@@ -41,4 +43,8 @@ class GithubRepoRepositoryImpl @Inject constructor(
     }
 
     override fun listAsFlow() = localDataStore.listAsFlow()
+
+    override suspend fun favorite(id: Long, on: Boolean) {
+        localDataStore.favorite(id, on)
+    }
 }

@@ -13,7 +13,8 @@ object AppDatabaseBuilder {
         } else {
             Room.databaseBuilder(
                 applicationContext,
-                AppDatabase::class.java, "database"
+                AppDatabase::class.java,
+                "database"
             ).build()
         }
     }

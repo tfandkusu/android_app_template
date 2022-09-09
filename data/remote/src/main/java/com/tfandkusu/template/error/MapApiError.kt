@@ -1,7 +1,7 @@
 package com.tfandkusu.template.error
 
-import java.io.IOException
 import retrofit2.HttpException
+import java.io.IOException
 
 fun mapApiError(e: Throwable): Throwable {
     return when (e) {

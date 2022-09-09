@@ -4,7 +4,9 @@ import android.content.Intent
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -33,19 +35,22 @@ import com.tfandkusu.template.viewmodel.error.useErrorState
 import com.tfandkusu.template.viewmodel.home.HomeEffect
 import com.tfandkusu.template.viewmodel.home.HomeEvent
 import com.tfandkusu.template.viewmodel.home.HomeState
+import com.tfandkusu.template.viewmodel.home.HomeStateItem
 import com.tfandkusu.template.viewmodel.home.HomeViewModel
-import com.tfandkusu.template.viewmodel.useState
+import com.tfandkusu.template.viewmodel.use
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
+private const val CONTENT_TYPE_REPO = 1
+
 @Composable
 fun HomeScreen(viewModel: HomeViewModel) {
-    LaunchedEffect(Unit) {
-        viewModel.event(HomeEvent.OnCreate)
-        viewModel.event(HomeEvent.Load)
-    }
     val context = LocalContext.current
-    val state = useState(viewModel)
+    val (state, _, dispatch) = use(viewModel)
+    LaunchedEffect(Unit) {
+        dispatch(HomeEvent.OnCreate)
+        dispatch(HomeEvent.Load)
+    }
     val errorState = useErrorState(viewModel.error)
     Scaffold(
         topBar = {
@@ -66,26 +71,36 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 }
             )
         }
-    ) {
+    ) { padding ->
         if (errorState.noError()) {
             if (state.progress) {
                 Box(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding),
                     contentAlignment = Alignment.Center
                 ) {
                     CircularProgressIndicator()
                 }
             } else {
-                LazyColumn {
-                    state.repos.map {
-                        item(key = it.id) {
-                            GitHubRepoListItem(it)
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding)
+                ) {
+                    items(
+                        state.items,
+                        contentType = { CONTENT_TYPE_REPO },
+                        key = { item -> item.repo.id }
+                    ) {
+                        GitHubRepoListItem(it) { id, on ->
+                            dispatch(HomeEvent.Favorite(id, on))
                         }
                     }
                 }
             }
         } else {
-            ApiError(errorState) {
+            ApiError(errorState, modifier = Modifier.padding(padding)) {
                 viewModel.event(HomeEvent.Load)
             }
         }
@@ -122,7 +137,9 @@ fun HomeScreenPreviewList() {
     val repos = GitHubRepoCatalog.getList()
     val state = HomeState(
         progress = false,
-        repos = repos
+        items = repos.map {
+            HomeStateItem(it)
+        }
     )
     MyAppTheme {
         HomeScreen(HomeViewModelPreview(state))
@@ -143,7 +160,9 @@ fun HomeScreenPreviewDarkList() {
     val repos = GitHubRepoCatalog.getList()
     val state = HomeState(
         progress = false,
-        repos = repos
+        items = repos.map {
+            HomeStateItem(it)
+        }
     )
     MyAppTheme {
         HomeScreen(HomeViewModelPreview(state))

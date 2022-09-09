@@ -3,18 +3,26 @@ package com.tfandkusu.template.data.local
 import androidx.room.withTransaction
 import com.tfandkusu.template.data.local.db.AppDatabase
 import com.tfandkusu.template.data.local.entity.LocalCreated
+import com.tfandkusu.template.data.local.entity.LocalFavorite
 import com.tfandkusu.template.data.local.entity.LocalGithubRepo
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.util.CurrentTimeGetter
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import java.util.Date
 import javax.inject.Inject
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 
 interface GithubRepoLocalDataStore {
     suspend fun save(githubRepos: List<GithubRepo>)
 
     fun listAsFlow(): Flow<List<GithubRepo>>
+
+    suspend fun favorite(serverId: Long, on: Boolean)
+
+    /**
+     * For test
+     */
+    suspend fun listFavoriteGitHubRepoIds(): List<Long>
 
     suspend fun clear()
 }
@@ -28,6 +36,8 @@ class GithubRepoLocalDataStoreImpl @Inject constructor(
     private val githubRepoDao = db.githubRepoDao()
 
     private val createdDao = db.createdDao()
+
+    private val favoriteDao = db.favoriteDao()
 
     override suspend fun save(githubRepos: List<GithubRepo>) {
         db.withTransaction {
@@ -53,21 +63,38 @@ class GithubRepoLocalDataStoreImpl @Inject constructor(
                     currentTimeGetter.get()
                 )
             )
+            favoriteDao.deleteNotInGithubRepo()
         }
     }
 
-    override fun listAsFlow() = githubRepoDao.listAsFlow().map { list ->
-        list.map {
-            GithubRepo(
-                it.serverId,
-                it.name,
-                it.description,
-                Date(it.updatedAt),
-                it.language,
-                it.htmlUrl,
-                it.fork
-            )
+    override fun listAsFlow(): Flow<List<GithubRepo>> {
+        return combine(githubRepoDao.listAsFlow(), favoriteDao.listAsFlow()) { repos, favoList ->
+            val favoSet = favoList.map { it.githubRepoId }.toSet()
+            repos.map {
+                GithubRepo(
+                    it.serverId,
+                    it.name,
+                    it.description,
+                    Date(it.updatedAt),
+                    it.language,
+                    it.htmlUrl,
+                    it.fork,
+                    favoSet.contains(it.serverId)
+                )
+            }
         }
+    }
+
+    override suspend fun favorite(serverId: Long, on: Boolean) {
+        if (on) {
+            favoriteDao.insert(LocalFavorite(0L, serverId))
+        } else {
+            favoriteDao.delete(serverId)
+        }
+    }
+
+    override suspend fun listFavoriteGitHubRepoIds(): List<Long> {
+        return favoriteDao.listGithubIds()
     }
 
     override suspend fun clear() {

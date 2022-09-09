@@ -3,6 +3,8 @@ package com.tfandkusu.template.viewmodel.home
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.error.NetworkErrorException
+import com.tfandkusu.template.model.GithubRepo
+import com.tfandkusu.template.usecase.home.HomeFavoriteUseCase
 import com.tfandkusu.template.usecase.home.HomeLoadUseCase
 import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
 import com.tfandkusu.template.viewmodel.error.ApiErrorState
@@ -12,6 +14,7 @@ import io.mockk.coEvery
 import io.mockk.coVerifySequence
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
 import io.mockk.verifySequence
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -40,6 +43,9 @@ class HomeViewModelTest {
     @MockK(relaxed = true)
     private lateinit var onCreateUseCase: HomeOnCreateUseCase
 
+    @MockK(relaxed = true)
+    private lateinit var favoriteUseCase: HomeFavoriteUseCase
+
     private lateinit var viewModel: HomeViewModel
 
     @ExperimentalCoroutinesApi
@@ -47,7 +53,7 @@ class HomeViewModelTest {
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         MockKAnnotations.init(this)
-        viewModel = HomeViewModelImpl(loadUseCase, onCreateUseCase)
+        viewModel = HomeViewModelImpl(loadUseCase, onCreateUseCase, favoriteUseCase)
     }
 
     @ExperimentalCoroutinesApi
@@ -72,7 +78,13 @@ class HomeViewModelTest {
         verifySequence {
             mockStateObserver.onChanged(HomeState())
             onCreateUseCase.execute()
-            mockStateObserver.onChanged(HomeState(repos = repos))
+            mockStateObserver.onChanged(
+                HomeState(
+                    items = repos.map {
+                        HomeStateItem(it)
+                    }
+                )
+            )
         }
     }
 
@@ -109,6 +121,41 @@ class HomeViewModelTest {
             loadUseCase.execute()
             errorMockStateObserver.onChanged(ApiErrorState(network = true))
             stateMockObserver.onChanged(HomeState(progress = false))
+        }
+    }
+
+    @Test
+    fun favorite() {
+        val repo1 = mockk<GithubRepo> {
+            every { id } returns 1L
+        }
+        val repo2 = mockk<GithubRepo> {
+            every { id } returns 2L
+        }
+        val repo3 = mockk<GithubRepo> {
+            every { id } returns 3L
+        }
+        val repos = listOf(repo1, repo2, repo3)
+        every {
+            onCreateUseCase.execute()
+        } returns flow {
+            emit(repos)
+        }
+        val items = listOf(
+            HomeStateItem(repo1),
+            HomeStateItem(repo2),
+            HomeStateItem(repo3)
+        )
+        val mockStateObserver = viewModel.state.mockStateObserver()
+        viewModel.event(HomeEvent.OnCreate)
+        viewModel.event(HomeEvent.Favorite(2L, true))
+        viewModel.event(HomeEvent.Favorite(2L, false))
+        coVerifySequence {
+            mockStateObserver.onChanged(HomeState())
+            onCreateUseCase.execute()
+            mockStateObserver.onChanged(HomeState(items = items))
+            favoriteUseCase.execute(2L, true)
+            favoriteUseCase.execute(2L, false)
         }
     }
 }

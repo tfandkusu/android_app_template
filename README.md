@@ -8,8 +8,9 @@ This repository is a template for Android app.
 So it does not have any practical features.
 
 It displays a list of [tfandkusu](https://github.com/tfandkusu)'s public GitHub repositories.
+And users can like the repository.
 
-<img src="https://user-images.githubusercontent.com/16898831/146685977-85ab807c-bb04-4378-b005-71c7ecb9566c.png" width="200">
+<img src="https://user-images.githubusercontent.com/16898831/180608637-da53c0bd-8878-452c-84e6-032a06195b51.png" width="320">
 
 # Install
 
@@ -89,6 +90,7 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 
 - [Jetpack Compose](https://developer.android.com/jetpack/compose)
 - [Navigation Compose](https://developer.android.com/jetpack/compose/navigation)
+- [RecomposeHighlighter](https://github.com/android/snippets/blob/master/compose/recomposehighlighter/src/main/java/com/example/android/compose/recomposehighlighter/RecomposeHighlighter.kt)
 
 ## Presentation layer
 

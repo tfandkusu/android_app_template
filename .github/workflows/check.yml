@@ -33,6 +33,29 @@ jobs:
       - run: curl -Os https://uploader.codecov.io/latest/linux/codecov
       - run: chmod +x codecov
       - run: ./codecov -t ${{ secrets.CODECOV_TOKEN }}
+      # Dependency Tree Diff
+      - id: dependency-diff
+        name: Generate dependency diff
+        uses: usefulness/dependency-tree-diff-action@v1
+        if: github.event_name == 'pull_request'
+      - uses: peter-evans/find-comment@v2
+        id: find_comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-includes: Dependency diff
+        if: github.event_name == 'pull_request'
+      - uses: peter-evans/create-or-update-comment@v2
+        if: ${{ github.event_name == 'pull_request' && (steps.dependency-diff.outputs.text-diff != null || steps.find_comment.outputs.comment-id != null) }}
+        with:
+          body: |
+            Dependency diff (customize your message here):
+              ```diff
+              ${{ steps.dependency-diff.outputs.text-diff }}
+              ```
+          edit-mode: replace
+          comment-id: ${{ steps.find_comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       # Slack
       - uses: tfandkusu/slack@v1
         env:
