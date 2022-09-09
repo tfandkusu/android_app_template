@@ -1,5 +1,20 @@
 apply from: rootProject.file("gradle/build-config.gradle")
 
+android {
+    testOptions {
+        unitTests.all {
+            if (name == "testDebugUnitTest") {
+                kover {
+//                    disabled = false // true to disable instrumentation tests of this task, Kover reports will not depend on the results of their execution
+//                    binaryReportFile.set(file("$buildDir/custom/debug-report.bin")) // set file name of binary report
+//                    includes = ['com.example.*'] // see "Instrumentation inclusion rules" below
+//                    excludes = ['com.example.subpackage.*'] // see "Instrumentation exclusion rules" below
+                }
+            }
+        }
+    }
+}
+
 dependencies {
     implementation libs.kotlin.coroutines.android
     implementation libs.timber

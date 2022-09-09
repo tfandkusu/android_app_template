@@ -16,6 +16,10 @@ buildscript {
     }
 }
 
+plugins {
+    id 'org.jetbrains.kotlinx.kover' version '0.6.0'
+}
+
 allprojects {
     apply plugin: "com.diffplug.spotless"
     spotless {
@@ -29,4 +33,3 @@ allprojects {
 }
 
 // apply from: 'gradle/jacoco.gradle'
-apply plugin: 'kover'
