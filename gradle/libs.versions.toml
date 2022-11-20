@@ -17,7 +17,7 @@ spotless-gradle = 'com.diffplug.spotless:spotless-plugin-gradle:6.10.0'
 hilt-gradle = { module = 'com.google.dagger:hilt-android-gradle-plugin', version.ref = 'hilt' }
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
-firebase-appdistribution = 'com.google.firebase:firebase-appdistribution-gradle:3.0.3'
+firebase-appdistribution = 'com.google.firebase:firebase-appdistribution-gradle:3.1.1'
 deploygate = "com.deploygate:gradle:2.5.0"
 oss-licenses = 'com.google.android.gms:oss-licenses-plugin:0.10.5'
 # UI
