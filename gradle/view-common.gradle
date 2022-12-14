@@ -19,6 +19,8 @@ android {
 dependencies {
     implementation libs.core
     implementation libs.appcompat
+    implementation libs.activity
+    implementation libs.fragment
     implementation libs.material
     implementation libs.compose.ui.ui
     implementation libs.compose.material
