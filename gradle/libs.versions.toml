@@ -23,6 +23,8 @@ oss-licenses = 'com.google.android.gms:oss-licenses-plugin:0.10.5'
 # UI
 core = 'androidx.core:core-ktx:1.8.0'
 appcompat = 'androidx.appcompat:appcompat:1.5.0'
+activity = 'androidx.activity:activity-ktx:1.6.1'
+fragment = 'androidx.fragment:fragment-ktx:1.5.4'
 material = 'com.google.android.material:material:1.6.1'
 compose-ui-ui = { module = 'androidx.compose.ui:ui', version.ref = 'compose' }
 compose-material = { module = 'androidx.compose.material:material', version.ref = 'compose' }
