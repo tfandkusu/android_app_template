@@ -1,5 +1,6 @@
 package com.tfandkusu.template.view.main
 
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
@@ -10,6 +11,7 @@ import com.tfandkusu.template.viewmodel.home.HomeViewModelImpl
 
 private const val HOME_PATH = "home"
 
+@ExperimentalMaterial3Api
 @Composable
 fun AppContent() {
     val navController = rememberNavController()

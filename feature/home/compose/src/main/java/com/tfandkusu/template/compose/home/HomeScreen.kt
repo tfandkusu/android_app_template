@@ -7,13 +7,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -43,6 +44,7 @@ import kotlinx.coroutines.flow.flow
 
 private const val CONTENT_TYPE_REPO = 1
 
+@ExperimentalMaterial3Api
 @Composable
 fun HomeScreen(viewModel: HomeViewModel) {
     val context = LocalContext.current
@@ -123,6 +125,7 @@ class HomeViewModelPreview(private val previewState: HomeState) : HomeViewModel 
     }
 }
 
+@ExperimentalMaterial3Api
 @Composable
 @Preview
 fun HomeScreenPreviewProgress() {
@@ -131,6 +134,7 @@ fun HomeScreenPreviewProgress() {
     }
 }
 
+@ExperimentalMaterial3Api
 @Composable
 @Preview
 fun HomeScreenPreviewList() {
@@ -146,6 +150,7 @@ fun HomeScreenPreviewList() {
     }
 }
 
+@ExperimentalMaterial3Api
 @Composable
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 fun HomeScreenPreviewDarkProgress() {
@@ -154,6 +159,7 @@ fun HomeScreenPreviewDarkProgress() {
     }
 }
 
+@ExperimentalMaterial3Api
 @Composable
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 fun HomeScreenPreviewDarkList() {
