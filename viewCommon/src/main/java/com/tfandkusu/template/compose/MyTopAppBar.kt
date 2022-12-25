@@ -2,8 +2,12 @@ package com.tfandkusu.template.compose
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
 
 @ExperimentalMaterial3Api
 @Composable
@@ -13,6 +17,11 @@ fun MyTopAppBar(
 ) {
     TopAppBar(
         title = title,
+        colors = TopAppBarDefaults.smallTopAppBarColors(
+            containerColor = MaterialTheme
+                .colorScheme
+                .surfaceColorAtElevation(2.dp)
+        ),
         actions = actions
     )
 }
