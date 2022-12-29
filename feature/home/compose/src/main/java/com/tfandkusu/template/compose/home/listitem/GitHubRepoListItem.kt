@@ -21,6 +21,8 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconToggleButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -72,32 +74,25 @@ fun GitHubRepoListItem(
                     modifier = Modifier
                         .weight(1f, false)
                         .padding(start = 16.dp, end = 12.dp, top = 16.dp, bottom = 16.dp),
-                    style = TextStyle(
-                        fontSize = 16.sp,
-                        color = colorResource(R.color.textHE)
-                    ),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 // Fork label
                 if (repo.fork) {
-                    Box(
-                        modifier = Modifier
-                            .background(
-                                color = colorResource(R.color.forkBackground),
-                                shape = RoundedCornerShape(4.dp, 4.dp, 4.dp, 4.dp)
-                            )
-                            .padding(horizontal = 8.dp, vertical = 2.dp)
-                            .height(18.dp),
-                        contentAlignment = Alignment.Center
+                    Surface(
+                        shape = MaterialTheme.shapes.extraSmall,
+                        color = MaterialTheme.colorScheme.outline
                     ) {
                         Text(
                             text = stringResource(R.string.fork),
-                            style = TextStyle(
-                                color = colorResource(R.color.white),
-                                fontSize = 12.sp,
-                                fontWeight = FontWeight.Bold
-                            )
+                            style = MaterialTheme.typography.labelSmall.copy(
+                                color = colorResource(
+                                    id = R.color.white
+                                )
+                            ),
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
                         )
                     }
                 }
@@ -110,9 +105,9 @@ fun GitHubRepoListItem(
             ) {
                 val tint = animateColorAsState(
                     if (repo.favorite) {
-                        colorResource(R.color.favorite_on)
+                        MaterialTheme.colorScheme.secondary
                     } else {
-                        colorResource(R.color.favorite_off)
+                        MaterialTheme.colorScheme.secondaryContainer
                     }
                 )
                 Icon(
@@ -136,10 +131,8 @@ fun GitHubRepoListItem(
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
                 text = repo.description,
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    color = colorResource(R.color.textME)
-                )
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onPrimaryContainer
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -159,11 +152,9 @@ fun GitHubRepoListItem(
                 modifier = Modifier
                     .weight(1f)
                     .padding(horizontal = 16.dp),
-                style = TextStyle(
-                    fontSize = 12.sp,
-                    color = colorResource(R.color.textME),
-                    textAlign = TextAlign.End
-                )
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                textAlign = TextAlign.End
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
