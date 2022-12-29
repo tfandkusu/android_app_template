@@ -63,4 +63,5 @@ dependencies {
     implementation project(':feature:info:presentation')
     implementation libs.navigation.compose
     implementation libs.hilt.navigation.compose
+    implementation libs.play.services.oss.licenses
 }

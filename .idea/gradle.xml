@@ -28,7 +28,6 @@
             <option value="$PROJECT_DIR$/feature/info/compose" />
             <option value="$PROJECT_DIR$/feature/info/presentation" />
             <option value="$PROJECT_DIR$/feature/info/usecase" />
-            <option value="$PROJECT_DIR$/feature/info/view" />
             <option value="$PROJECT_DIR$/testUtil" />
             <option value="$PROJECT_DIR$/viewCommon" />
           </set>

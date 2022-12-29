@@ -24,7 +24,7 @@ import kotlinx.coroutines.flow.flow
 
 @ExperimentalMaterial3Api
 @Composable
-fun InfoScreen(viewModel: InfoViewModel, finish: () -> Unit = {}) {
+fun InfoScreen(viewModel: InfoViewModel, finish: () -> Unit = {}, callOssLicense: () -> Unit = {}) {
     Scaffold(
         topBar = {
             MyTopAppBar(
@@ -42,6 +42,7 @@ fun InfoScreen(viewModel: InfoViewModel, finish: () -> Unit = {}) {
         LazyColumn(Modifier.padding(padding)) {
             item {
                 InfoListItem(stringResource(R.string.title_oss_license)) {
+                    callOssLicense()
                 }
             }
             item {

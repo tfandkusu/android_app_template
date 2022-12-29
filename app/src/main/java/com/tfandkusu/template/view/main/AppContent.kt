@@ -17,7 +17,7 @@ private const val INFO_PATH = "info"
 
 @ExperimentalMaterial3Api
 @Composable
-fun AppContent() {
+fun AppContent(callOssLicense: () -> Unit) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = HOME_PATH) {
         composable(HOME_PATH) {
@@ -30,7 +30,7 @@ fun AppContent() {
             val viewModel = hiltViewModel<InfoViewModelImpl>()
             InfoScreen(viewModel, finish = {
                 navController.popBackStack()
-            })
+            }, callOssLicense = callOssLicense)
         }
     }
 }

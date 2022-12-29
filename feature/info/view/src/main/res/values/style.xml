@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="InfoToolbarStyle" parent="@style/Widget.Material3.Toolbar">
-        <item name="android:background">@color/top_app_bar</item>
-    </style>
-</resources>
