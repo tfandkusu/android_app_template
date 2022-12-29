@@ -1,7 +1,11 @@
 package com.tfandkusu.template.compose
 
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -13,7 +17,10 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun MyTopAppBar(
     title: @Composable () -> Unit,
-    actions: @Composable RowScope.() -> Unit = {}
+    hasBack: Boolean = false,
+    backContentDescription: String = "",
+    actions: @Composable RowScope.() -> Unit = {},
+    onBackPressed: () -> Unit = {}
 ) {
     TopAppBar(
         title = title,
@@ -22,6 +29,18 @@ fun MyTopAppBar(
                 .colorScheme
                 .surfaceColorAtElevation(2.dp)
         ),
+        navigationIcon = if (hasBack) {
+            {
+                IconButton(onClick = onBackPressed) {
+                    Icon(
+                        Icons.Default.ArrowBack,
+                        contentDescription = backContentDescription
+                    )
+                }
+            }
+        } else {
+            {}
+        },
         actions = actions
     )
 }
