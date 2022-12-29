@@ -12,6 +12,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         AppInfo.versionName = BuildConfig.VERSION_NAME
+        // To show oss license by using oss-licenses-plugin
         DynamicColors.applyToActivitiesIfAvailable(this)
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())

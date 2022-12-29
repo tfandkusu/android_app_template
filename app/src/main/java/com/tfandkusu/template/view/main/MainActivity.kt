@@ -18,16 +18,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         // To change status bar color by using dynamic color.
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        // To show oss licenses
-        OssLicensesMenuActivity.setActivityTitle(getString(R.string.title_oss_license))
-        val intent = Intent(this, OssLicensesMenuActivity::class.java)
         //
         setContent {
             MyAppTheme {
-                AppContent(callOssLicense = {
-                    startActivity(intent)
-                })
+                AppContent(callOssLicensesActivity = ::callOssLicensesActivity)
             }
         }
+    }
+
+    private fun callOssLicensesActivity() {
+        OssLicensesMenuActivity.setActivityTitle(getString(R.string.title_oss_license))
+        val intent = Intent(this, OssLicensesMenuActivity::class.java)
+        startActivity(intent)
     }
 }
