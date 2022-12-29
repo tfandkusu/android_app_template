@@ -9,13 +9,14 @@
         <activity
             android:name="com.tfandkusu.template.view.info.InfoActivity"
             android:exported="false"
+            android:theme="@style/AppTheme"
             android:label="@string/title_info" />
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
-            android:theme="@style/OssTheme" />
+            android:theme="@style/AppThemeWithActionBar" />
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
-            android:theme="@style/OssTheme" />
+            android:theme="@style/AppThemeWithActionBar" />
     </application>
 
 </manifest>

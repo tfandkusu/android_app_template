@@ -3,6 +3,7 @@ package com.tfandkusu.template.view.info
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import com.tfandkusu.template.info.view.R
 import com.tfandkusu.template.info.view.databinding.ActivityInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -12,6 +13,8 @@ class InfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // To change status bar color by using dynamic color.
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         val binding = ActivityInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
