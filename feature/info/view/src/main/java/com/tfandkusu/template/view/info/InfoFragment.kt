@@ -13,9 +13,8 @@ import com.tfandkusu.template.info.view.R
 import com.tfandkusu.template.model.AppInfo
 import com.tfandkusu.template.viewmodel.info.InfoEffect
 import com.tfandkusu.template.viewmodel.info.InfoEvent
-import com.tfandkusu.template.viewmodel.info.InfoViewModel
+import com.tfandkusu.template.viewmodel.info.InfoViewModelImpl
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class InfoFragment : PreferenceFragmentCompat() {
@@ -25,7 +24,7 @@ class InfoFragment : PreferenceFragmentCompat() {
         private const val KEY_ABOUT = "about"
     }
 
-    private val viewModel: InfoViewModel by viewModels()
+    private val viewModel: InfoViewModelImpl by viewModels()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preference_info, rootKey)

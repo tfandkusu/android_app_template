@@ -12,6 +12,7 @@ dependencies {
     implementation project(':common:model')
     implementation project(':viewCommon')
     implementation project(':feature:info:presentation')
+    implementation project(':feature:info:compose')
     implementation libs.preference
     implementation libs.play.services.oss.licenses
 }

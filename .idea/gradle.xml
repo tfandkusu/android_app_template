@@ -25,6 +25,7 @@
             <option value="$PROJECT_DIR$/feature/home/presentation" />
             <option value="$PROJECT_DIR$/feature/home/usecase" />
             <option value="$PROJECT_DIR$/feature/info" />
+            <option value="$PROJECT_DIR$/feature/info/compose" />
             <option value="$PROJECT_DIR$/feature/info/presentation" />
             <option value="$PROJECT_DIR$/feature/info/usecase" />
             <option value="$PROJECT_DIR$/feature/info/view" />
