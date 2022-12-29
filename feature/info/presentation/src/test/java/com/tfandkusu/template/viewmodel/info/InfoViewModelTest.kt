@@ -4,14 +4,12 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.tfandkusu.template.usecase.info.InfoOnClickAboutUseCase
 import com.tfandkusu.template.usecase.info.InfoOnClickAboutUseCaseResult
 import com.tfandkusu.template.viewmodel.mockStateObserver
-import io.kotest.matchers.shouldBe
 import io.mockk.MockKAnnotations
 import io.mockk.coVerifySequence
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -57,7 +55,6 @@ class InfoViewModelTest {
         } returns InfoOnClickAboutUseCaseResult(3)
         val mockStateObserver = viewModel.state.mockStateObserver()
         viewModel.event(InfoEvent.OnClickAbout)
-        viewModel.effect.first() shouldBe InfoEffect.ShowAbout(3)
         viewModel.event(InfoEvent.CloseAbout)
         coVerifySequence {
             mockStateObserver.onChanged(InfoState())

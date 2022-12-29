@@ -8,9 +8,7 @@ sealed class InfoEvent {
     object CloseAbout : InfoEvent()
 }
 
-sealed class InfoEffect {
-    data class ShowAbout(val numberOfStarts: Int) : InfoEffect()
-}
+sealed class InfoEffect
 
 data class InfoState(
     val numberOfStarts: Int? = null

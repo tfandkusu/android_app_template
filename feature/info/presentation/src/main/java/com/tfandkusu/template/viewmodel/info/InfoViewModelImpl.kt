@@ -33,7 +33,6 @@ class InfoViewModelImpl @Inject constructor(
             when (event) {
                 InfoEvent.OnClickAbout -> {
                     val result = onClickAboutUseCase.execute()
-                    effectChannel.send(InfoEffect.ShowAbout(result.numberOfStarts))
                     _state.update {
                         copy(numberOfStarts = result.numberOfStarts)
                     }
