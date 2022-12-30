@@ -12,7 +12,6 @@ android {
 dependencies {
     ksp libs.moshi.kotlin.codegen
     implementation project(':common:model')
-    implementation project(':common:util')
     implementation libs.retrofit.retrofit
     implementation libs.retrofit.moshi
     implementation libs.moshi

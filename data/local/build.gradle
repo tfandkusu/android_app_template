@@ -20,7 +20,6 @@ android {
 
 dependencies {
     implementation project(':common:model')
-    implementation project(':common:util')
     implementation libs.room.runtime
     implementation libs.room.ktx
     implementation libs.preferences

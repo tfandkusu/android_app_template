@@ -8,7 +8,6 @@ android {
 
 dependencies {
     implementation project(':common:model')
-    implementation project(':common:util')
     implementation project(':data:remote')
     implementation project(':data:local')
 }
