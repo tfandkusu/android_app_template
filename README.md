@@ -51,6 +51,7 @@ graph TD;
 ```
 
 - Multiple `compose`, `presentation`, and  `usecase`  modules will be created for each feature.
+- All modules use `common` module.
 
 ## app
 
@@ -90,6 +91,13 @@ It has minimum dependency to speed up compose preview.
 ## data:remote
 
 - Use Retrofit to access REST API.
+
+## common
+
+- Classes used by all modules.
+    - Data class
+    - Exception
+    - Utility method
 
 # Technology used
 
