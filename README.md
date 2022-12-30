@@ -12,6 +12,8 @@ And users can like the repository.
 
 <img src="https://user-images.githubusercontent.com/16898831/210041022-6559f0dc-a9e7-4a96-8ec2-2fc3fd5bab6f.png" width="320">
 
+This app supports [dynamic color](https://m3.material.io/styles/color/dynamic-color/overview), light and dark theme.
+
 # Install
 
 Current main branch.
