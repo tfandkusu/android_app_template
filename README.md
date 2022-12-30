@@ -10,7 +10,7 @@ So it does not have any practical features.
 It displays a list of [tfandkusu](https://github.com/tfandkusu)'s public GitHub repositories.
 And users can like the repository.
 
-<img src="https://user-images.githubusercontent.com/16898831/210041022-6559f0dc-a9e7-4a96-8ec2-2fc3fd5bab6f.png" width="320">
+<img src="https://user-images.githubusercontent.com/16898831/210041022-6559f0dc-a9e7-4a96-8ec2-2fc3fd5bab6f.png" width="200"> <img src="https://user-images.githubusercontent.com/16898831/210078221-586e96f0-0a7d-43f4-873d-9f8082444311.png" width="200">
 
 This app supports [dynamic color](https://m3.material.io/styles/color/dynamic-color/overview), light and dark theme.
 
