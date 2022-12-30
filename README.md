@@ -10,7 +10,7 @@ So it does not have any practical features.
 It displays a list of [tfandkusu](https://github.com/tfandkusu)'s public GitHub repositories.
 And users can like the repository.
 
-<img src="https://user-images.githubusercontent.com/16898831/180608637-da53c0bd-8878-452c-84e6-032a06195b51.png" width="320">
+<img src="https://user-images.githubusercontent.com/16898831/210040700-89d9e72b-f05d-4973-bc23-14d8957bf93a.png" width="320">
 
 # Install
 
@@ -76,9 +76,7 @@ It has minimum dependency to speed up compose preview.
 
 ## remoteDataStore
 
-
 - Use Retrofit to access REST API.
-
 
 # Technology used
 
@@ -90,6 +88,7 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 
 - [Jetpack Compose](https://developer.android.com/jetpack/compose)
 - [Navigation Compose](https://developer.android.com/jetpack/compose/navigation)
+- [Compose Material 3](https://developer.android.com/jetpack/androidx/releases/compose-material3)
 - [RecomposeHighlighter](https://github.com/android/snippets/blob/master/compose/recomposehighlighter/src/main/java/com/example/android/compose/recomposehighlighter/RecomposeHighlighter.kt)
 
 ## Presentation layer
