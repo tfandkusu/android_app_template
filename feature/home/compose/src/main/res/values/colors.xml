@@ -8,8 +8,4 @@
     <color name="java">#f44336</color>
     <color name="html">#ff5722</color>
     <color name="other">#607d8b</color>
-    <!-- Fork label background -->
-    <color name="forkBackground">#666</color>
-    <color name="favorite_on">#f44336</color>
-    <color name="favorite_off">#9e9e9e</color>
 </resources>

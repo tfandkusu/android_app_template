@@ -5,29 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tfandkusu.template.usecase.info.InfoOnClickAboutUseCase
-import com.tfandkusu.template.viewmodel.UnidirectionalViewModel
+import com.tfandkusu.template.viewmodel.update
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-sealed class InfoEvent {
-    object OnClickAbout : InfoEvent()
-}
-
-sealed class InfoEffect {
-    data class ShowAbout(val numberOfStarts: Int) : InfoEffect()
-}
-
-object InfoState
-
 @HiltViewModel
-class InfoViewModel @Inject constructor(
+class InfoViewModelImpl @Inject constructor(
     private val onClickAboutUseCase: InfoOnClickAboutUseCase
-) : UnidirectionalViewModel<InfoEvent, InfoEffect, InfoState>,
+) : InfoViewModel,
     ViewModel() {
 
-    override fun createDefaultState() = InfoState
+    override fun createDefaultState() = InfoState()
 
     private val _state = MutableLiveData(createDefaultState())
 
@@ -43,7 +33,14 @@ class InfoViewModel @Inject constructor(
             when (event) {
                 InfoEvent.OnClickAbout -> {
                     val result = onClickAboutUseCase.execute()
-                    effectChannel.send(InfoEffect.ShowAbout(result.numberOfStarts))
+                    _state.update {
+                        copy(numberOfStarts = result.numberOfStarts)
+                    }
+                }
+                InfoEvent.CloseAbout -> {
+                    _state.update {
+                        copy(numberOfStarts = null)
+                    }
                 }
             }
         }

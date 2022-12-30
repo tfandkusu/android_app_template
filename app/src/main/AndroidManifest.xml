@@ -13,11 +13,11 @@
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppTemplate"
         android:label="@string/app_name"
         tools:targetApi="s">
         <activity
             android:name="com.tfandkusu.template.view.main.MainActivity"
+            android:theme="@style/Theme.AppTemplate"
             android:exported="true"
             android:label="@string/app_name"
             tools:ignore="RedundantLabel">
@@ -27,5 +27,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
+            android:theme="@style/AppThemeWithActionBar" />
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
+            android:theme="@style/AppThemeWithActionBar" />
     </application>
 </manifest>

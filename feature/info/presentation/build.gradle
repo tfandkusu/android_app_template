@@ -5,6 +5,7 @@ apply from: rootProject.file("gradle/hilt.gradle")
 dependencies {
     implementation project(':common:model')
     implementation project(':viewCommon')
+    implementation project(':feature:info:compose')
     implementation project(':feature:info:usecase')
     testImplementation project(':testUtil')
 }
