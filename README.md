@@ -10,7 +10,7 @@ So it does not have any practical features.
 It displays a list of [tfandkusu](https://github.com/tfandkusu)'s public GitHub repositories.
 And users can like the repository.
 
-<img src="https://user-images.githubusercontent.com/16898831/210040700-89d9e72b-f05d-4973-bc23-14d8957bf93a.png" width="320">
+<img src="https://user-images.githubusercontent.com/16898831/210041022-6559f0dc-a9e7-4a96-8ec2-2fc3fd5bab6f.png" width="320">
 
 # Install
 
@@ -31,7 +31,6 @@ The 3 layers described in [Android recommended app architecture](https://develop
     - Data Sources
         - [Retrofit](https://github.com/square/retrofit)
         - [Room](https://developer.android.com/jetpack/androidx/releases/room)
-
 
 # Module structure
 
