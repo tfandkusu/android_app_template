@@ -27,7 +27,7 @@ fun InfoListItem(name: String, onClick: () -> Unit = {}) {
             text = name,
             maxLines = 1,
             style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .padding(all = 16.dp)
         )
