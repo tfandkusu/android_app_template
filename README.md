@@ -10,7 +10,9 @@ So it does not have any practical features.
 It displays a list of [tfandkusu](https://github.com/tfandkusu)'s public GitHub repositories.
 And users can like the repository.
 
-<img src="https://user-images.githubusercontent.com/16898831/180608637-da53c0bd-8878-452c-84e6-032a06195b51.png" width="320">
+<img src="https://user-images.githubusercontent.com/16898831/210041022-6559f0dc-a9e7-4a96-8ec2-2fc3fd5bab6f.png" width="320">
+
+This app supports [dynamic color](https://m3.material.io/styles/color/dynamic-color/overview), light and dark theme.
 
 # Install
 
@@ -32,19 +34,30 @@ The 3 layers described in [Android recommended app architecture](https://develop
         - [Retrofit](https://github.com/square/retrofit)
         - [Room](https://developer.android.com/jetpack/androidx/releases/room)
 
-
 # Module structure
 
-![image](https://user-images.githubusercontent.com/16898831/154816419-e711ffd2-41ea-45ac-bdde-49424be4f336.png)
+```mermaid
+graph TD;
+    app-->feature:*:compose;
+    app-->feature:*:presentation;
+    app-->viewCommon;
+    feature:*:presentation-->feature:*:usecase;
+    feature:*:presentation-->feature:*:compose;
+    feature:*:compose-->viewCommon;
+    feature:*:presentation-->viewCommon;
+    feature:*:usecase-->data:repository;
+    data:repository-->data:remote;
+    data:repository-->data:local;
+```
 
-Multiple `compose`, `presentation`, and  `usecase`  modules will be created for each feature.
+- Multiple `compose`, `presentation`, and  `usecase`  modules will be created for each feature.
 
 ## app
 
 - Activity
 - Compose navigation host
 
-## compose
+## feature:*:compose
 
 It has minimum dependency to speed up compose preview.
 
@@ -53,7 +66,7 @@ It has minimum dependency to speed up compose preview.
 - ViewModel interface
 - ViewModel implementation for compose preview
 
-## presentation
+## feature:*:presentation
 
 - ViewModel implementation for production
 
@@ -62,23 +75,21 @@ It has minimum dependency to speed up compose preview.
 - Common API error handling
 - Utility for ViewModel and LiveData
 
-## usecase
+## feature:*:usecase
 
 - Domain layer
 
-## repository
+## data:repository
 
 - Represents the data layer
 
-## localDataStore
+## data:local
 
 - Use room to save data locally.
 
-## remoteDataStore
-
+## data:remote
 
 - Use Retrofit to access REST API.
-
 
 # Technology used
 
@@ -90,6 +101,7 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 
 - [Jetpack Compose](https://developer.android.com/jetpack/compose)
 - [Navigation Compose](https://developer.android.com/jetpack/compose/navigation)
+- [Compose Material 3](https://developer.android.com/jetpack/androidx/releases/compose-material3)
 - [RecomposeHighlighter](https://github.com/android/snippets/blob/master/compose/recomposehighlighter/src/main/java/com/example/android/compose/recomposehighlighter/RecomposeHighlighter.kt)
 
 ## Presentation layer
