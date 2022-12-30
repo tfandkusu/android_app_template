@@ -6,6 +6,8 @@ apply from: rootProject.file("gradle/view-common.gradle")
 apply from: rootProject.file("gradle/hilt.gradle")
 
 android {
+    namespace "com.tfandkusu.template"
+
     defaultConfig {
         applicationId "com.tfandkusu.template"
         versionCode 2

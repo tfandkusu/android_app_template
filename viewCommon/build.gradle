@@ -1,6 +1,10 @@
 apply plugin: 'com.android.library'
 apply from: rootProject.file("gradle/view-common.gradle")
 
+android {
+    namespace "com.tfandkusu.template.viewcommon"
+}
+
 dependencies {
     implementation project(':common:model')
     testImplementation project(':testUtil')

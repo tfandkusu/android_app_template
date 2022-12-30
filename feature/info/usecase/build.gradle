@@ -2,6 +2,10 @@ apply plugin: 'com.android.library'
 apply from: rootProject.file("gradle/common.gradle")
 apply from: rootProject.file("gradle/hilt.gradle")
 
+android {
+    namespace "com.tfandkusu.template.info.usecase"
+}
+
 dependencies {
     implementation project(':common:model')
     implementation project(':common:util')
