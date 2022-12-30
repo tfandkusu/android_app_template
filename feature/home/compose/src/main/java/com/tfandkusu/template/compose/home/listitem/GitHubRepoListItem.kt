@@ -40,6 +40,7 @@ import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.home.compose.R
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.ui.theme.MyAppTheme
+import com.tfandkusu.template.ui.theme.lowEmphasisAlpha
 import com.tfandkusu.template.viewmodel.home.HomeStateItem
 import java.util.Date
 
@@ -128,7 +129,7 @@ fun GitHubRepoListItem(
                     .padding(horizontal = 16.dp),
                 text = repo.description,
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onPrimaryContainer
+                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = lowEmphasisAlpha)
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -149,7 +150,7 @@ fun GitHubRepoListItem(
                     .weight(1f)
                     .padding(horizontal = 16.dp),
                 style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = lowEmphasisAlpha),
                 textAlign = TextAlign.End
             )
         }
