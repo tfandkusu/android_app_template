@@ -46,7 +46,7 @@ fun ApiError(apiErrorState: ApiErrorState, modifier: Modifier = Modifier, reload
         Text(
             errorMessage,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onPrimaryContainer
+            color = MaterialTheme.colorScheme.onSurface
         )
         Spacer(modifier = Modifier.height(16.dp))
         TextButton(
