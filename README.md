@@ -36,16 +36,28 @@ The 3 layers described in [Android recommended app architecture](https://develop
 
 # Module structure
 
-![image](https://user-images.githubusercontent.com/16898831/154816419-e711ffd2-41ea-45ac-bdde-49424be4f336.png)
+```mermaid
+graph TD;
+    app-->feature:*:compose;
+    app-->feature:*:presentation;
+    app-->viewCommon;
+    feature:*:presentation-->feature:*:usecase;
+    feature:*:presentation-->feature:*:compose;
+    feature:*:compose-->viewCommon;
+    feature:*:presentation-->viewCommon;
+    feature:*:usecase-->data:repository;
+    data:repository-->data:remote;
+    data:repository-->data:local;
+```
 
-Multiple `compose`, `presentation`, and  `usecase`  modules will be created for each feature.
+- Multiple `compose`, `presentation`, and  `usecase`  modules will be created for each feature.
 
 ## app
 
 - Activity
 - Compose navigation host
 
-## compose
+## feature:*:compose
 
 It has minimum dependency to speed up compose preview.
 
@@ -54,7 +66,7 @@ It has minimum dependency to speed up compose preview.
 - ViewModel interface
 - ViewModel implementation for compose preview
 
-## presentation
+## feature:*:presentation
 
 - ViewModel implementation for production
 
@@ -63,19 +75,19 @@ It has minimum dependency to speed up compose preview.
 - Common API error handling
 - Utility for ViewModel and LiveData
 
-## usecase
+## feature:*:usecase
 
 - Domain layer
 
-## repository
+## data:repository
 
 - Represents the data layer
 
-## localDataStore
+## data:local
 
 - Use room to save data locally.
 
-## remoteDataStore
+## data:remote
 
 - Use Retrofit to access REST API.
 
