@@ -22,7 +22,7 @@ deploygate = "com.deploygate:gradle:2.5.0"
 oss-licenses = 'com.google.android.gms:oss-licenses-plugin:0.10.5'
 # UI
 core = 'androidx.core:core-ktx:1.9.0'
-appcompat = 'androidx.appcompat:appcompat:1.5.1'
+appcompat = 'androidx.appcompat:appcompat:1.6.0'
 activity = 'androidx.activity:activity-ktx:1.6.1'
 fragment = 'androidx.fragment:fragment-ktx:1.5.4'
 material = 'com.google.android.material:material:1.7.0'
