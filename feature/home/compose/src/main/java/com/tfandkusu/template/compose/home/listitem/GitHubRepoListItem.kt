@@ -148,7 +148,7 @@ fun GitHubRepoListItem(
                 modifier = Modifier
                     .weight(1f)
                     .padding(horizontal = 16.dp),
-                style = MaterialTheme.typography.labelSmall,
+                style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.End
             )
