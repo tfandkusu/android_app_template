@@ -34,6 +34,37 @@ The 3 layers described in [Android recommended app architecture](https://develop
         - [Retrofit](https://github.com/square/retrofit)
         - [Room](https://developer.android.com/jetpack/androidx/releases/room)
 
+## ViewModel
+
+![image](https://user-images.githubusercontent.com/16898831/212493372-7459e52f-a9ec-424c-8379-bc032dc09e90.png)
+
+Redux is used for ViewModel
+
+
+### Event
+
+- User operation and lifecycle event.
+
+### State
+
+- State of compose
+- Compose is rendered by state.
+
+### Effect
+
+- One shot operation such as navigation and snackbar.
+
+### ActionCreator
+
+- Access UseCases
+- Dispatch actions
+
+### Reducer
+
+- Receive current state and action.
+- Return next state and effect.
+
+
 # Module structure
 
 ```mermaid
@@ -69,12 +100,13 @@ It has minimum dependency to speed up compose preview.
 
 ## feature:*:presentation
 
-- ViewModel implementation for production
+- ViewModel implementation including ActionCreator and Reducer for production.
 
 ## viewCommon
 
+- Theme
+- Common interface for ViewModel, ActionCreator and Reducer
 - Common API error handling
-- Utility for ViewModel and LiveData
 
 ## feature:*:usecase
 
