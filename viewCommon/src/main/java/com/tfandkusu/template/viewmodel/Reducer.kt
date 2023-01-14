@@ -3,8 +3,8 @@ package com.tfandkusu.template.viewmodel
 /**
  * Next state and effect
  *
- * @param state current state
- * @param effect next state
+ * @param state next state
+ * @param effect one shot operation such as navigation
  */
 data class StateEffect<STATE, EFFECT>(val state: STATE, val effect: EFFECT? = null)
 
