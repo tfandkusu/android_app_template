@@ -54,8 +54,6 @@ class HomeViewModelTest {
         }
         val mockStateObserver = viewModel.state.mockStateObserver()
         viewModel.event(HomeEvent.OnCreate)
-        // Use usecase only once.
-        viewModel.event(HomeEvent.OnCreate)
         verifySequence {
             mockStateObserver.onChanged(HomeState())
             onCreateUseCase.execute()

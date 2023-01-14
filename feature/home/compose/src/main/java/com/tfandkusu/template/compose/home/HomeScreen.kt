@@ -28,6 +28,7 @@ import com.tfandkusu.template.compose.home.listitem.GitHubRepoListItem
 import com.tfandkusu.template.home.compose.R
 import com.tfandkusu.template.ui.theme.MyAppTheme
 import com.tfandkusu.template.view.error.ApiError
+import com.tfandkusu.template.view.error.RunWhenLaunched
 import com.tfandkusu.template.viewmodel.error.ApiErrorViewModelHelper
 import com.tfandkusu.template.viewmodel.error.useErrorState
 import com.tfandkusu.template.viewmodel.home.HomeEffect
@@ -45,8 +46,10 @@ private const val CONTENT_TYPE_REPO = 1
 @Composable
 fun HomeScreen(viewModel: HomeViewModel, callInfoScreen: () -> Unit = {}) {
     val (state, _, dispatch) = use(viewModel)
-    LaunchedEffect(Unit) {
+    RunWhenLaunched {
         dispatch(HomeEvent.OnCreate)
+    }
+    LaunchedEffect(Unit) {
         dispatch(HomeEvent.Load)
     }
     val errorState = useErrorState(viewModel.error)
