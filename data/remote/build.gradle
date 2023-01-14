@@ -3,7 +3,6 @@ plugins {
     id("com.google.devtools.ksp").version('1.7.20-1.0.8')
 }
 apply from: rootProject.file("gradle/common.gradle")
-apply from: rootProject.file("gradle/hilt.gradle")
 
 android {
     namespace "com.tfandkusu.template.data.remote"
