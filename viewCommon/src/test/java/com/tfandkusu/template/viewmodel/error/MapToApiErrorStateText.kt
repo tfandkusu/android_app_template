@@ -10,7 +10,7 @@ class MapToApiErrorStateText {
 
     @Test
     fun networkError() {
-        mapToApiErrorState(NetworkErrorException()) shouldBe ApiErrorState(network = true)
+        mapToApiErrorState(NetworkErrorException) shouldBe ApiErrorState(network = true)
     }
 
     @Test
@@ -22,6 +22,6 @@ class MapToApiErrorStateText {
 
     @Test
     fun unknownError() {
-        mapToApiErrorState(UnknownErrorException()) shouldBe ApiErrorState(unknown = true)
+        mapToApiErrorState(UnknownErrorException) shouldBe ApiErrorState(unknown = true)
     }
 }

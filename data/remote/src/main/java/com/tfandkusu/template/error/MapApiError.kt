@@ -6,13 +6,13 @@ import java.io.IOException
 fun mapApiError(e: Throwable): Throwable {
     return when (e) {
         is IOException -> {
-            NetworkErrorException()
+            NetworkErrorException
         }
         is HttpException -> {
             ServerErrorException(e.code(), e.message())
         }
         else -> {
-            UnknownErrorException()
+            UnknownErrorException
         }
     }
 }

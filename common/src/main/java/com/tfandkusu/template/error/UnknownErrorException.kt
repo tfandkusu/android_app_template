@@ -1,3 +1,3 @@
 package com.tfandkusu.template.error
 
-class UnknownErrorException : Exception()
+object UnknownErrorException : Exception()

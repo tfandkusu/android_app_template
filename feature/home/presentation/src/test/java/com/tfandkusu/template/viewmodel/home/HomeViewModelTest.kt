@@ -85,7 +85,7 @@ class HomeViewModelTest {
     fun loadError() = runTest {
         coEvery {
             loadUseCase.execute()
-        } throws NetworkErrorException()
+        } throws NetworkErrorException
         val stateMockObserver = viewModel.state.mockStateObserver()
         viewModel.event(HomeEvent.Load)
         coVerifySequence {
