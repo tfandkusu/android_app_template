@@ -40,7 +40,6 @@ The 3 layers described in [Android recommended app architecture](https://develop
 
 Redux is used for ViewModel
 
-
 ### Event
 
 - User operation and lifecycle event.
@@ -63,7 +62,6 @@ Redux is used for ViewModel
 
 - Receive current state and action.
 - Return next state and effect.
-
 
 # Module structure
 
@@ -106,6 +104,7 @@ It has minimum dependency to speed up compose preview.
 
 - Theme
 - Common interface for ViewModel, ActionCreator and Reducer
+- Common composable functions
 - Common API error handling
 
 ## feature:*:usecase
