@@ -11,10 +11,8 @@ import io.mockk.coEvery
 import io.mockk.coVerifySequence
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -43,9 +41,8 @@ class HomeActionCreatorTest {
         actionCreator = HomeActionCreatorImpl(loadUseCase, onCreateUseCase, favoriteUseCase)
     }
 
-    @ExperimentalCoroutinesApi
     @Test
-    fun onCreate() = runTest {
+    fun onCreate() = runBlocking {
         val repos = GitHubRepoCatalog.getList()
         every {
             onCreateUseCase.execute()
@@ -59,9 +56,8 @@ class HomeActionCreatorTest {
         }
     }
 
-    @ExperimentalCoroutinesApi
     @Test
-    fun loadSuccess() = runTest {
+    fun loadSuccess() = runBlocking {
         actionCreator.event(HomeEvent.Load, dispatcher)
         coVerifySequence {
             dispatcher.dispatch(HomeAction.StartLoad)
@@ -70,9 +66,8 @@ class HomeActionCreatorTest {
         }
     }
 
-    @ExperimentalCoroutinesApi
     @Test
-    fun loadError() = runTest {
+    fun loadError() = runBlocking {
         coEvery {
             loadUseCase.execute()
         } throws NetworkErrorException
