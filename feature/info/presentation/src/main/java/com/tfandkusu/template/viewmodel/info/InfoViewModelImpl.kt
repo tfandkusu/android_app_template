@@ -1,51 +1,16 @@
 package com.tfandkusu.template.viewmodel.info
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.tfandkusu.template.usecase.info.InfoOnClickAboutUseCase
-import com.tfandkusu.template.viewmodel.update
+import com.tfandkusu.template.viewmodel.ReduxViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class InfoViewModelImpl @Inject constructor(
-    private val onClickAboutUseCase: InfoOnClickAboutUseCase
-) : InfoViewModel,
-    ViewModel() {
-
-    override fun createDefaultState() = InfoState()
-
-    private val _state = MutableLiveData(createDefaultState())
-
-    override val state: LiveData<InfoState>
-        get() = _state
-
-    private val effectChannel = createEffectChannel()
-
-    override val effect = effectChannel.receiveAsFlow()
-
-    override fun event(event: InfoEvent) {
-        viewModelScope.launch {
-            when (event) {
-                InfoEvent.OnClickOssLicense -> {
-                    effectChannel.send(InfoEffect.CallOssLicensesActivity)
-                }
-                InfoEvent.OnClickAbout -> {
-                    val result = onClickAboutUseCase.execute()
-                    _state.update {
-                        copy(numberOfStarts = result.numberOfStarts)
-                    }
-                }
-                InfoEvent.CloseAbout -> {
-                    _state.update {
-                        copy(numberOfStarts = null)
-                    }
-                }
-            }
-        }
+    actionCreator: InfoActionCreator,
+    reducer: InfoReducer
+) : ReduxViewModel<InfoEvent, InfoAction, InfoState, InfoEffect>(actionCreator, reducer),
+    InfoViewModel {
+    override fun createDefaultState(): InfoState {
+        return InfoState()
     }
 }

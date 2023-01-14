@@ -1,4 +1,4 @@
-package com.tfandkusu.template.view.error
+package com.tfandkusu.template.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

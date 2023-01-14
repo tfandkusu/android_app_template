@@ -3,7 +3,7 @@ package com.tfandkusu.template.viewmodel.home
 import androidx.compose.runtime.Stable
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.viewmodel.UnidirectionalViewModel
-import com.tfandkusu.template.viewmodel.error.ApiErrorViewModelHelper
+import com.tfandkusu.template.viewmodel.error.ApiErrorState
 
 sealed class HomeEvent {
 
@@ -23,9 +23,8 @@ data class HomeStateItem(
 
 data class HomeState(
     val progress: Boolean = true,
-    val items: List<HomeStateItem> = listOf()
+    val items: List<HomeStateItem> = listOf(),
+    val error: ApiErrorState = ApiErrorState()
 )
 
-interface HomeViewModel : UnidirectionalViewModel<HomeEvent, HomeEffect, HomeState> {
-    val error: ApiErrorViewModelHelper
-}
+interface HomeViewModel : UnidirectionalViewModel<HomeEvent, HomeEffect, HomeState>

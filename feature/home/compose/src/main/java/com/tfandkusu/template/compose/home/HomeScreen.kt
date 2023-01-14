@@ -24,13 +24,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.compose.MyTopAppBar
+import com.tfandkusu.template.compose.RunWhenLaunched
 import com.tfandkusu.template.compose.home.listitem.GitHubRepoListItem
 import com.tfandkusu.template.home.compose.R
 import com.tfandkusu.template.ui.theme.MyAppTheme
 import com.tfandkusu.template.view.error.ApiError
-import com.tfandkusu.template.view.error.RunWhenLaunched
-import com.tfandkusu.template.viewmodel.error.ApiErrorViewModelHelper
-import com.tfandkusu.template.viewmodel.error.useErrorState
 import com.tfandkusu.template.viewmodel.home.HomeEffect
 import com.tfandkusu.template.viewmodel.home.HomeEvent
 import com.tfandkusu.template.viewmodel.home.HomeState
@@ -52,7 +50,6 @@ fun HomeScreen(viewModel: HomeViewModel, callInfoScreen: () -> Unit = {}) {
     LaunchedEffect(Unit) {
         dispatch(HomeEvent.Load)
     }
-    val errorState = useErrorState(viewModel.error)
     Scaffold(
         topBar = {
             MyTopAppBar(
@@ -72,7 +69,7 @@ fun HomeScreen(viewModel: HomeViewModel, callInfoScreen: () -> Unit = {}) {
             )
         }
     ) { padding ->
-        if (errorState.noError()) {
+        if (state.error.noError()) {
             if (state.progress) {
                 Box(
                     modifier = Modifier
@@ -100,7 +97,7 @@ fun HomeScreen(viewModel: HomeViewModel, callInfoScreen: () -> Unit = {}) {
                 }
             }
         } else {
-            ApiError(errorState, modifier = Modifier.padding(padding)) {
+            ApiError(state.error, modifier = Modifier.padding(padding)) {
                 viewModel.event(HomeEvent.Load)
             }
         }
@@ -108,8 +105,6 @@ fun HomeScreen(viewModel: HomeViewModel, callInfoScreen: () -> Unit = {}) {
 }
 
 class HomeViewModelPreview(private val previewState: HomeState) : HomeViewModel {
-    override val error: ApiErrorViewModelHelper
-        get() = ApiErrorViewModelHelper()
 
     override fun createDefaultState() = previewState
 
