@@ -4,10 +4,12 @@ import com.tfandkusu.template.usecase.info.InfoOnClickAboutUseCase
 import com.tfandkusu.template.usecase.info.InfoOnClickAboutUseCaseResult
 import com.tfandkusu.template.util.MyViewModelTestRule
 import com.tfandkusu.template.viewmodel.mockStateObserver
+import io.kotest.matchers.shouldBe
 import io.mockk.coVerifySequence
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
@@ -27,6 +29,13 @@ class InfoViewModelTest {
     @Before
     fun setUp() {
         viewModel = InfoViewModelImpl(onClickAboutUseCase)
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun onClickOssLicense() = runTest {
+        viewModel.event(InfoEvent.OnClickOssLicense)
+        viewModel.effect.first() shouldBe InfoEffect.CallOssLicensesActivity
     }
 
     @Test
