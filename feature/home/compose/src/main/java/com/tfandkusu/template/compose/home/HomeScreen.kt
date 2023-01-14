@@ -18,7 +18,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.LiveData
@@ -45,7 +44,6 @@ private const val CONTENT_TYPE_REPO = 1
 @ExperimentalMaterial3Api
 @Composable
 fun HomeScreen(viewModel: HomeViewModel, callInfoScreen: () -> Unit = {}) {
-    val context = LocalContext.current
     val (state, _, dispatch) = use(viewModel)
     LaunchedEffect(Unit) {
         dispatch(HomeEvent.OnCreate)
