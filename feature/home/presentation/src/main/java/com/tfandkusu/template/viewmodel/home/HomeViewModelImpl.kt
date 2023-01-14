@@ -7,7 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.tfandkusu.template.usecase.home.HomeFavoriteUseCase
 import com.tfandkusu.template.usecase.home.HomeLoadUseCase
 import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
-import com.tfandkusu.template.viewmodel.error.ApiErrorViewModelHelper
+import com.tfandkusu.template.viewmodel.error.ApiErrorState
+import com.tfandkusu.template.viewmodel.error.mapToApiErrorState
 import com.tfandkusu.template.viewmodel.update
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -21,11 +22,6 @@ class HomeViewModelImpl @Inject constructor(
     private val onCreateUseCase: HomeOnCreateUseCase,
     private val favoriteUseCase: HomeFavoriteUseCase
 ) : HomeViewModel, ViewModel() {
-
-    private val _error = ApiErrorViewModelHelper()
-
-    override val error: ApiErrorViewModelHelper
-        get() = _error
 
     override fun createDefaultState() = HomeState()
 
@@ -41,17 +37,17 @@ class HomeViewModelImpl @Inject constructor(
         viewModelScope.launch {
             when (event) {
                 HomeEvent.Load -> {
-                    error.release()
                     _state.update {
-                        copy(progress = true)
+                        copy(progress = true, error = ApiErrorState())
                     }
                     try {
                         loadUseCase.execute()
-                    } catch (e: Throwable) {
-                        _error.catch(e)
-                    } finally {
                         _state.update {
                             copy(progress = false)
+                        }
+                    } catch (e: Throwable) {
+                        _state.update {
+                            copy(progress = false, error = mapToApiErrorState(e))
                         }
                     }
                 }

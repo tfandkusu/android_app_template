@@ -71,12 +71,9 @@ class HomeViewModelTest {
     @Test
     fun loadSuccess() = runTest {
         val stateMockObserver = viewModel.state.mockStateObserver()
-        val errorStateMockObserver = viewModel.error.state.mockStateObserver()
         viewModel.event(HomeEvent.Load)
         coVerifySequence {
             stateMockObserver.onChanged(HomeState())
-            errorStateMockObserver.onChanged(ApiErrorState())
-            errorStateMockObserver.onChanged(ApiErrorState())
             stateMockObserver.onChanged(HomeState(progress = true))
             loadUseCase.execute()
             stateMockObserver.onChanged(HomeState(progress = false))
@@ -90,16 +87,17 @@ class HomeViewModelTest {
             loadUseCase.execute()
         } throws NetworkErrorException()
         val stateMockObserver = viewModel.state.mockStateObserver()
-        val errorMockStateObserver = viewModel.error.state.mockStateObserver()
         viewModel.event(HomeEvent.Load)
         coVerifySequence {
             stateMockObserver.onChanged(HomeState())
-            errorMockStateObserver.onChanged(ApiErrorState())
-            errorMockStateObserver.onChanged(ApiErrorState())
             stateMockObserver.onChanged(HomeState(progress = true))
             loadUseCase.execute()
-            errorMockStateObserver.onChanged(ApiErrorState(network = true))
-            stateMockObserver.onChanged(HomeState(progress = false))
+            stateMockObserver.onChanged(
+                HomeState(
+                    progress = false,
+                    error = ApiErrorState(network = true)
+                )
+            )
         }
     }
 
