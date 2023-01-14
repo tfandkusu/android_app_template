@@ -1,8 +1,15 @@
 apply from: rootProject.file("gradle/build-config.gradle")
+apply plugin: 'dagger.hilt.android.plugin'
+
+hilt {
+    enableExperimentalClasspathAggregation = true
+}
 
 dependencies {
     implementation libs.kotlin.coroutines.android
     implementation libs.timber
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
     testImplementation project(':testUtil')
     testImplementation libs.junit
     testImplementation libs.mockk
