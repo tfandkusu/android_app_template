@@ -37,7 +37,7 @@ class HomeViewModelImpl @Inject constructor(
 
     override val effect: Flow<HomeEffect> = effectChannel.receiveAsFlow()
 
-    private var loaded = false
+    private var once = false
 
     override fun event(event: HomeEvent) {
         viewModelScope.launch {
@@ -58,8 +58,9 @@ class HomeViewModelImpl @Inject constructor(
                     }
                 }
                 HomeEvent.OnCreate -> {
-                    if (!loaded) {
-                        loaded = true
+                    // Prevent multiple execution of collect blocks
+                    if (!once) {
+                        once = true
                         onCreateUseCase.execute().collect { repos ->
                             _state.update {
                                 copy(
