@@ -7,8 +7,8 @@ import com.tfandkusu.template.data.local.entity.LocalCreated
 import com.tfandkusu.template.data.remote.GithubRemoteDataStore
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.util.CurrentTimeGetter
+import com.tfandkusu.template.util.MyTestRule
 import io.kotest.matchers.shouldBe
-import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerifySequence
 import io.mockk.every
@@ -17,20 +17,24 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
 class GithubRepoRepositoryTest {
 
-    @MockK(relaxed = true)
+    @get:Rule
+    val rule = MyTestRule(this)
+
+    @MockK
     private lateinit var remoteDataStore: GithubRemoteDataStore
 
-    @MockK(relaxed = true)
+    @MockK
     private lateinit var localDataStore: GithubRepoLocalDataStore
 
-    @MockK(relaxed = true)
+    @MockK
     private lateinit var createdLocalDataStore: CreatedLocalDataStore
 
-    @MockK(relaxed = true)
+    @MockK
     private lateinit var currentTimeGetter: CurrentTimeGetter
 
     private lateinit var repository: GithubRepoRepository
@@ -42,7 +46,6 @@ class GithubRepoRepositoryTest {
 
     @Before
     fun setUp() {
-        MockKAnnotations.init(this)
         repository = GithubRepoRepositoryImpl(
             remoteDataStore,
             localDataStore,

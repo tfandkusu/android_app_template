@@ -6,6 +6,7 @@ android {
 }
 
 dependencies {
+    implementation libs.junit
     implementation libs.mockk
     implementation libs.lifecycle.livedata.ktx
 }
