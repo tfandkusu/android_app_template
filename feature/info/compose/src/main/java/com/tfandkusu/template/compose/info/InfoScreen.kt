@@ -8,6 +8,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,7 +34,16 @@ fun InfoScreen(
     finish: () -> Unit = {},
     callOssLicensesActivity: () -> Unit = {}
 ) {
-    val (state, _, dispatch) = use(viewModel)
+    val (state, effect, dispatch) = use(viewModel)
+    LaunchedEffect(Unit) {
+        effect.collect {
+            when (it) {
+                InfoEffect.CallOssLicensesActivity -> {
+                    callOssLicensesActivity()
+                }
+            }
+        }
+    }
     Scaffold(
         topBar = {
             MyTopAppBar(
@@ -51,7 +61,7 @@ fun InfoScreen(
         LazyColumn(Modifier.padding(padding)) {
             item {
                 InfoListItem(stringResource(R.string.title_oss_license)) {
-                    callOssLicensesActivity()
+                    dispatch(InfoEvent.OnClickOssLicense)
                 }
             }
             item {

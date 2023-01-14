@@ -31,6 +31,9 @@ class InfoViewModelImpl @Inject constructor(
     override fun event(event: InfoEvent) {
         viewModelScope.launch {
             when (event) {
+                InfoEvent.OnClickOssLicense -> {
+                    effectChannel.send(InfoEffect.CallOssLicensesActivity)
+                }
                 InfoEvent.OnClickAbout -> {
                     val result = onClickAboutUseCase.execute()
                     _state.update {
