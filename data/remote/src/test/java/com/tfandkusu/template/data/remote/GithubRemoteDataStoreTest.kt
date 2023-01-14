@@ -3,15 +3,15 @@ package com.tfandkusu.template.data.remote
 import com.tfandkusu.template.api.GithubApiService
 import com.tfandkusu.template.api.GithubApiServiceBuilder
 import com.tfandkusu.template.error.NetworkErrorException
+import com.tfandkusu.template.util.MyTestRule
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
-import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.runBlocking
-import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -20,13 +20,11 @@ import java.util.TimeZone
 
 class GithubRemoteDataStoreTest {
 
-    @MockK(relaxed = true)
-    private lateinit var service: GithubApiService
+    @get:Rule
+    val rule = MyTestRule(this)
 
-    @Before
-    fun setUp() {
-        MockKAnnotations.init(this)
-    }
+    @MockK
+    private lateinit var service: GithubApiService
 
     @Test
     fun listRepositoriesSuccess() = runBlocking {

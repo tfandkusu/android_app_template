@@ -27,10 +27,8 @@ class ApiErrorMapperTest {
         } returns "Internal server error"
         val ce = mapApiError(e)
         ce.shouldBeTypeOf<ServerErrorException>()
-        if (ce is ServerErrorException) {
-            ce.code shouldBe 500
-            ce.httpMessage shouldBe "Internal server error"
-        }
+        ce.code shouldBe 500
+        ce.httpMessage shouldBe "Internal server error"
     }
 
     @Test
