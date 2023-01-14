@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.tfandkusu.template.compose.home.HomeScreen
 import com.tfandkusu.template.compose.info.InfoScreen
-import com.tfandkusu.template.viewmodel.home.HomeViewModelV2Impl
+import com.tfandkusu.template.viewmodel.home.HomeViewModelImpl
 import com.tfandkusu.template.viewmodel.info.InfoViewModelImpl
 
 private const val HOME_PATH = "home"
@@ -21,7 +21,7 @@ fun AppContent(callOssLicensesActivity: () -> Unit) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = HOME_PATH) {
         composable(HOME_PATH) {
-            val viewModel = hiltViewModel<HomeViewModelV2Impl>()
+            val viewModel = hiltViewModel<HomeViewModelImpl>()
             HomeScreen(viewModel, callInfoScreen = {
                 navController.navigate(INFO_PATH)
             })
