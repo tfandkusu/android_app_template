@@ -12,6 +12,7 @@ buildscript {
         classpath libs.firebase.appdistribution
         classpath libs.deploygate
         classpath libs.oss.licenses
+        classpath libs.jacoco
     }
 }
 
@@ -26,5 +27,3 @@ allprojects {
         }
     }
 }
-
-apply from: 'gradle/jacoco.gradle'

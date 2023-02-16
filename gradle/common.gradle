@@ -16,3 +16,5 @@ dependencies {
     testImplementation libs.kotest
     testImplementation libs.test.core
 }
+
+apply from: rootProject.file("gradle/jacoco.gradle")

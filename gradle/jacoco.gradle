@@ -1,48 +1,39 @@
-allprojects {
-    apply plugin: 'jacoco'
+apply plugin: 'jacoco'
 
-    jacoco {
-        toolVersion '0.8.7'
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+
+    reports {
+        xml.enabled(true)
+        html.enabled(true)
     }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories.setFrom(files([mainSrc]))
+    classDirectories.setFrom(files([debugTree]))
+    executionData.setFrom(fileTree(dir: "$buildDir", includes: [
+            "jacoco/testDebugUnitTest.exec",
+            "outputs/code-coverage/connected/*coverage.ec"
+    ]))
 }
 
-static Set<String> jacocoDependsOnTasks(Set<Project> subprojects) {
-    List<String> testTasks = []
-    subprojects.each { project ->
-        if (project.file("build.gradle").exists()) {
-            testTasks.add("$project.path:testDebugUnitTest")
+android {
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+                excludes = ['jdk.internal.*']
+            }
+        }
+        unitTests.returnDefaultValues = true
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
         }
     }
-    return testTasks
-}
-
-// Reference
-// https://github.com/ericktijerou/vetdog/blob/master/configuration/jacoco.gradle
-
-FileCollection jacocoSourceDirectories(Set<Project> subprojects) {
-    Set<String> srcDirs = []
-    subprojects.each { project ->
-        srcDirs.add("$project.projectDir/src/main/java")
-    }
-    return files(srcDirs)
-}
-
-FileCollection jacocoClassDirectories(Set<Project> subprojects) {
-    Set<String> classDirectories = []
-    subprojects.each { project ->
-        classDirectories.add("$project.buildDir/tmp/kotlin-classes/debug")
-    }
-    return files(classDirectories)
-}
-
-task("jacocoReport", type: JacocoReport,
-        dependsOn: jacocoDependsOnTasks(subprojects)) {
-    group "Report"
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-    sourceDirectories.from jacocoSourceDirectories(subprojects)
-    classDirectories.from jacocoClassDirectories(subprojects)
-    executionData rootProject.fileTree(dir: '.', includes: ["**/testDebugUnitTest.exec"])
 }

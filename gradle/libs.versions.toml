@@ -20,6 +20,7 @@ kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-te
 firebase-appdistribution = 'com.google.firebase:firebase-appdistribution-gradle:3.1.1'
 deploygate = "com.deploygate:gradle:2.5.0"
 oss-licenses = 'com.google.android.gms:oss-licenses-plugin:0.10.6'
+jacoco = "org.jacoco:org.jacoco.core:0.8.8"
 # UI
 core = 'androidx.core:core-ktx:1.9.0'
 appcompat = 'androidx.appcompat:appcompat:1.6.0'
