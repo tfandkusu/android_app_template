@@ -1,5 +1,7 @@
 package com.tfandkusu.template.di
 
+import com.tfandkusu.template.data.repository.DummyRepository
+import com.tfandkusu.template.data.repository.DummyRepositoryImpl
 import com.tfandkusu.template.data.repository.GithubRepoRepository
 import com.tfandkusu.template.data.repository.GithubRepoRepositoryImpl
 import com.tfandkusu.template.data.repository.NumberOfStartsRepository
@@ -24,4 +26,10 @@ abstract class RepositoryModule {
     abstract fun bindNumberOfStartsRepository(
         repository: NumberOfStartsRepositoryImpl
     ): NumberOfStartsRepository
+
+    @Binds
+    @Singleton
+    internal abstract fun bindDummyRepository(
+        repository: DummyRepositoryImpl
+    ): DummyRepository
 }

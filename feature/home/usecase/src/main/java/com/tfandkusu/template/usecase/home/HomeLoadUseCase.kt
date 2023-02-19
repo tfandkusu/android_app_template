@@ -1,5 +1,6 @@
 package com.tfandkusu.template.usecase.home
 
+import com.tfandkusu.template.data.repository.DummyRepository
 import com.tfandkusu.template.data.repository.GithubRepoRepository
 import javax.inject.Inject
 
@@ -8,10 +9,11 @@ interface HomeLoadUseCase {
 }
 
 class HomeLoadUseCaseImpl @Inject constructor(
-    private val repository: GithubRepoRepository
+    private val repository: GithubRepoRepository,
+    private val dummyRepository: DummyRepository
 ) : HomeLoadUseCase {
     override suspend fun execute() {
-        if (repository.isCacheExpired()) {
+        if (repository.isCacheExpired() && dummyRepository.getFlag()) {
             repository.fetch()
         }
     }
