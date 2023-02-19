@@ -57,9 +57,6 @@ class HomeLoadUseCaseTest {
         useCase.execute()
         coVerifySequence {
             repository.isCacheExpired()
-            dummyRepository.getFlag()
-        }
-        coVerify(exactly = 0) {
             repository.fetch()
         }
     }
