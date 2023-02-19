@@ -62,6 +62,22 @@ class HomeLoadUseCaseTest {
     }
 
     @Test
+    fun fetch2() = runBlocking {
+        coEvery {
+            repository.isCacheExpired()
+        } returns false
+        every {
+            dummyRepository.getFlag()
+        } returns true
+        useCase.execute()
+        coVerifySequence {
+            repository.isCacheExpired()
+            dummyRepository.getFlag()
+            repository.fetch()
+        }
+    }
+
+    @Test
     fun useCache() = runBlocking {
         coEvery {
             repository.isCacheExpired()
