@@ -4,6 +4,7 @@ import com.tfandkusu.template.data.repository.DummyRepository
 import com.tfandkusu.template.data.repository.GithubRepoRepository
 import com.tfandkusu.template.util.MyTestRule
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.coVerifySequence
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -46,14 +47,35 @@ class HomeLoadUseCaseTest {
         }
     }
 
-//    @Test
-//    fun useCache() = runBlocking {
-//        coEvery {
-//            repository.isCacheExpired()
-//        } returns false
-//        useCase.execute()
-//        coVerifySequence {
-//            repository.isCacheExpired()
-//        }
-//    }
+    @Test
+    fun useCache() = runBlocking {
+        coEvery {
+            repository.isCacheExpired()
+        } returns false
+        useCase.execute()
+        coVerifySequence {
+            repository.isCacheExpired()
+        }
+        coVerify(exactly = 0) {
+            repository.fetch()
+        }
+    }
+
+    @Test
+    fun useCache2() = runBlocking {
+        coEvery {
+            repository.isCacheExpired()
+        } returns true
+        every {
+            dummyRepository.getFlag()
+        } returns false
+        useCase.execute()
+        coVerifySequence {
+            repository.isCacheExpired()
+            dummyRepository.getFlag()
+        }
+        coVerify(exactly = 0) {
+            repository.fetch()
+        }
+    }
 }
