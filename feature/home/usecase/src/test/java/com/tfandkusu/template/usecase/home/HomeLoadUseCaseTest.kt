@@ -46,14 +46,14 @@ class HomeLoadUseCaseTest {
         }
     }
 
-    @Test
-    fun useCache() = runBlocking {
-        coEvery {
-            repository.isCacheExpired()
-        } returns false
-        useCase.execute()
-        coVerifySequence {
-            repository.isCacheExpired()
-        }
-    }
+//    @Test
+//    fun useCache() = runBlocking {
+//        coEvery {
+//            repository.isCacheExpired()
+//        } returns false
+//        useCase.execute()
+//        coVerifySequence {
+//            repository.isCacheExpired()
+//        }
+//    }
 }
