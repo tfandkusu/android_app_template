@@ -13,7 +13,7 @@ class HomeLoadUseCaseImpl @Inject constructor(
     private val dummyRepository: DummyRepository
 ) : HomeLoadUseCase {
     override suspend fun execute() {
-        if (repository.isCacheExpired() && dummyRepository.getFlag()) {
+        if (repository.isCacheExpired() || dummyRepository.getFlag()) {
             repository.fetch()
         }
     }
