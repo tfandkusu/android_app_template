@@ -5,6 +5,19 @@ hilt {
     enableExperimentalClasspathAggregation = true
 }
 
+// For coverage of tests with Robolectric
+android {
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+                // https://github.com/gradle/gradle/issues/5184
+                excludes = ['jdk.internal.*']
+            }
+        }
+    }
+}
+
 dependencies {
     implementation libs.kotlin.coroutines.android
     implementation libs.timber
