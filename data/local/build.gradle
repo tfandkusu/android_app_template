@@ -9,6 +9,7 @@ android {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     testOptions  {
         unitTests {
@@ -24,6 +25,8 @@ dependencies {
     implementation libs.preferences
     kapt libs.room.compiler
     // For robolectric to test SQLite
-    implementation libs.lifecycle.livedata.ktx
     testImplementation libs.robolectric
+    // For instrumented tests
+    androidTestImplementation libs.test.runner
+    androidTestImplementation libs.test.rules
 }
