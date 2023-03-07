@@ -28,5 +28,5 @@ dependencies {
     testImplementation libs.robolectric
     // For instrumented tests
     androidTestImplementation libs.test.runner
-    androidTestImplementation libs.test.rules
+    androidTestImplementation libs.test.ext.junit
 }

@@ -64,6 +64,6 @@ robolectric = 'org.robolectric:robolectric:4.9.2'
 test-core = 'androidx.test:core:1.5.0'
 arch-core-testing = 'androidx.arch.core:core-testing:2.1.0'
 test-runner = 'androidx.test:runner:1.5.2'
-test-rules = 'androidx.test:rules:1.5.0'
+test-ext-junit = 'androidx.test.ext:junit:1.1.5'
 # Debug
 timber = 'com.jakewharton.timber:timber:5.0.1'
