@@ -67,18 +67,8 @@ jobs:
         if: always()
   androidTest:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
-      # gcloud command
-      # https://github.com/google-github-actions/setup-gcloud
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v0'
-        with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v0'
-      - name: 'Use gcloud CLI'
-        run: 'gcloud info'
       # Checkout
       - uses: actions/checkout@v3
       # Java
@@ -90,5 +80,15 @@ jobs:
       - uses: gradle/gradle-build-action@v2
       # Build
       - run: ./gradlew app:assembleDebug data:local:assembleDebugAndroidTest
+      # gcloud command
+      # https://github.com/google-github-actions/setup-gcloud
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
       # Firebase Test Lab
       - run: gcloud firebase test android run --type instrumentation --app app/build/outputs/apk/debug/app-debug.apk --test data/local/build/outputs/apk/androidTest/debug/local-debug-androidTest.apk --device model=MediumPhone.arm,version=33 --environment-variables coverage=true,coverageFile="/sdcard/Download/coverage.ec" --directories-to-pull /sdcard/Download
