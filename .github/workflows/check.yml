@@ -91,4 +91,4 @@ jobs:
       - name: 'Use gcloud CLI'
         run: 'gcloud info'
       # Firebase Test Lab
-      - run: gcloud firebase test android run --type instrumentation --app app/build/outputs/apk/debug/app-debug.apk --test data/local/build/outputs/apk/androidTest/debug/local-debug-androidTest.apk --device model=MediumPhone.arm,version=33 --environment-variables coverage=true,coverageFile="/sdcard/Download/coverage.ec" --directories-to-pull /sdcard/Download
+      - run: gcloud firebase test android run --type instrumentation --app app/build/outputs/apk/debug/app-debug.apk --test data/local/build/outputs/apk/androidTest/debug/local-debug-androidTest.apk --device model=MediumPhone.arm,version=33 --environment-variables coverage=true,coverageFile="/sdcard/Download/coverage.ec" --directories-to-pull /sdcard/Download 2>&1 | tee result.txt
