@@ -76,6 +76,10 @@ jobs:
         with:
           distribution: 'corretto'
           java-version: '11'
+      # Python
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
       # Gradle
       - uses: gradle/gradle-build-action@v2
       # Build
@@ -92,3 +96,5 @@ jobs:
         run: 'gcloud info'
       # Firebase Test Lab
       - run: gcloud firebase test android run --type instrumentation --app app/build/outputs/apk/debug/app-debug.apk --test data/local/build/outputs/apk/androidTest/debug/local-debug-androidTest.apk --device model=MediumPhone.arm,version=33 --environment-variables coverage=true,coverageFile="/sdcard/Download/coverage.ec" --directories-to-pull /sdcard/Download 2>&1 | tee result.txt
+      # Download coverage binary file.
+      - run: python download_coverage_file.py
