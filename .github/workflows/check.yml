@@ -98,3 +98,9 @@ jobs:
       - run: gcloud firebase test android run --type instrumentation --app app/build/outputs/apk/debug/app-debug.apk --test data/local/build/outputs/apk/androidTest/debug/local-debug-androidTest.apk --device model=MediumPhone.arm,version=33 --environment-variables coverage=true,coverageFile="/sdcard/Download/coverage.ec" --directories-to-pull /sdcard/Download 2>&1 | tee result.txt
       # Download coverage binary file.
       - run: python download_coverage_file.py
+      # Make coverage xml file
+      - run: ./gradlew jacocoAndroidTestReport
+      # Codecov
+      - run: curl -Os https://uploader.codecov.io/latest/linux/codecov
+      - run: chmod +x codecov
+      - run: ./codecov -t ${{ secrets.CODECOV_TOKEN }}

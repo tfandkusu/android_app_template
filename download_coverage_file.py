@@ -10,5 +10,5 @@ with open('result.txt') as f:
                 "https://console.developers.google.com/storage/browser/", "gs://")
 coverage_uri = subprocess.check_output(
     "gsutil ls -r %s | grep coverage.ec" % gs_uri, shell=True).decode('utf-8').rstrip()
-subprocess.run(["gsutil", "cp", coverage_uri, "."], check=True)
+subprocess.run(["gsutil", "cp", coverage_uri, "data/local/build"], check=True)
 # %%
