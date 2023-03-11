@@ -32,9 +32,9 @@ jobs:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: ./gradlew jacocoTestReport
       # Codecov
-#      - run: curl -Os https://uploader.codecov.io/latest/linux/codecov
-#      - run: chmod +x codecov
-#      - run: ./codecov -t ${{ secrets.CODECOV_TOKEN }}
+      - run: curl -Os https://uploader.codecov.io/latest/linux/codecov
+      - run: chmod +x codecov
+      - run: ./codecov -t ${{ secrets.CODECOV_TOKEN }}
       # Dependency Tree Diff
       - id: dependency-diff
         name: Generate dependency diff
@@ -101,6 +101,6 @@ jobs:
       # Make coverage xml file
       - run: ./gradlew jacocoAndroidTestReport
       # Codecov
-      - run: curl -Os https://uploader.codecov.io/latest/linux/codecov
-      - run: chmod +x codecov
-      - run: ./codecov -t ${{ secrets.CODECOV_TOKEN }}
+#      - run: curl -Os https://uploader.codecov.io/latest/linux/codecov
+#      - run: chmod +x codecov
+#      - run: ./codecov -t ${{ secrets.CODECOV_TOKEN }}
