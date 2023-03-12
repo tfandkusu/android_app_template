@@ -2,28 +2,24 @@ package com.tfandkusu.template.data.local
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.data.local.db.AppDatabaseBuilder
 import com.tfandkusu.template.data.local.entity.LocalCreated
 import com.tfandkusu.template.util.CurrentTimeGetter
-import com.tfandkusu.template.util.MyTestRule
 import com.tfandkusu.template.util.parseUTC
 import io.kotest.matchers.shouldBe
+import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
 
-@RunWith(RobolectricTestRunner::class)
+@RunWith(AndroidJUnit4::class)
 class GithubRepoLocalDataStoreTest {
-
-    @get:Rule
-    val rule = MyTestRule(this)
 
     @MockK
     private lateinit var currentTimeGetter: CurrentTimeGetter
@@ -38,6 +34,7 @@ class GithubRepoLocalDataStoreTest {
 
     @Before
     fun setUp() {
+        MockKAnnotations.init(this)
         localDataStore = GithubRepoLocalDataStoreImpl(db, currentTimeGetter)
         createdLocalDataStore = CreatedLocalDataStoreImpl(db)
     }

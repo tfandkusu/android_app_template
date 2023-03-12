@@ -35,7 +35,6 @@ activity-compose = 'androidx.activity:activity-compose:1.6.1'
 compose-livedata = { module = 'androidx.compose.runtime:runtime-livedata', version.ref = 'compose' }
 customview-main = 'androidx.customview:customview:1.1.0'
 customview-poolingcontainer = 'androidx.customview:customview-poolingcontainer:1.0.0'
-preference = 'androidx.preference:preference-ktx:1.2.0'
 play-services-oss-licenses = 'com.google.android.gms:play-services-oss-licenses:17.0.0'
 # Retrofit
 retrofit-retrofit = { module = 'com.squareup.retrofit2:retrofit', version.ref = 'retrofit' }
@@ -48,7 +47,7 @@ room-runtime = { module = 'androidx.room:room-runtime', version.ref = 'room' }
 room-ktx = { module = 'androidx.room:room-ktx', version.ref = 'room' }
 room-compiler = { module = 'androidx.room:room-compiler', version.ref = 'room' }
 # Preferences
-preferences = 'androidx.preference:preference-ktx:1.2.0'
+preferences = 'androidx.preference:preference:1.1.1'
 # Lifecycle
 lifecycle-viewmodel-ktx = { module = 'androidx.lifecycle:lifecycle-viewmodel-ktx', version.ref = 'lifecycle' }
 lifecycle-viewmodel-compose = { module = 'androidx.lifecycle:lifecycle-viewmodel-compose', version.ref = 'lifecycle' }
@@ -60,9 +59,12 @@ hilt-navigation-compose = 'androidx.hilt:hilt-navigation-compose:1.0.0'
 # Unit test
 junit = 'junit:junit:4.13.2'
 mockk = 'io.mockk:mockk:1.13.3'
+mockk-android = 'io.mockk:mockk-android:1.13.3'
 kotest = 'io.kotest:kotest-runner-junit5:5.5.4'
 robolectric = 'org.robolectric:robolectric:4.9.2'
 test-core = 'androidx.test:core:1.5.0'
 arch-core-testing = 'androidx.arch.core:core-testing:2.1.0'
+test-runner = 'androidx.test:runner:1.5.2'
+test-ext-junit = 'androidx.test.ext:junit:1.1.5'
 # Debug
 timber = 'com.jakewharton.timber:timber:5.0.1'

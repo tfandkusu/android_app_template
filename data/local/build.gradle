@@ -9,11 +9,26 @@ android {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     testOptions  {
         unitTests {
             includeAndroidResources = true
         }
+    }
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
+    }
+    packagingOptions {
+        exclude("META-INF/AL2.0")
+        exclude("META-INF/LGPL2.1")
+        exclude("META-INF/licenses/ASM")
+        exclude("META-INF/LICENSE.md")
+        exclude("META-INF/LICENSE-notice.md")
+        exclude("win32-x86/attach_hotspot_windows.dll")
+        exclude("win32-x86-64/attach_hotspot_windows.dll")
     }
 }
 
@@ -24,6 +39,10 @@ dependencies {
     implementation libs.preferences
     kapt libs.room.compiler
     // For robolectric to test SQLite
-    implementation libs.lifecycle.livedata.ktx
     testImplementation libs.robolectric
+    // For instrumented tests
+    androidTestImplementation libs.test.runner
+    androidTestImplementation libs.test.ext.junit
+    androidTestImplementation libs.kotest
+    androidTestImplementation libs.mockk.android
 }
