@@ -16,7 +16,7 @@ buildscript {
 }
 
 plugins {
-    id 'org.jetbrains.kotlinx.kover' version '0.6.0'
+    id 'org.jetbrains.kotlinx.kover' version '0.7.0-Beta'
 }
 
 allprojects {
@@ -26,9 +26,7 @@ allprojects {
         kotlin {
             target '**/*.kt'
             targetExclude('**/*Dao.kt')
-            ktlint("0.46.1").setUseExperimental(true)
+            ktlint("0.47.1").setUseExperimental(true)
         }
     }
 }
-
-// apply from: 'gradle/jacoco.gradle'

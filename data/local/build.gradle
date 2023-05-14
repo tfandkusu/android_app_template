@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
 apply from: rootProject.file("gradle/common.gradle")
-apply from: rootProject.file("gradle/hilt.gradle")
 
 android {
+    namespace "com.tfandkusu.template.data.local"
     defaultConfig {
         javaCompileOptions {
             annotationProcessorOptions {
@@ -18,8 +18,7 @@ android {
 }
 
 dependencies {
-    implementation project(':common:model')
-    implementation project(':common:util')
+    implementation project(':common')
     implementation libs.room.runtime
     implementation libs.room.ktx
     implementation libs.preferences

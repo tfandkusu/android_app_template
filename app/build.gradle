@@ -3,9 +3,10 @@ apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'deploygate'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 apply from: rootProject.file("gradle/view-common.gradle")
-apply from: rootProject.file("gradle/hilt.gradle")
 
 android {
+    namespace "com.tfandkusu.template"
+
     defaultConfig {
         applicationId "com.tfandkusu.template"
         versionCode 2
@@ -55,11 +56,13 @@ android {
 }
 
 dependencies {
-    implementation project(':common:model')
+    implementation project(':common')
     implementation project(':viewCommon')
     implementation project(':feature:home:compose')
     implementation project(':feature:home:presentation')
-    implementation project(':feature:info:view')
+    implementation project(':feature:info:compose')
+    implementation project(':feature:info:presentation')
     implementation libs.navigation.compose
     implementation libs.hilt.navigation.compose
+    implementation libs.play.services.oss.licenses
 }

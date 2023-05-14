@@ -5,7 +5,6 @@ import android.content.res.Configuration
 import android.net.Uri
 import android.text.format.DateFormat
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,13 +14,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.IconToggleButton
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconToggleButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,13 +32,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.integerArrayResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
 import com.tfandkusu.template.home.compose.R
 import com.tfandkusu.template.model.GithubRepo
@@ -72,32 +70,25 @@ fun GitHubRepoListItem(
                     modifier = Modifier
                         .weight(1f, false)
                         .padding(start = 16.dp, end = 12.dp, top = 16.dp, bottom = 16.dp),
-                    style = TextStyle(
-                        fontSize = 16.sp,
-                        color = colorResource(R.color.textHE)
-                    ),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurface,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 // Fork label
                 if (repo.fork) {
-                    Box(
-                        modifier = Modifier
-                            .background(
-                                color = colorResource(R.color.forkBackground),
-                                shape = RoundedCornerShape(4.dp, 4.dp, 4.dp, 4.dp)
-                            )
-                            .padding(horizontal = 8.dp, vertical = 2.dp)
-                            .height(18.dp),
-                        contentAlignment = Alignment.Center
+                    Surface(
+                        shape = MaterialTheme.shapes.extraSmall,
+                        color = MaterialTheme.colorScheme.outline
                     ) {
                         Text(
                             text = stringResource(R.string.fork),
-                            style = TextStyle(
-                                color = colorResource(R.color.white),
-                                fontSize = 12.sp,
-                                fontWeight = FontWeight.Bold
-                            )
+                            style = MaterialTheme.typography.labelSmall.copy(
+                                color = colorResource(
+                                    id = R.color.white
+                                )
+                            ),
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
                         )
                     }
                 }
@@ -110,9 +101,9 @@ fun GitHubRepoListItem(
             ) {
                 val tint = animateColorAsState(
                     if (repo.favorite) {
-                        colorResource(R.color.favorite_on)
+                        MaterialTheme.colorScheme.secondary
                     } else {
-                        colorResource(R.color.favorite_off)
+                        MaterialTheme.colorScheme.secondaryContainer
                     }
                 )
                 Icon(
@@ -136,10 +127,8 @@ fun GitHubRepoListItem(
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
                 text = repo.description,
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    color = colorResource(R.color.textME)
-                )
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -159,11 +148,9 @@ fun GitHubRepoListItem(
                 modifier = Modifier
                     .weight(1f)
                     .padding(horizontal = 16.dp),
-                style = TextStyle(
-                    fontSize = 12.sp,
-                    color = colorResource(R.color.textME),
-                    textAlign = TextAlign.End
-                )
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.End
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
@@ -181,23 +168,16 @@ fun LanguageLabel(language: String) {
         color = Color(colorCodes[languageIndex])
     }
     Box(modifier = Modifier.padding(horizontal = 16.dp)) {
-        Box(
-            modifier = Modifier
-                .background(
-                    color = color,
-                    shape = RoundedCornerShape(14.dp, 14.dp, 14.dp, 14.dp)
-                )
-                .padding(horizontal = 16.dp)
-                .height(28.dp),
-            contentAlignment = Alignment.Center
+        Surface(
+            shape = CircleShape,
+            color = color
         ) {
             Text(
                 text = language,
-                style = TextStyle(
-                    color = colorResource(R.color.white),
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold
-                )
+                style = MaterialTheme.typography.labelMedium,
+                color = colorResource(R.color.white),
+                modifier = Modifier
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
             )
         }
     }

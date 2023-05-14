@@ -13,8 +13,6 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/common" />
-            <option value="$PROJECT_DIR$/common/model" />
-            <option value="$PROJECT_DIR$/common/util" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/local" />
             <option value="$PROJECT_DIR$/data/remote" />
@@ -25,9 +23,9 @@
             <option value="$PROJECT_DIR$/feature/home/presentation" />
             <option value="$PROJECT_DIR$/feature/home/usecase" />
             <option value="$PROJECT_DIR$/feature/info" />
+            <option value="$PROJECT_DIR$/feature/info/compose" />
             <option value="$PROJECT_DIR$/feature/info/presentation" />
             <option value="$PROJECT_DIR$/feature/info/usecase" />
-            <option value="$PROJECT_DIR$/feature/info/view" />
             <option value="$PROJECT_DIR$/testUtil" />
             <option value="$PROJECT_DIR$/viewCommon" />
           </set>

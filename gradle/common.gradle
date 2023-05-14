@@ -1,10 +1,33 @@
 apply from: rootProject.file("gradle/build-config.gradle")
+apply plugin: 'dagger.hilt.android.plugin'
+
+hilt {
+    enableExperimentalClasspathAggregation = true
+}
+
+// For coverage of tests with Robolectric
+android {
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+                // https://github.com/gradle/gradle/issues/5184
+                excludes = ['jdk.internal.*']
+            }
+        }
+    }
+}
 
 dependencies {
     implementation libs.kotlin.coroutines.android
     implementation libs.timber
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+    testImplementation project(':testUtil')
     testImplementation libs.junit
     testImplementation libs.mockk
     testImplementation libs.kotest
     testImplementation libs.test.core
 }
+
+apply from: rootProject.file("gradle/jacoco.gradle")

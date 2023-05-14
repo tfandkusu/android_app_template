@@ -1,10 +1,13 @@
 apply plugin: 'com.android.library'
 apply from: rootProject.file("gradle/view-common.gradle")
-apply from: rootProject.file("gradle/hilt.gradle")
+
+android {
+    namespace "com.tfandkusu.template.info.presentation"
+}
 
 dependencies {
-    implementation project(':common:model')
+    implementation project(':common')
     implementation project(':viewCommon')
+    implementation project(':feature:info:compose')
     implementation project(':feature:info:usecase')
-    testImplementation project(':testUtil')
 }

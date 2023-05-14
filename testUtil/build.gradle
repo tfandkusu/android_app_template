@@ -1,7 +1,14 @@
 apply plugin: 'com.android.library'
 apply from: rootProject.file("gradle/build-config.gradle")
 
+android {
+    namespace "com.tfandkusu.template.testutil"
+}
+
 dependencies {
+    implementation libs.junit
     implementation libs.mockk
     implementation libs.lifecycle.livedata.ktx
+    implementation libs.arch.core.testing
+    implementation libs.kotlin.coroutines.test
 }

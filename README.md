@@ -10,7 +10,9 @@ So it does not have any practical features.
 It displays a list of [tfandkusu](https://github.com/tfandkusu)'s public GitHub repositories.
 And users can like the repository.
 
-<img src="https://user-images.githubusercontent.com/16898831/180608637-da53c0bd-8878-452c-84e6-032a06195b51.png" width="320">
+<img src="https://user-images.githubusercontent.com/16898831/210083599-134c9d3c-0ee1-435e-a655-9f9cf12c35e1.png" width="200"> <img src="https://user-images.githubusercontent.com/16898831/210083609-9e5122aa-8f1a-46e1-9143-f477f460cb22.png" width="200">
+
+This app supports [dynamic color](https://m3.material.io/styles/color/dynamic-color/overview), light and dark theme.
 
 # Install
 
@@ -32,19 +34,60 @@ The 3 layers described in [Android recommended app architecture](https://develop
         - [Retrofit](https://github.com/square/retrofit)
         - [Room](https://developer.android.com/jetpack/androidx/releases/room)
 
+## ViewModel
+
+![image](https://user-images.githubusercontent.com/16898831/212493372-7459e52f-a9ec-424c-8379-bc032dc09e90.png)
+
+Redux is used for ViewModel
+
+### Event
+
+- User operation and lifecycle event.
+
+### State
+
+- State of compose
+- Compose is rendered by state.
+
+### Effect
+
+- One shot operation such as navigation and snackbar.
+
+### ActionCreator
+
+- Access UseCases
+- Dispatch actions
+
+### Reducer
+
+- Receive current state and action.
+- Return next state and effect.
 
 # Module structure
 
-![image](https://user-images.githubusercontent.com/16898831/154816419-e711ffd2-41ea-45ac-bdde-49424be4f336.png)
+```mermaid
+graph TD;
+    app-->feature:*:compose;
+    app-->feature:*:presentation;
+    app-->viewCommon;
+    feature:*:presentation-->feature:*:usecase;
+    feature:*:presentation-->feature:*:compose;
+    feature:*:compose-->viewCommon;
+    feature:*:presentation-->viewCommon;
+    feature:*:usecase-->data:repository;
+    data:repository-->data:remote;
+    data:repository-->data:local;
+```
 
-Multiple `compose`, `presentation`, and  `usecase`  modules will be created for each feature.
+- Multiple `compose`, `presentation`, and  `usecase`  modules will be created for each feature.
+- All modules use `common` module.
 
 ## app
 
 - Activity
 - Compose navigation host
 
-## compose
+## feature:*:compose
 
 It has minimum dependency to speed up compose preview.
 
@@ -53,32 +96,39 @@ It has minimum dependency to speed up compose preview.
 - ViewModel interface
 - ViewModel implementation for compose preview
 
-## presentation
+## feature:*:presentation
 
-- ViewModel implementation for production
+- ViewModel implementation including ActionCreator and Reducer for production.
 
 ## viewCommon
 
+- Theme
+- Common interface for ViewModel, ActionCreator and Reducer
+- Common composable functions
 - Common API error handling
-- Utility for ViewModel and LiveData
 
-## usecase
+## feature:*:usecase
 
 - Domain layer
 
-## repository
+## data:repository
 
 - Represents the data layer
 
-## localDataStore
+## data:local
 
 - Use room to save data locally.
 
-## remoteDataStore
-
+## data:remote
 
 - Use Retrofit to access REST API.
 
+## common
+
+- Classes used by all modules.
+    - Data class
+    - Exception
+    - Utility method
 
 # Technology used
 
@@ -90,6 +140,7 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 
 - [Jetpack Compose](https://developer.android.com/jetpack/compose)
 - [Navigation Compose](https://developer.android.com/jetpack/compose/navigation)
+- [Compose Material 3](https://developer.android.com/jetpack/androidx/releases/compose-material3)
 - [RecomposeHighlighter](https://github.com/android/snippets/blob/master/compose/recomposehighlighter/src/main/java/com/example/android/compose/recomposehighlighter/RecomposeHighlighter.kt)
 
 ## Presentation layer
