@@ -12,11 +12,8 @@ buildscript {
         classpath libs.firebase.appdistribution
         classpath libs.deploygate
         classpath libs.oss.licenses
+        classpath libs.kover.gradle
     }
-}
-
-plugins {
-    id 'org.jetbrains.kotlinx.kover' version '0.7.0-Beta'
 }
 
 allprojects {
@@ -30,3 +27,6 @@ allprojects {
         }
     }
 }
+
+
+// apply from: rootProject.file("gradle/jacoco.gradle")
