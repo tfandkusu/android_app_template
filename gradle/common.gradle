@@ -37,6 +37,12 @@ kover {
     useKoverTool()
 }
 koverReport {
+    filters {
+        excludes {
+            classes("*_Factory", "*.BuildConfig")
+            packages("hilt_aggregated_deps")
+        }
+    }
     defaults {
         mergeWith("debug")
     }
