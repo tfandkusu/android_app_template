@@ -6,19 +6,6 @@ hilt {
     enableExperimentalClasspathAggregation = true
 }
 
-// For coverage of tests with Robolectric
-//android {
-//    testOptions {
-//        unitTests.all {
-//            jacoco {
-//                includeNoLocationClasses = true
-//                // https://github.com/gradle/gradle/issues/5184
-//                excludes = ['jdk.internal.*']
-//            }
-//        }
-//    }
-//}
-
 dependencies {
     implementation libs.kotlin.coroutines.android
     implementation libs.timber
@@ -32,21 +19,11 @@ dependencies {
     testImplementation libs.test.core
 }
 
-// apply from: rootProject.file("gradle/jacoco.gradle")
-
-kover {
-    useKoverTool()
-}
-koverReport {
-    filters {
-        excludes {
-            classes("*_Factory", "*.BuildConfig")
-            packages("hilt_aggregated_deps")
-        }
-    }
-    defaults {
-        mergeWith("debug")
-    }
-    androidReports("debug") {
-    }
-}
+//koverReport {
+//    filters {
+//        excludes {
+//            classes("*_Factory", "*.BuildConfig")
+//            packages("hilt_aggregated_deps")
+//        }
+//    }
+//}
