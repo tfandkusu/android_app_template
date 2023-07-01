@@ -8,6 +8,7 @@ android {
 
 dependencies {
     implementation project(':common')
+    implementation libs.okhttp
     implementation libs.retrofit.retrofit
     implementation libs.retrofit2.kotlinx.serialization.converter
     implementation libs.kotlinx.serialization.json
