@@ -41,6 +41,7 @@ import com.tfandkusu.template.home.compose.R
 import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.ui.theme.MyAppTheme
 import com.tfandkusu.template.viewmodel.home.HomeStateItem
+import kotlinx.datetime.Instant
 import java.util.Date
 
 @Composable
@@ -141,8 +142,9 @@ fun GitHubRepoListItem(
                 LanguageLabel(repo.language)
             }
             // Update time
+            val date = Date(repo.updatedAt.toEpochMilliseconds())
             val format = DateFormat.getDateFormat(context)
-            val dateString = format.format(repo.updatedAt)
+            val dateString = format.format(date)
             Text(
                 dateString,
                 modifier = Modifier
@@ -228,7 +230,7 @@ fun GitHubRepoListItemPreviewLong() {
                         "Check how to use Room to observe SQLite database",
                         " and reflect the changes in the RecyclerView."
                     ).joinToString(separator = ""),
-                    Date(),
+                    Instant.parse("2022-12-30T12:00:00Z"),
                     "Kotlin",
                     "",
                     true,
@@ -249,7 +251,7 @@ fun GitHubRepoListItemNoDescription() {
                     1L,
                     "no_description",
                     "",
-                    Date(),
+                    Instant.parse("2022-12-30T12:00:00Z"),
                     "Kotlin",
                     "",
                     true,

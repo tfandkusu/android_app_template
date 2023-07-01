@@ -1,18 +1,18 @@
 package com.tfandkusu.template.api.response
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
-import java.util.Date
+import kotlinx.datetime.Instant
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class GithubRepoListResponseItem(
     val id: Long,
     val name: String,
     val description: String?,
-    @field:Json(name = "updated_at")
-    val updatedAt: Date,
+    @SerialName("updated_at")
+    val updatedAt: Instant,
     val language: String?,
-    @field:Json(name = "html_url")
+    @SerialName("html_url")
     val htmlUrl: String,
     val fork: Boolean
 )
