@@ -28,6 +28,3 @@ allprojects {
         }
     }
 }
-
-
-// apply from: rootProject.file("gradle/jacoco.gradle")
