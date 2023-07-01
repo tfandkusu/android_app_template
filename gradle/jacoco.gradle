@@ -3,8 +3,8 @@ apply plugin: 'jacoco'
 task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
 
     reports {
-        xml.required.set(true)
-        html.required.set(true)
+        xml.enabled(true)
+        html.enabled(true)
     }
 
     def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']

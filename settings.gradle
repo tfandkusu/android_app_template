@@ -6,6 +6,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "App Template"
+enableFeaturePreview("VERSION_CATALOGS")
 include ':app'
 include ':common'
 include ':data:remote'
