@@ -35,6 +35,9 @@ jobs:
       - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./feature/home/presentation/build/reports/kover/reportDebug.xml
+          fail_ci_if_error: true
+          verbose: true
       # Dependency Tree Diff
       - id: dependency-diff
         name: Generate dependency diff
