@@ -1,20 +1,22 @@
 package com.tfandkusu.template.api
 
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonNamingStrategy
+import okhttp3.MediaType
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.Date
 
 object GithubApiServiceBuilder {
+    @OptIn(ExperimentalSerializationApi::class)
     fun build(): GithubApiService {
+        val json = Json {
+            ignoreUnknownKeys = true
+            namingStrategy = JsonNamingStrategy.SnakeCase
+        }
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.github.com/")
-            .addConverterFactory(
-                MoshiConverterFactory.create(
-                    Moshi.Builder().add(Date::class.java, Rfc3339DateJsonAdapter()).build()
-                )
-            )
+            .addConverterFactory(json.asConverterFactory(MediaType.get("application/json")))
             .build()
         return retrofit.create(GithubApiService::class.java)
     }

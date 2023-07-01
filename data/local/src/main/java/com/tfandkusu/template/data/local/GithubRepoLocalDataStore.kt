@@ -9,7 +9,7 @@ import com.tfandkusu.template.model.GithubRepo
 import com.tfandkusu.template.util.CurrentTimeGetter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import java.util.Date
+import kotlinx.datetime.Instant
 import javax.inject.Inject
 
 interface GithubRepoLocalDataStore {
@@ -48,7 +48,7 @@ class GithubRepoLocalDataStoreImpl @Inject constructor(
                     it.id,
                     it.name,
                     it.description,
-                    it.updatedAt.time,
+                    it.updatedAt.toEpochMilliseconds(),
                     it.language,
                     it.htmlUrl,
                     it.fork
@@ -75,7 +75,7 @@ class GithubRepoLocalDataStoreImpl @Inject constructor(
                     it.serverId,
                     it.name,
                     it.description,
-                    Date(it.updatedAt),
+                    Instant.fromEpochMilliseconds(it.updatedAt),
                     it.language,
                     it.htmlUrl,
                     it.fork,

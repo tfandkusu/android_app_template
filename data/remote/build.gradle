@@ -1,7 +1,5 @@
-plugins {
-    id("com.android.library")
-    id("com.google.devtools.ksp").version('1.7.20-1.0.8')
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlinx-serialization'
 apply from: rootProject.file("gradle/common.gradle")
 
 android {
@@ -9,10 +7,8 @@ android {
 }
 
 dependencies {
-    ksp libs.moshi.kotlin.codegen
     implementation project(':common')
     implementation libs.retrofit.retrofit
-    implementation libs.retrofit.moshi
-    implementation libs.moshi
-    implementation libs.moshi.adapter
+    implementation libs.retrofit2.kotlinx.serialization.converter
+    implementation libs.kotlinx.serialization.json
 }
