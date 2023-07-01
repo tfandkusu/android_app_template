@@ -11,6 +11,7 @@ import io.kotest.matchers.shouldNotBe
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.runBlocking
+import kotlinx.datetime.Instant
 import org.junit.Rule
 import org.junit.Test
 import java.io.IOException
@@ -38,7 +39,7 @@ class GithubRemoteDataStoreTest {
             sdf.timeZone = TimeZone.getTimeZone("Asia/Tokyo")
             it.id shouldBe 320900929
             it.description.indexOf("groupie") shouldBeGreaterThan 0
-            (it.updatedAt > sdf.parse("2021/01/20 04:00:00")) shouldBe true
+            it.updatedAt shouldBeGreaterThan Instant.parse("2021-01-19T19:00:00Z")
             it.language shouldBe "Java"
             it.htmlUrl shouldBe "https://github.com/tfandkusu/groupie_sticky_header_sample"
             it.fork shouldBe false
