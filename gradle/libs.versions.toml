@@ -20,7 +20,7 @@ serialization-gradle = { module = "org.jetbrains.kotlin:kotlin-serialization", v
 firebase-appdistribution = 'com.google.firebase:firebase-appdistribution-gradle:3.1.1'
 deploygate = "com.deploygate:gradle:2.5.0"
 oss-licenses = 'com.google.android.gms:oss-licenses-plugin:0.10.6'
-kover-gradle = 'org.jetbrains.kotlinx:kover-gradle-plugin:0.7.0-Beta'
+kover-gradle = 'org.jetbrains.kotlinx:kover-gradle-plugin:0.7.2'
 
 # UI
 core = 'androidx.core:core-ktx:1.9.0'
