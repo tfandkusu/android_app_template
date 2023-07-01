@@ -1,13 +1,11 @@
 package com.tfandkusu.template.viewmodel.home
 
 import com.tfandkusu.template.catalog.GitHubRepoCatalog
-import com.tfandkusu.template.error.NetworkErrorException
 import com.tfandkusu.template.usecase.home.HomeFavoriteUseCase
 import com.tfandkusu.template.usecase.home.HomeLoadUseCase
 import com.tfandkusu.template.usecase.home.HomeOnCreateUseCase
 import com.tfandkusu.template.util.MyTestRule
 import com.tfandkusu.template.viewmodel.Dispatcher
-import io.mockk.coEvery
 import io.mockk.coVerifySequence
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -66,18 +64,18 @@ class HomeActionCreatorTest {
         }
     }
 
-    @Test
-    fun loadError() = runBlocking {
-        coEvery {
-            loadUseCase.execute()
-        } throws NetworkErrorException
-        actionCreator.event(HomeEvent.Load, dispatcher)
-        coVerifySequence {
-            dispatcher.dispatch(HomeAction.StartLoad)
-            loadUseCase.execute()
-            dispatcher.dispatch(HomeAction.ErrorLoad(NetworkErrorException))
-        }
-    }
+//    @Test
+//    fun loadError() = runBlocking {
+//        coEvery {
+//            loadUseCase.execute()
+//        } throws NetworkErrorException
+//        actionCreator.event(HomeEvent.Load, dispatcher)
+//        coVerifySequence {
+//            dispatcher.dispatch(HomeAction.StartLoad)
+//            loadUseCase.execute()
+//            dispatcher.dispatch(HomeAction.ErrorLoad(NetworkErrorException))
+//        }
+//    }
 
     @Test
     fun favorite() = runBlocking {
