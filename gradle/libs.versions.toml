@@ -11,7 +11,7 @@ moshi = '1.14.0'
 
 [libraries]
 # Gradle Plugin
-android-gradle = 'com.android.tools.build:gradle:7.3.1'
+android-gradle = 'com.android.tools.build:gradle:8.0.2'
 kotlin-gradle = { module = 'org.jetbrains.kotlin:kotlin-gradle-plugin', version.ref = 'kotlin' }
 spotless-gradle = 'com.diffplug.spotless:spotless-plugin-gradle:6.12.1'
 hilt-gradle = { module = 'com.google.dagger:hilt-android-gradle-plugin', version.ref = 'hilt' }
