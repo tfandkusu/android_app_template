@@ -19,10 +19,6 @@ dependencies {
     testImplementation libs.test.core
 }
 
-kover {
-    useJacoco()
-}
-
 //koverReport {
 //    filters {
 //        excludes {
