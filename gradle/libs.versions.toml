@@ -7,7 +7,6 @@ room = '2.5.0'
 coroutines = '1.6.4'
 lifecycle = '2.5.1'
 hilt = '2.44.2'
-moshi = '1.14.0'
 
 [libraries]
 # Gradle Plugin
@@ -17,6 +16,7 @@ spotless-gradle = 'com.diffplug.spotless:spotless-plugin-gradle:6.12.1'
 hilt-gradle = { module = 'com.google.dagger:hilt-android-gradle-plugin', version.ref = 'hilt' }
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+serialization-gradle = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 firebase-appdistribution = 'com.google.firebase:firebase-appdistribution-gradle:3.1.1'
 deploygate = "com.deploygate:gradle:2.5.0"
 oss-licenses = 'com.google.android.gms:oss-licenses-plugin:0.10.6'
@@ -38,11 +38,11 @@ customview-poolingcontainer = 'androidx.customview:customview-poolingcontainer:1
 preference = 'androidx.preference:preference-ktx:1.2.0'
 play-services-oss-licenses = 'com.google.android.gms:play-services-oss-licenses:17.0.0'
 # Retrofit
+okhttp = "com.squareup.okhttp3:okhttp:4.11.0"
 retrofit-retrofit = { module = 'com.squareup.retrofit2:retrofit', version.ref = 'retrofit' }
-retrofit-moshi = { module = 'com.squareup.retrofit2:converter-moshi', version.ref = 'retrofit' }
-moshi = { module = 'com.squareup.moshi:moshi', version.ref = 'moshi' }
-moshi-adapter = { module = 'com.squareup.moshi:moshi-adapters', version.ref = 'moshi' }
-moshi-kotlin-codegen = { module = 'com.squareup.moshi:moshi-kotlin-codegen', version.ref = 'moshi' }
+retrofit2-kotlinx-serialization-converter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0"
+kotlinx-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
+kotlinx-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
 # Room
 room-runtime = { module = 'androidx.room:room-runtime', version.ref = 'room' }
 room-ktx = { module = 'androidx.room:room-ktx', version.ref = 'room' }
