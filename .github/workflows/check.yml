@@ -32,11 +32,9 @@ jobs:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: ./gradlew koverXmlReportDebug
       # Codecov
-      - uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./app/build/reports/kover/reportDebug.xml
-          fail_ci_if_error: true
+      - run: curl -Os https://uploader.codecov.io/latest/linux/codecov
+      - run: chmod +x codecov
+      - run: ./codecov -t ${{ secrets.CODECOV_TOKEN }} -f ./app/build/reports/kover/reportDebug.xml
       # Dependency Tree Diff
       - id: dependency-diff
         name: Generate dependency diff
