@@ -53,10 +53,13 @@ android {
 dependencies {
     implementation project(':common')
     implementation project(':viewCommon')
+    kover(project(':viewCommon'))
     implementation project(':feature:home:compose')
     implementation project(':feature:home:presentation')
+    kover(project(':feature:home:presentation'))
     implementation project(':feature:info:compose')
     implementation project(':feature:info:presentation')
+    kover(project(':feature:info:presentation'))
     implementation libs.navigation.compose
     implementation libs.hilt.navigation.compose
     implementation libs.play.services.oss.licenses
