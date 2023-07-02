@@ -165,7 +165,7 @@ All libraries used are defined in [lib.versions.toml](https://github.com/tfandku
 
 ## Coverage
 
-- [Jacoco](https://www.eclemma.org/jacoco/)
+- [Kover](https://github.com/Kotlin/kotlinx-kover)
 - [Codecov](https://about.codecov.io/)
 
 ## CI/CD
