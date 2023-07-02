@@ -14,9 +14,11 @@ class HomeReducerImpl @Inject constructor() : HomeReducer {
             HomeAction.StartLoad -> {
                 return StateEffect(state.copy(error = ApiErrorState(), progress = true))
             }
+
             HomeAction.SuccessLoad -> {
                 return StateEffect(state.copy(progress = false))
             }
+
             is HomeAction.ErrorLoad -> {
                 return StateEffect(
                     state.copy(
@@ -25,6 +27,7 @@ class HomeReducerImpl @Inject constructor() : HomeReducer {
                     )
                 )
             }
+
             is HomeAction.UpdateGitHubRepoList -> {
                 return StateEffect(
                     state.copy(
@@ -35,6 +38,10 @@ class HomeReducerImpl @Inject constructor() : HomeReducer {
                         }
                     )
                 )
+            }
+
+            HomeAction.Dummy -> {
+                return StateEffect(state)
             }
         }
     }

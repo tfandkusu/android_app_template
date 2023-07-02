@@ -25,13 +25,19 @@ class HomeActionCreatorImpl @Inject constructor(
                     dispatcher.dispatch(HomeAction.ErrorLoad(e))
                 }
             }
+
             HomeEvent.OnCreate -> {
                 onCreateUseCase.execute().collect { repos ->
                     dispatcher.dispatch(HomeAction.UpdateGitHubRepoList(repos))
                 }
             }
+
             is HomeEvent.Favorite -> {
                 favoriteUseCase.execute(event.id, event.on)
+            }
+
+            HomeEvent.Dummy -> {
+                dispatcher.dispatch(HomeAction.Dummy)
             }
         }
     }

@@ -12,6 +12,8 @@ sealed class HomeEvent {
     object Load : HomeEvent()
 
     data class Favorite(val id: Long, val on: Boolean) : HomeEvent()
+
+    object Dummy : HomeEvent()
 }
 
 sealed class HomeEffect

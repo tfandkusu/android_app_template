@@ -10,4 +10,6 @@ sealed class HomeAction {
     data class ErrorLoad(val e: Throwable) : HomeAction()
 
     data class UpdateGitHubRepoList(val repos: List<GithubRepo>) : HomeAction()
+
+    object Dummy : HomeAction()
 }
