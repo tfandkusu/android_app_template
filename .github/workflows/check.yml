@@ -30,13 +30,11 @@ jobs:
       - run: bundle exec danger
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: ./gradlew koverXmlReportDebug
-      # Codecov
-      - uses: codecov/codecov-action@v3
+      - run: ./gradlew koverHtmlReportDebug
+      - uses: actions/upload-artifact@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./app/build/reports/kover/reportDebug.xml
-          fail_ci_if_error: true
+          name: Coverage Report
+          path: app/build/reports/kover/htmlDebug/
       # Dependency Tree Diff
       - id: dependency-diff
         name: Generate dependency diff
