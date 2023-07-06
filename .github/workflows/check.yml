@@ -33,7 +33,7 @@ jobs:
       - run: ./gradlew koverHtmlReportDebug
       - uses: actions/upload-artifact@v3
         with:
-          name: Coverage Report
+          name: coverage
           path: app/build/reports/kover/htmlDebug/
       # Dependency Tree Diff
       - id: dependency-diff
