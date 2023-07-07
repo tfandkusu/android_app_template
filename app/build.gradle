@@ -50,6 +50,17 @@ android {
     }
 }
 
+koverReport {
+    filters {
+        includes {
+            classes(
+                    "*ActionCreatorImpl", "*ReducerImpl", "*UseCaseImpl",
+                    "*RepositoryImpl", "*RemoteDataStoreImpl", "*LocalDataStoreImpl",
+            )
+        }
+    }
+}
+
 dependencies {
     implementation project(':common')
     implementation project(':viewCommon')
