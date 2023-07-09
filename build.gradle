@@ -41,14 +41,17 @@ task jacocoReport(
         }
 )
 {
+    // XML形式 と HTML 形式の両方のカバレッジレポートを出力する
     reports {
         xml.required.set(true)
         html.required.set(true)
     }
 
+    // 全モジュールの kt ファイルのディレクトリ一覧
     def mySourceDirectories = subprojects.collect { project ->
         "${project.projectDir}/src/main/java"
     }
+    //　全モジュールの class ファイルのディレクトリ一覧
     def myClassDirectories = subprojects.collect { project ->
         fileTree(dir: "${project.buildDir}/tmp/kotlin-classes/debug", includes: [
                 "**/*ActionCreatorImpl.class", "**/*ReducerImpl.class",
@@ -57,9 +60,12 @@ task jacocoReport(
                 "**/*RemoteDataStoreImpl.class", "**/*LocalDataStoreImpl.class",
         ])
     }
-    sourceDirectories.setFrom(files(mySourceDirectories))
-    classDirectories.setFrom(myClassDirectories)
-    executionData.setFrom(fileTree(dir: rootDir, includes: [
+    // exec ファイル一覧
+    def execFileTree = fileTree(dir: rootDir, includes: [
             "**/testDebugUnitTest.exec"
-    ]))
+    ])
+    // JacocoReport タスクの設定値とする
+    sourceDirectories.setFrom(mySourceDirectories)
+    classDirectories.setFrom(myClassDirectories)
+    executionData.setFrom(execFileTree)
 }
