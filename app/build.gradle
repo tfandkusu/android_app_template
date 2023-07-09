@@ -50,17 +50,6 @@ android {
     }
 }
 
-koverReport {
-    filters {
-        includes {
-            classes(
-                    "*ActionCreatorImpl", "*ReducerImpl", "*UseCaseImpl",
-                    "*RepositoryImpl", "*RemoteDataStoreImpl", "*LocalDataStoreImpl",
-            )
-        }
-    }
-}
-
 dependencies {
     implementation project(':common')
     implementation project(':viewCommon')
@@ -68,14 +57,6 @@ dependencies {
     implementation project(':feature:home:presentation')
     implementation project(':feature:info:compose')
     implementation project(':feature:info:presentation')
-    kover(project(':viewCommon'))
-    kover(project(':feature:home:presentation'))
-    kover(project(':feature:info:presentation'))
-    kover(project(':feature:home:usecase'))
-    kover(project(':feature:info:usecase'))
-    kover(project(':data:repository'))
-    kover(project(':data:remote'))
-    kover(project(':data:local'))
     implementation libs.navigation.compose
     implementation libs.hilt.navigation.compose
     implementation libs.play.services.oss.licenses
