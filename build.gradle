@@ -27,3 +27,34 @@ allprojects {
         }
     }
 }
+
+allprojects {
+    apply plugin: 'jacoco'
+}
+
+task jacocoReport(
+        type: JacocoReport,
+        dependsOn: subprojects.findAll { project ->
+            project.file("build.gradle").exists()
+        }.collect { project ->
+            "$project.path:testDebugUnitTest"
+        }
+)
+{
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+
+    def mySourceDirectories = subprojects.collect { project ->
+        "${project.projectDir}/src/main/java"
+    }
+    def myClassDirectories = subprojects.collect { project ->
+        "${project.buildDir}/tmp/kotlin-classes/debug"
+    }
+    sourceDirectories.setFrom(files(mySourceDirectories))
+    classDirectories.setFrom(files(myClassDirectories))
+    executionData.setFrom(fileTree(dir: rootDir, includes: [
+            "**/testDebugUnitTest.exec"
+    ]))
+}

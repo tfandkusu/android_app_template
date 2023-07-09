@@ -1,6 +1,5 @@
 apply from: rootProject.file("gradle/build-config.gradle")
 apply plugin: 'dagger.hilt.android.plugin'
-apply plugin: 'jacoco'
 
 hilt {
     enableExperimentalClasspathAggregation = true
@@ -32,18 +31,4 @@ android {
     }
 }
 
-task jacocoReport(type: JacocoReport) {
 
-    reports {
-        xml.required.set(true)
-        html.required.set(true)
-    }
-
-    def sourceDirectory = "${project.projectDir}/src/main/java"
-    def classDirectory = "${buildDir}/tmp/kotlin-classes/debug"
-    sourceDirectories.setFrom(files([sourceDirectory]))
-    classDirectories.setFrom(files([classDirectory]))
-    executionData.setFrom(fileTree(dir: "$buildDir", includes: [
-            "**/testDebugUnitTest.exec"
-    ]))
-}
