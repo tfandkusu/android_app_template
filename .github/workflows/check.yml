@@ -31,7 +31,7 @@ jobs:
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: ./gradlew testDebug
-      - run: ./gradlew jacocoTestReport
+      - run: ./gradlew jacocoReport
       # Codecov
       - uses: codecov/codecov-action@v3
         with:
