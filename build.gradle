@@ -50,10 +50,15 @@ task jacocoReport(
         "${project.projectDir}/src/main/java"
     }
     def myClassDirectories = subprojects.collect { project ->
-        "${project.buildDir}/tmp/kotlin-classes/debug"
+        fileTree(dir: "${project.buildDir}/tmp/kotlin-classes/debug", includes: [
+                "**/*ActionCreatorImpl.class", "**/*ReducerImpl.class",
+                "**/*UseCaseImpl.class",
+                "**/*RepositoryImpl.class",
+                "**/*RemoteDataStoreImpl.class", "**/*LocalDataStoreImpl.class",
+        ])
     }
     sourceDirectories.setFrom(files(mySourceDirectories))
-    classDirectories.setFrom(files(myClassDirectories))
+    classDirectories.setFrom(myClassDirectories)
     executionData.setFrom(fileTree(dir: rootDir, includes: [
             "**/testDebugUnitTest.exec"
     ]))
