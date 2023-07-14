@@ -32,15 +32,18 @@ allprojects {
     apply plugin: 'jacoco'
 }
 
-task jacocoReport(
-        type: JacocoReport,
-        dependsOn: subprojects.findAll { project ->
-            project.file("build.gradle").exists()
-        }.collect { project ->
-            "$project.path:testDebugUnitTest"
-        }
-)
-{
+// jacocoReport タスクを作成
+tasks.register("jacocoReport", JacocoReport) {
+    // 全モジュールの testDebugUnitTest タスク一覧
+    def tasks = subprojects.findAll { project ->
+        // モジュールでないディレクトリも列挙されるので、build.gradle が存在するものだけを対象とする。
+        project.file("build.gradle").exists()
+    }.collect { project ->
+        "$project.path:testDebugUnitTest"
+    }
+    // それらが完了してから、このタスクを実行する
+    dependsOn(tasks)
+
     // XML形式 と HTML 形式の両方のカバレッジレポートを出力する
     reports {
         xml.required.set(true)
@@ -52,20 +55,20 @@ task jacocoReport(
         "${project.projectDir}/src/main/java"
     }
     //　全モジュールの class ファイルのディレクトリ一覧
-    def myClassDirectories = subprojects.collect { project ->
-        fileTree(dir: "${project.buildDir}/tmp/kotlin-classes/debug", includes: [
-                "**/*ActionCreatorImpl.class", "**/*ReducerImpl.class",
-                "**/*UseCaseImpl.class",
-                "**/*RepositoryImpl.class",
-                "**/*RemoteDataStoreImpl.class", "**/*LocalDataStoreImpl.class",
-        ])
+    def classFileTrees = subprojects.collect { project ->
+        fileTree(dir: "${project.buildDir}/tmp/kotlin-classes/debug",
+                includes: ["**/*ActionCreatorImpl.class", "**/*ReducerImpl.class",
+                           "**/*UseCaseImpl.class",
+                           "**/*RepositoryImpl.class",
+                           "**/*RemoteDataStoreImpl.class", "**/*LocalDataStoreImpl.class",
+                ])
     }
     // exec ファイル一覧
     def execFileTree = fileTree(dir: rootDir, includes: [
             "**/testDebugUnitTest.exec"
     ])
-    // JacocoReport タスクの設定値とする
+    // それらを JacocoReport タスクの設定値とする
     sourceDirectories.setFrom(mySourceDirectories)
-    classDirectories.setFrom(myClassDirectories)
+    classDirectories.setFrom(classFileTrees)
     executionData.setFrom(execFileTree)
 }
