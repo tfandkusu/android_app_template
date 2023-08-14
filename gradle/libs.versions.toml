@@ -61,7 +61,7 @@ hilt-compiler = { module = 'com.google.dagger:hilt-compiler', version.ref = 'hil
 hilt-navigation-compose = 'androidx.hilt:hilt-navigation-compose:1.0.0'
 # Unit test
 junit = 'junit:junit:4.13.2'
-mockk = 'io.mockk:mockk:1.13.3'
+mockk = 'io.mockk:mockk:1.13.7'
 kotest = 'io.kotest:kotest-runner-junit5:5.5.4'
 robolectric = 'org.robolectric:robolectric:4.9.2'
 test-core = 'androidx.test:core:1.5.0'
