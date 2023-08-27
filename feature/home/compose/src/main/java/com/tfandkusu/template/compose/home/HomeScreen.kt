@@ -1,14 +1,18 @@
 package com.tfandkusu.template.compose.home
 
 import android.content.res.Configuration
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -40,6 +44,7 @@ import kotlinx.coroutines.flow.flow
 
 private const val CONTENT_TYPE_REPO = 1
 
+@OptIn(ExperimentalFoundationApi::class)
 @ExperimentalMaterial3Api
 @Composable
 fun HomeScreen(viewModel: HomeViewModel, callInfoScreen: () -> Unit = {}) {
@@ -85,6 +90,12 @@ fun HomeScreen(viewModel: HomeViewModel, callInfoScreen: () -> Unit = {}) {
                         .fillMaxSize()
                         .padding(padding)
                 ) {
+                    stickyHeader {
+                        Column(modifier = Modifier.fillMaxWidth()) {
+                            LanguageHorizontalBarChart()
+                            Divider()
+                        }
+                    }
                     items(
                         state.items,
                         contentType = { CONTENT_TYPE_REPO },
