@@ -92,7 +92,10 @@ fun HomeScreen(viewModel: HomeViewModel, callInfoScreen: () -> Unit = {}) {
                 ) {
                     stickyHeader {
                         Column(modifier = Modifier.fillMaxWidth()) {
-                            LanguageHorizontalBarChart()
+                            LanguageHorizontalBarChart(
+                                totalRepositoryCount = state.items.size,
+                                languageRepositoryCountList = state.languageRepositoryCountList
+                            )
                             Divider()
                         }
                     }
