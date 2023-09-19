@@ -37,7 +37,7 @@ activity-compose = 'androidx.activity:activity-compose:1.6.1'
 compose-livedata = { module = 'androidx.compose.runtime:runtime-livedata', version.ref = 'compose' }
 customview-main = 'androidx.customview:customview:1.1.0'
 customview-poolingcontainer = 'androidx.customview:customview-poolingcontainer:1.0.0'
-preference = 'androidx.preference:preference-ktx:1.2.0'
+preference = 'androidx.preference:preference-ktx:1.2.1'
 play-services-oss-licenses = 'com.google.android.gms:play-services-oss-licenses:17.0.0'
 # Retrofit
 okhttp = "com.squareup.okhttp3:okhttp:4.11.0"
@@ -50,7 +50,7 @@ room-runtime = { module = 'androidx.room:room-runtime', version.ref = 'room' }
 room-ktx = { module = 'androidx.room:room-ktx', version.ref = 'room' }
 room-compiler = { module = 'androidx.room:room-compiler', version.ref = 'room' }
 # Preferences
-preferences = 'androidx.preference:preference-ktx:1.2.0'
+preferences = 'androidx.preference:preference-ktx:1.2.1'
 # Lifecycle
 lifecycle-viewmodel-ktx = { module = 'androidx.lifecycle:lifecycle-viewmodel-ktx', version.ref = 'lifecycle' }
 lifecycle-viewmodel-compose = { module = 'androidx.lifecycle:lifecycle-viewmodel-compose', version.ref = 'lifecycle' }
