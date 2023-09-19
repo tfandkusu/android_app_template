@@ -24,7 +24,7 @@ kover-gradle = 'org.jetbrains.kotlinx:kover-gradle-plugin:0.7.2'
 
 # UI
 core = 'androidx.core:core-ktx:1.9.0'
-appcompat = 'androidx.appcompat:appcompat:1.6.0'
+appcompat = 'androidx.appcompat:appcompat:1.6.1'
 activity = 'androidx.activity:activity-ktx:1.6.1'
 fragment = 'androidx.fragment:fragment-ktx:1.5.4'
 material = 'com.google.android.material:material:1.7.0'
